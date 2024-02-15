@@ -25,7 +25,7 @@ app.use(
 );
 
 app.use("/api/v1/trains", trainRoutes);
-app.use("api/v1/auth",require("./routes/jwtAuth"))
+app.use("/api/v1/auth",require("./routes/jwtAuth"))
 
 const PORT = process.env.PORT || 5000;
 

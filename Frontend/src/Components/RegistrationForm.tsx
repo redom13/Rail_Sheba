@@ -7,7 +7,11 @@ import axios from "axios";
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
     nid: "",
-    username: "",
+    first_name:"",
+    last_name:"",
+    date_of_birth:"",
+    contact_no:"",
+    idtype:"",
     email: "",
     password: "",
   });
@@ -19,7 +23,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = () => {
     axios
-      .post("http://localhost:5000/api/v1/register", formData)
+      .post("http://localhost:5000/api/v1/auth/register", formData)
       .then((response) => {
         // Handle success
         console.log("Response:", response.data);
@@ -62,9 +66,37 @@ const RegistrationForm = () => {
         />
         <Input
           type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
+          name="first_name"
+          placeholder="first_name"
+          value={formData.first_name}
+          onChange={handleChange}
+        />
+        <Input
+          type="text"
+          name="last_name"
+          placeholder="last_name"
+          value={formData.last_name}
+          onChange={handleChange}
+        />
+        <Input
+          type="text"
+          name="date_of_birth"
+          placeholder="date_of_birth"
+          value={formData.date_of_birth}
+          onChange={handleChange}
+        />
+        <Input
+          type="text"
+          name="contact_no"
+          placeholder="contact_no"
+          value={formData.contact_no}
+          onChange={handleChange}
+        />
+          <Input
+          type="text"
+          name="idtype"
+          placeholder="idtype"
+          value={formData.idtype}
           onChange={handleChange}
         />
         <Input
