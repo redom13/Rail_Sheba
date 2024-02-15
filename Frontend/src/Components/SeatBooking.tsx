@@ -11,14 +11,21 @@ import {
   Spacer,
 } from "@chakra-ui/react";
 
-interface props {
+interface Props {
   number: number;
-  //click: boolean;
 }
 
-const BoxComponent = ({ number }: props) => {
+const BoxComponent = ({
+  number,
+  updateSeatCount,
+}: Props & { updateSeatCount: (clicked:boolean) => void }) => {
   const [clicked, setClicked] = useState(false);
-  // setClicked(click);
+
+  const handleClick = () => {
+    updateSeatCount(clicked);
+    setClicked(!clicked);
+  };
+
   return (
     <Box
       w="50px"
@@ -26,19 +33,26 @@ const BoxComponent = ({ number }: props) => {
       color="white"
       bg={clicked ? "teal" : "gray"}
       borderRadius="20px"
-      onClick={() => setClicked(true)}
+      onClick={handleClick}
     ></Box>
   );
 };
 
 const SeatBooking = () => {
+  const [seatCount, setSeatCount] = useState(0);
+
+  const updateSeatCount = (clicked:boolean) => {
+    if (!clicked) setSeatCount(seatCount + 1);
+    else setSeatCount(seatCount - 1);
+  };
+
   return (
     <Center flexDirection="column">
-        <Flex flexDirection="column">
+      <Flex flexDirection="column">
         <Text fontSize="md" fontWeight="bold" ml={4} mb={0}>
-        Choose your seat(s)** Maximum 4 seats can be booked at a time.
+          Choose your seat(s) - Maximum 4 seats can be booked at a time.
         </Text>
-        <Divider orientation="horizontal" width="800px" mx={4} mb={4} mt={1}/>
+        <Divider orientation="horizontal" width="800px" mx={4} mb={4} mt={1} />
       </Flex>
       <Center flexDirection="column">
         <div>
@@ -57,18 +71,42 @@ const SeatBooking = () => {
               </Select>
               <Flex>
                 <Flex mt={2}>
-                    <Text fontSize="sm" fontWeight="bold">Available</Text>
-                    <Box w="20px" h="20px" bg="gray" borderRadius="5px" ml="5px"></Box>
+                  <Text fontSize="sm" fontWeight="bold">
+                    Available
+                  </Text>
+                  <Box
+                    w="20px"
+                    h="20px"
+                    bg="gray"
+                    borderRadius="5px"
+                    ml="5px"
+                  ></Box>
                 </Flex>
                 <Spacer />
                 <Flex mt={2}>
-                    <Text fontSize="sm" fontWeight="bold">Booked</Text>
-                    <Box w="20px" h="20px" bg="orange" borderRadius="5px" ml="5px"></Box>
+                  <Text fontSize="sm" fontWeight="bold">
+                    Booked
+                  </Text>
+                  <Box
+                    w="20px"
+                    h="20px"
+                    bg="orange"
+                    borderRadius="5px"
+                    ml="5px"
+                  ></Box>
                 </Flex>
                 <Spacer />
                 <Flex mt={2}>
-                    <Text fontSize="sm" fontWeight="bold">Selected</Text>
-                    <Box w="20px" h="20px" bg="teal" borderRadius="5px" ml="5px"></Box>
+                  <Text fontSize="sm" fontWeight="bold">
+                    Selected
+                  </Text>
+                  <Box
+                    w="20px"
+                    h="20px"
+                    bg="teal"
+                    borderRadius="5px"
+                    ml="5px"
+                  ></Box>
                 </Flex>
               </Flex>
               <Grid
@@ -87,14 +125,17 @@ const SeatBooking = () => {
                     }
                     colSpan={1}
                   >
-                    <BoxComponent number={index + 1} />
+                    <BoxComponent
+                      number={index + 1}
+                      updateSeatCount={updateSeatCount}
+                    />
                   </GridItem>
                 ))}
               </Grid>
             </div>
             <Box w="400px" h="300px" bg="cornsilk" mt="20px" ml={2}>
               <Text fontSize="lg" margin="5px">
-                Seat Details
+                Seat Details {seatCount}
               </Text>
             </Box>
           </Flex>
