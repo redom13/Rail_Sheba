@@ -10,7 +10,7 @@ const NavBar = () => {
         },
       };
       return (
-        <Flex p={4} bg="teal.500" color="white">
+        <Flex p={4} bg="black" color="white">
           <Link as={RouterLink} to="/" fontSize="xl" fontWeight="bold" {...linkStyles}>
             Rail Sheba
           </Link>
