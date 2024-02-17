@@ -85,7 +85,7 @@ const Login = ({setAuth}:Props) => {
             <VStack bg="rgba(255, 255, 255, 0.45)" boxShadow="lg" width="300px" p={2} borderRadius="10px" borderWidth="1px">
                 <Box>
                     <Center>
-                        <Text fontSize="2xl" color="white" fontWeight="bold" mb={4}>
+                        <Text fontSize="2xl" color="black" fontWeight="bold" mb={4}>
                             Login
                         </Text>
                     </Center>

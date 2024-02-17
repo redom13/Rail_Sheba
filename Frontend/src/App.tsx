@@ -38,9 +38,10 @@ const App = () => {
     console.log("setAuth called", bool);
     setIsAuthenticated(bool);
   };
+
   return (
     <Router>
-      <NavBar />
+      <NavBar isAuthenticated={isAuthenticated}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setAuth={setAuth}/>} />
@@ -50,8 +51,10 @@ const App = () => {
         />
         <Route path="/contact" element={<h1>Contact</h1>} />
         <Route path="/trains" element={<AvailableTrains />} />
+        <Route path="/dashboard" element={<h1>Dashboard</h1>} />
         {/*<Route path="/trains/:id" element={<Seat/>}/>*/}
-        <Route path="/trains/:id" element={<SeatBooking />} />
+       <Route path="/trains/:id" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth}/>} />
+        {/*<Route path="/trains/:id" element={<SeatBooking />} />*/}
       </Routes>
     </Router>
   );
