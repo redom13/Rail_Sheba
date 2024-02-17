@@ -342,6 +342,7 @@
 9,730,Hasanpur,06:58 am,07:00 am
 10,730,Feni,07:22 am,07:25 am
 11,730,Chattogram,08:45 am,NULL
+12,730,Feni,07:22 am,NULL
 1,735,Dhaka,NULL,11:30 am
 2,735,Biman_Bandar,11:53 am,11:58 am
 3,735,Gafargaon,01:20 pm,01:23 pm
@@ -351,6 +352,15 @@
 7,735,Kendua_Bazar,03:41 pm,NULL
 8,735,Sarishabari,04:14 pm,04:16 pm
 9,735,Tarakandi,04:50 pm,NULL
+1,736,Tarakandi,NULL,06:30 pm
+2,736,Sarishabari,NULL,06:47 pm
+3,736,Kendua_Bazar,07:18 pm,NULL
+4,736,Jamalpur_Town,07:40 pm,07:42 pm
+5,736,Narundi,08:03 pm,NULL
+6,736,Mymensingh,08:44 pm,08:48 pm
+7,736,Gafargaon,09:30 pm,09:33 pm
+8,736,Biman_Bandar,11:07 pm,NULL
+9,736,Dhaka,11:50 pm,NULL
 1,736,Tarakandi,NULL,06:30 pm
 2,736,Sarishabari,NULL,06:47 pm
 3,736,Kendua_Bazar,07:18 pm,NULL
