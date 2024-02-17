@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Button, Input, Text, VStack, Flex, Link, Center, FormControl, FormLabel,useToast } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import axios, { formToJSON } from 'axios';
@@ -6,9 +6,10 @@ import backgroundImage from '../train.jpg';
 
 interface Props {
     setAuth: (auth: boolean) => void;
+    setLogin: (auth: boolean) => void;
   }
 
-const Login = ({setAuth}:Props) => {
+const Login = ({setAuth,setLogin}:Props) => {
     const toast = useToast();
     const [formData, setFormData] = useState({
         username: '',
@@ -18,6 +19,10 @@ const Login = ({setAuth}:Props) => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
+
+    useEffect(() => {
+        setLogin(true);
+    }, []);
 
     const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -38,6 +43,7 @@ const Login = ({setAuth}:Props) => {
                 if (response.data.jwtToken) {
                     localStorage.setItem("jwtToken", response.data.jwtToken);
                     setAuth(true);
+                    setLogin(false);
                     toast({
                         title: "Login successful",
                         status: "success",
@@ -102,7 +108,9 @@ const Login = ({setAuth}:Props) => {
                     </Button>
                     <Flex>
                         <Text fontSize="md" fontWeight="bold">Don't have an account?</Text>
-                        <Link as={RouterLink} to="/register" mx={2} color="orange">
+                        <Link as={RouterLink} to="/register" mx={2} color="orange" onClick={()=>{
+                            setLogin(false);
+                        }}>
                             Sign Up
                         </Link>
                     </Flex>

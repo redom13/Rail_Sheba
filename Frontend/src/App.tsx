@@ -7,6 +7,7 @@ import Seat from "./Components/Seat";
 import Home from "./Home";
 import SeatBooking from "./Components/SeatBooking";
 import { useEffect, useState } from "react";
+import Dashboard from "./Components/Dashboard";
 
 const App = () => {
   const checkAuthenticated = async () => {
@@ -33,27 +34,33 @@ const App = () => {
   }, []);
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoginPage, setIsLoginPage] = useState(false);
 
   const setAuth = (bool: boolean) => {
     console.log("setAuth called", bool);
     setIsAuthenticated(bool);
   };
 
+  const setLogin = (bool: boolean) => { 
+    console.log("setLogin called", bool);
+    setIsLoginPage(bool);
+  }
+
   return (
     <Router>
-      <NavBar isAuthenticated={isAuthenticated}/>
+      <NavBar isAuthenticated={isAuthenticated} isLoginPage={isLoginPage}/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login setAuth={setAuth}/>} />
+        <Route path="/login" element={<Login setAuth={setAuth} setLogin={setLogin}/>} />
         <Route
           path="/register"
           element={<RegistrationForm setAuth={setAuth} />}
         />
         <Route path="/contact" element={<h1>Contact</h1>} />
         <Route path="/trains" element={<AvailableTrains />} />
-        <Route path="/dashboard" element={<h1>Dashboard</h1>} />
+        <Route path="/dashboard" element={<Dashboard />} />
         {/*<Route path="/trains/:id" element={<Seat/>}/>*/}
-       <Route path="/trains/:id" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth}/>} />
+       <Route path="/trains/:id" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin}/>} />
         {/*<Route path="/trains/:id" element={<SeatBooking />} />*/}
       </Routes>
     </Router>
