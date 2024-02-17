@@ -24,6 +24,7 @@ const NavBar = ({ isAuthenticated,isLoginPage }: Props) => {
   const location = useLocation();
   useEffect(() => {
     setAuth(isAuthenticated);
+    console.log("NavBar isAuthenticated:", isAuth);
   }, [isAuthenticated]);
   const linkStyles = {
     textDecoration: "none", // Remove underline

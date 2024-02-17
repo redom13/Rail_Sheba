@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Button, Input, Text, VStack, Flex, Link, Center, FormControl, FormLabel,useToast } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink,useLocation,useNavigate } from 'react-router-dom';
 import axios, { formToJSON } from 'axios';
 import backgroundImage from '../train.jpg';
 
@@ -10,6 +10,8 @@ interface Props {
   }
 
 const Login = ({setAuth,setLogin}:Props) => {
+    const navigate = useNavigate();
+    const location = useLocation();
     const toast = useToast();
     const [formData, setFormData] = useState({
         username: '',
@@ -44,6 +46,8 @@ const Login = ({setAuth,setLogin}:Props) => {
                     localStorage.setItem("jwtToken", response.data.jwtToken);
                     setAuth(true);
                     setLogin(false);
+                    if (location.pathname === "/login") navigate("/");
+                    else navigate(location.pathname);
                     toast({
                         title: "Login successful",
                         status: "success",
