@@ -210,3 +210,126 @@
 883,Tongi
 799,Tushbandar
 60,Ullapara
+
+
+
+Write a js code to read a file named stop.txt . Now in this file the very first line will have a number(train_id) and after this line,every 5 lines contain info about a station. 1st line contain name of that station.
+second line contain Arrival time which is like in this format ---> Arrival: 01:30 pm BST. third line contains halt time.
+Fourth line contains Departure time which is like in this format ----> Departure: 03:10 pm BST . Finally fifth line contains duration time.
+
+Now you need to consider only the 1st,2nd and Fourth line .that is, you will read then and append to another file named trainStops.txt
+in the following format 
+
+train_id,station_name,Arrival,Departure
+
+in case if there is no time after Arrival : or Departure : then write NULL and ignore BST
+example:
+input file-->
+765
+Dhaka
+Arrival:
+Halt: 00min
+Departure: 06:45 am BST
+Duration: 00h
+Biman_Bandar
+Arrival: 07:07 am BST
+Halt: 05min
+Departure: 07:12 am BST
+Duration: 00:22h
+Joydebpur
+Arrival: 07:35 am BST
+Halt: 02min
+Departure: 07:37 am BST
+Duration: 00:23h
+BBSetu_E
+Arrival: 08:59 am BST
+Halt: 10min
+Departure: 09:09 am BST
+Duration: 01:22h
+Muladhuli
+Arrival: 10:39 am BST
+Halt: 03min
+Departure: 10:42 am BST
+Duration: 01:30h
+Natore
+Arrival: 11:18 am BST
+Halt: 03min
+Departure: 11:21 am BST
+Duration: 00:36h
+Ahsanganj
+Arrival: 11:41 am BST
+Halt: 02min
+Departure: 11:43 am BST
+Duration: 00:20h
+Santahar
+Arrival: 12:30 pm BST
+Halt: 05min
+Departure: 12:35 pm BST
+Duration: 00:47h
+Akkelpur
+Arrival: 12:55 pm BST
+Halt: 02min
+Departure: 12:57 pm BST
+Duration: 00:20h
+Joypurhat
+Arrival: 01:11 pm BST
+Halt: 03min
+Departure: 01:14 pm BST
+Duration: 00:14h
+Birampur
+Arrival: 01:42 pm BST
+Halt: 03min
+Departure: 01:45 pm BST
+Duration: 00:28h
+Fulbari
+Arrival: 01:56 pm BST
+Halt: 02min
+Departure: 01:58 pm BST
+Duration: 00:11h
+Parbatipur
+Arrival: 02:15 pm BST
+Halt: 10min
+Departure: 02:25 pm BST
+Duration: 00:17h
+Saidpur
+Arrival: 02:42 pm BST
+Halt: 04min
+Departure: 02:46 pm BST
+Duration: 00:17h
+Nilphamari
+Arrival: 03:05 pm BST
+Halt: 03min
+Departure: 03:08 pm BST
+Duration: 00:19h
+Domar
+Arrival: 03:24 pm BST
+Halt: 03min
+Departure: 03:27 pm BST
+Duration: 00:16h
+Chilahati
+Arrival: 04:00 pm BST
+Halt: 00min
+Departure:
+Duration: 00:33h
+
+
+
+
+output file-->
+765,Dhaka,NULL,06:45 am
+765,Biman_Bandar,07:07 am,07:12 am
+765,Joydebpur,07:35 am,07:37 am
+765,BBSetu_E,08:59 am,09:09 am
+765,Muladhuli,10:39 am,10:42 am
+765,Natore,11:18 am,11:21 am
+765,Ahsanganj,11:41 am,11:43 am
+765,Santahar,12:30 pm,12:35 pm
+765,Akkelpur,12:55 pm,12:57 pm
+765,Joypurhat,01:11 pm,01:14 pm
+765,Birampur,01:42 pm,01:45 pm
+765,Fulbari,01:56 pm,01:58 pm
+765,Parbatipur,02:15 pm,02:25 pm
+765,Saidpur,02:42 pm,02:46 pm
+765,Nilphamari,03:05 pm,03:08 pm
+765,Domar,03:24 pm,03:27 pm
+765,Chilahati,04:00 pm,NULL
