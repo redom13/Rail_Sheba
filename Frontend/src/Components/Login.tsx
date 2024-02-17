@@ -1,10 +1,15 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Box, Button, Input, Text, VStack, Flex, Link, Center, FormControl, FormLabel } from '@chakra-ui/react';
+import { Box, Button, Input, Text, VStack, Flex, Link, Center, FormControl, FormLabel,useToast } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { formToJSON } from 'axios';
-import backgroundImage from 'D:/L2T1/Rail_Sheba/Frontend/public/train.jpg';
+import axios, { formToJSON } from 'axios';
+import backgroundImage from '../train.jpg';
 
-const Login = () => {
+interface Props {
+    setAuth: (auth: boolean) => void;
+  }
+
+const Login = ({setAuth}:Props) => {
+    const toast = useToast();
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -26,7 +31,41 @@ const Login = () => {
         } else {
             // Submit form
             console.log(formData);
-
+            axios 
+            .post("http://localhost:5000/api/v1/auth/login", formData)
+            .then((response) => {
+                console.log("Response:", response.data);
+                if (response.data.jwtToken) {
+                    localStorage.setItem("jwtToken", response.data.jwtToken);
+                    setAuth(true);
+                    toast({
+                        title: "Login successful",
+                        status: "success",
+                        duration: 3000, // Optional duration for the toast
+                        isClosable: true,
+                    });
+                }
+                else {
+                    setAuth(false);
+                    toast({
+                        title: "Error logging in",
+                        description: response.data.message || "An error occurred",
+                        status: "error",
+                        duration: 3000, // Optional duration for the toast
+                        isClosable: true,
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                toast({
+                    title: "Error logging in",
+                    description: error.response.data.message || "An error occurred",
+                    status: "error",
+                    duration: 3000, // Optional duration for the toast
+                    isClosable: true,
+                });
+            });
         }
     };
 
