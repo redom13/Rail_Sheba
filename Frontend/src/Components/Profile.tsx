@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -12,6 +12,7 @@ import {
   Flex,
   Text,
   Divider,
+  Button,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { Link as RouterLink } from "react-router-dom";
@@ -43,9 +44,15 @@ const Profile = () => {
       }
     }
   };
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <Menu>
+      <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+        {user.FIRST_NAME + " " + user.LAST_NAME}
+      </MenuButton>
       <MenuList>
         <MenuItem>
           <Flex>
