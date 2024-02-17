@@ -1,0 +1,1338 @@
+1,796,Dhaka,NULL,11:45 pm
+2,796,Bhanga,12:52 am,12:55 am
+3,796,Faridpur,01:35 am,01:38 am
+4,796,Rajbari,02:10 am,02:25 am
+5,796,Khoksha,02:58 am,NULL
+6,796,Kushtia_Court,03:22 am,03:25 am
+7,796,Poradaha,03:45 am,03:50 am
+8,796,Chuadanga,04:19 am,04:22 am
+9,796,Darshana_Halt,04:44 am,04:47 am
+10,796,Kotchandpur,05:12 am,05:14 am
+11,796,Mubarakganj,05:26 am,05:28 am
+12,796,Jashore,06:00 am,06:20 am
+13,796,Jhikargacha,06:39 am,06:41 am
+14,796,Benapole,07:20 am,NULL
+1,795,Benapole,NULL,01:00 pm
+2,795,Jhikargacha,01:30 pm,01:32 pm
+3,795,Jashore,01:55 pm,02:15 pm
+4,795,Mubarakganj,02:55 pm,02:57 pm
+5,795,Kotchandpur,03:08 pm,03:10 pm
+6,795,Darshana_Halt,03:34 pm,03:37 pm
+7,795,Chuadanga,03:56 pm,03:59 pm
+8,795,Poradaha,04:40 pm,04:44 pm
+9,795,Kushtia_Court,04:56 pm,04:59 pm
+10,795,Khoksha,05:21 pm,NULL
+11,795,Rajbari,06:00 pm,06:10 pm
+12,795,Faridpur,06:42 pm,06:45 pm
+13,795,Bhanga,07:15 pm,07:18 pm
+14,795,Dhaka,08:45 pm,NULL
+1,701,Chattogram,NULL,07:30 am
+2,701,Dhaka,12:25 pm,NULL
+1,702,Dhaka,NULL,04:30 pm
+2,702,Biman_Bandar,04:53 pm,04:58 pm
+3,702,Chattogram,09:25 pm,NULL
+1,703,Chattogram,NULL,03:00 pm
+2,703,Feni,04:20 pm,04:22 pm
+3,703,Gunabati,04:36 pm,04:38 pm
+4,703,Laksam,05:04 pm,05:06 pm
+5,703,Cumilla,05:27 pm,05:29 pm
+6,703,Akhaura,06:20 pm,06:23 pm
+7,703,Brahmanbaria,06:41 pm,06:45 pm
+8,703,Bhairab_Bazar,07:04 pm,07:07 pm
+9,703,Dhaka,08:55 pm,NULL
+1,704,Dhaka,NULL,07:45 am
+2,704,Biman_Bandar,08:07 am,08:12 am
+3,704,Bhairab_Bazar,09:16 am,09:19 am
+4,704,Brahmanbaria,09:39 am,09:43 am
+5,704,Akhaura,10:05 am,10:08 am
+6,704,Cumilla,10:51 am,10:53 am
+7,704,Laksam,11:15 am,11:17 am
+8,704,Gunabati,11:43 am,11:45 am
+9,704,Feni,12:00 pm,12:02 pm
+10,704,Chattogram,01:35 pm,NULL
+1,705,Dhaka,NULL,10:15 am
+2,705,Biman_Bandar,10:38 am,10:43 am
+3,705,Joydebpur,11:06 am,11:08 am
+4,705,Tangail,12:02 pm,12:04 pm
+5,705,BBSetu_E,12:24 pm,12:34 pm
+6,705,SH M Monsur Ali,01:00 pm,01:03 pm
+7,705,Ullapara,01:20 pm,01:22 pm
+8,705,Ishwardi Bypass,02:21 pm,02:24 pm
+9,705,Natore,03:03 pm,03:06 pm
+10,705,Santahar,03:55 pm,04:00 pm
+11,705,Akkelpur,04:20 pm,04:22 pm
+12,705,Joypurhat,04:49 pm,04:52 pm
+13,705,Panchbibi,05:12 pm,05:14 pm
+14,705,Birampur,05:34 pm,05:37 pm
+15,705,Fulbari,05:48 pm,05:51 pm
+16,705,Parbatipur,06:15 pm,06:25 pm
+17,705,Chirirbandar,06:40 pm,06:42 pm
+18,705,Dinajpur,07:00 pm,07:05 pm
+19,705,Setabganj,07:35 pm,07:37 pm
+20,705,Pirganj,07:51 pm,07:53 pm
+21,705,Thakurgaon_Road,08:15 pm,08:18 pm
+22,705,Ruhia,08:33 pm,08:35 pm
+23,705,Kismat,08:42 pm,08:44 pm
+24,705,B Sirajul Islam,09:00 pm,NULL
+1,706,B Sirajul Islam,NULL,09:10 pm
+2,706,Kismat,09:25 pm,09:27 pm
+3,706,Ruhia,09:34 pm,09:36 pm
+4,706,Thakurgaon_Road,09:51 pm,09:54 pm
+5,706,Pirganj,10:16 pm,10:18 pm
+6,706,Setabganj,10:32 pm,10:34 pm
+7,706,Dinajpur,11:05 pm,11:10 pm
+8,706,Chirirbandar,11:30 pm,11:32 pm
+9,706,Parbatipur,11:50 pm,11:55 pm
+10,706,Fulbari,12:31 am,12:34 am
+11,706,Birampur,12:45 am,12:48 am
+12,706,Panchbibi,01:15 am,01:17 am
+13,706,Joypurhat,01:28 am,01:31 am
+14,706,Akkelpur,01:45 am,01:47 am
+15,706,Santahar,02:15 am,02:20 am
+16,706,Natore,03:13 am,03:16 am
+17,706,Ullapara,04:27 am,04:30 am
+18,706,BBSetu_E,05:23 am,05:25 am
+19,706,Tangail,05:45 am,05:47 am
+20,706,Joydebpur,06:47 am,06:50 am
+21,706,Dhaka,07:50 am,NULL
+1,707,Dhaka,NULL,07:30 am
+2,707,Biman_Bandar,07:53 am,07:58 am
+3,707,Joydebpur,08:19 am,08:21 am
+4,707,Gafargaon,09:15 am,09:17 am
+5,707,Mymensingh,10:00 am,10:03 am
+6,707,Piyarpur,10:35 am,10:37 am
+7,707,Jamalpur_Town,11:10 am,11:13 am
+8,707,Melandah_Bazar,11:30 am,11:32 am
+9,707,Islampur_Bazar,11:48 am,11:50 am
+10,707,Dewanganj_Bazar,12:30 pm,NULL
+1,708,Dewanganj_Bazar,NULL,03:00 pm
+2,708,Islampur_Bazar,03:13 pm,03:15 pm
+3,708,Melandah_Bazar,03:31 pm,03:34 pm
+4,708,Jamalpur_Town,03:51 pm,03:56 pm
+5,708,Piyarpur,04:26 pm,04:28 pm
+6,708,Mymensingh,05:03 pm,05:06 pm
+7,708,Gafargaon,05:50 pm,05:52 pm
+8,708,Biman_Bandar,07:43 pm,NULL
+9,708,Dhaka,08:25 pm,NULL
+1,709,Dhaka,NULL,06:30 am
+2,709,Biman_Bandar,06:53 am,06:58 am
+3,709,Bhairab_Bazar,08:03 am,08:06 am
+4,709,Brahmanbaria,08:26 am,08:29 am
+5,709,Azampur,08:50 am,08:52 am
+6,709,Nayapara,09:30 am,09:32 am
+7,709,Shaistaganj,09:52 am,09:55 am
+8,709,Sreemangal,10:32 am,10:35 am
+9,709,Bhanugach,10:54 am,10:56 am
+10,709,Kulaura,11:25 am,11:28 am
+11,709,Maijgaon,11:55 am,11:57 am
+12,709,Sylhet,01:00 pm,NULL
+1,710,Sylhet,NULL,03:30 pm
+2,710,Maijgaon,04:09 pm,04:12 pm
+3,710,Kulaura,04:42 pm,04:45 pm
+4,710,Bhanugach,05:17 pm,05:19 pm
+5,710,Sreemangal,05:38 pm,05:41 pm
+6,710,Shaistaganj,06:22 pm,06:25 pm
+7,710,Nayapara,06:45 pm,06:47 pm
+8,710,Azampur,07:32 pm,07:34 pm
+9,710,Brahmanbaria,08:04 pm,08:08 pm
+10,710,Bhairab_Bazar,08:27 pm,08:30 pm
+11,710,Biman_Bandar,09:35 pm,NULL
+12,710,Dhaka,10:15 pm,NULL
+1,711,Noakhali,NULL,06:00 am
+2,711,Maijdi Court,06:07 am,06:09 am
+3,711,Choumuhani,06:23 am,06:25 am
+4,711,Bajra,06:34 am,06:36 am
+5,711,Sonaimuri,06:45 am,06:47 am
+6,711,Natherpetua,07:00 am,07:02 am
+7,711,Laksam,07:25 am,07:30 am
+8,711,Cumilla,07:52 am,07:54 am
+9,711,Quasba,08:24 am,08:26 am
+10,711,Akhaura,08:50 am,08:53 am
+11,711,Brahmanbaria,09:10 am,09:14 am
+12,711,Ashuganj,09:29 am,09:31 am
+13,711,Narsingdi,10:05 am,10:07 am
+14,711,Biman_Bandar,10:47 am,NULL
+15,711,Dhaka,11:20 am,NULL
+1,712,Dhaka,NULL,03:10 pm
+2,712,Biman_Bandar,03:33 pm,03:38 pm
+3,712,Narsingdi,04:18 pm,04:20 pm
+4,712,Bhairab_Bazar,04:50 pm,04:52 pm
+5,712,Ashuganj,05:00 pm,05:02 pm
+6,712,Brahmanbaria,05:17 pm,05:21 pm
+7,712,Akhaura,05:47 pm,05:50 pm
+8,712,Quasba,06:06 pm,06:08 pm
+9,712,Cumilla,06:38 pm,06:40 pm
+10,712,Laksam,07:03 pm,07:05 pm
+11,712,Natherpetua,07:27 pm,NULL
+12,712,Sonaimuri,07:42 pm,NULL
+13,712,Bajra,07:53 pm,NULL
+14,712,Choumuhani,08:04 pm,NULL
+15,712,Maijdi Court,08:20 pm,NULL
+16,712,Noakhali,08:40 pm,NULL
+1,713,Santahar,NULL,09:15 am
+2,713,Bogura,09:58 am,10:03 am
+3,713,Sonatola,10:37 am,10:39 am
+4,713,Mahimaganj,10:49 am,10:51 am
+5,713,Bonar_Para,11:01 am,11:06 am
+6,713,Gaibandha,11:29 am,11:32 am
+7,713,Bamondanga,12:09 pm,12:12 pm
+8,713,Pirgacha,12:30 pm,12:33 pm
+9,713,Kaunia,12:50 pm,12:53 pm
+10,713,Teesta_Junction,01:00 pm,NULL
+11,713,Lalmonirhat,01:20 pm,01:30 pm
+12,713,Aditmari,01:45 pm,01:47 pm
+13,713,Kankina,02:05 pm,02:05 pm
+14,713,Tushbhandar,02:14 pm,02:16 pm
+15,713,Hatibandha,02:42 pm,02:44 pm
+16,713,Barkhata,02:55 pm,02:57 pm
+17,713,Patgram,03:20 pm,03:23 pm
+18,713,Burimari,03:45 pm,NULL
+1,714,Burimari,NULL,04:10 pm
+2,714,Patgram,04:25 pm,04:30 pm
+3,714,Barkhata,04:56 pm,04:58 pm
+4,714,Hatibandha,05:06 pm,05:08 pm
+5,714,Tushbhandar,05:34 pm,05:36 pm
+6,714,Kankina,05:43 pm,05:45 pm
+7,714,Aditmari,06:02 pm,06:04 pm
+8,714,Lalmonirhat,06:20 pm,06:45 pm
+9,714,Teesta_Junction,07:01 pm,NULL
+10,714,Kaunia,07:10 pm,07:13 pm
+11,714,Pirgacha,07:28 pm,07:31 pm
+12,714,Bamondanga,07:48 pm,07:50 pm
+13,714,Gaibandha,08:20 pm,08:23 pm
+14,714,Bonar_Para,08:45 pm,08:50 pm
+15,714,Mahimaganj,09:00 pm,09:02 pm
+16,714,Sonatola,09:11 pm,09:13 pm
+17,714,Bogura,09:45 pm,09:50 pm
+18,714,Santahar,10:40 pm,NULL
+1,717,Dhaka,NULL,11:15 am
+2,717,Biman_Bandar,11:38 am,11:43 am
+3,717,Ashuganj,12:54 pm,12:56 pm
+4,717,Brahmanbaria,01:11 pm,01:15 pm
+5,717,Azampur,01:37 pm,01:39 pm
+6,717,Mukundapur,01:52 pm,01:54 pm
+7,717,Harashpur,02:04 pm,02:06 pm
+8,717,Montola,02:17 pm,02:19 pm
+9,717,Nayapara,02:47 pm,02:49 pm
+10,717,Shahaji_Bazar,03:00 pm,03:02 pm
+11,717,Shaistaganj,03:15 pm,03:20 pm
+12,717,Sreemangal,04:01 pm,04:04 pm
+13,717,Bhanugach,04:23 pm,04:25 pm
+14,717,Kulaura,05:11 pm,05:14 pm
+15,717,Maijgaon,05:41 pm,05:43 pm
+16,717,Sylhet,07:00 pm,NULL
+1,718,Sylhet,NULL,12:00 pm
+2,718,Maijgaon,12:48 pm,12:50 pm
+3,718,Kulaura,01:17 pm,01:20 pm
+4,718,Bhanugach,02:19 pm,02:21 pm
+5,718,Sreemangal,02:40 pm,02:45 pm
+6,718,Shaistaganj,03:22 pm,03:25 pm
+7,718,Shahaji_Bazar,03:37 pm,03:39 pm
+8,718,Nayapara,03:50 pm,03:52 pm
+9,718,Montola,04:06 pm,06:08 pm
+10,718,Harashpur,04:17 pm,04:19 pm
+11,718,Mukundapur,04:29 pm,04:31 pm
+12,718,Azampur,04:46 pm,04:48 pm
+13,718,Brahmanbaria,05:09 pm,05:13 pm
+14,718,Ashuganj,05:28 pm,05:30 pm
+15,718,Biman_Bandar,06:47 pm,NULL
+16,718,Dhaka,07:25 pm,NULL
+1,719,Chattogram,NULL,07:50 am
+2,719,Feni,09:13 am,09:16 am
+3,719,Nangolkot,09:43 am,09:45 am
+4,719,Laksam,10:00 am,10:03 am
+5,719,Cumilla,10:25 am,10:28 am
+6,719,Quasba,10:58 am,11:00 am
+7,719,Akhaura,11:30 am,11:35 am
+8,719,Harashpur,12:05 pm,NULL
+9,719,Nayapara,12:28 pm,12:30 pm
+10,719,Shaistaganj,12:50 pm,12:53 pm
+11,719,Sreemangal,01:30 pm,01:35 pm
+12,719,Bhanugach,01:55 pm,01:57 pm
+13,719,Shamshernagar,02:06 pm,02:08 pm
+14,719,Kulaura,02:32 pm,02:35 pm
+15,719,Baramchal,02:48 pm,NULL
+16,719,Maijgaon,03:07 pm,03:09 pm
+17,719,Sylhet,04:30 pm,NULL
+1,720,Sylhet,NULL,10:30 am
+2,720,Maijgaon,11:09 am,11:11 am
+3,720,Kulaura,11:55 am,11:58 am
+4,720,Shamshernagar,12:21 pm,12:23 pm
+5,720,Bhanugach,12:32 pm,12:34 pm
+6,720,Sreemangal,12:54 pm,12:57 pm
+7,720,Shaistaganj,01:54 pm,01:57 pm
+8,720,Nayapara,02:17 pm,02:19 pm
+9,720,Harashpur,02:39 pm,02:41 pm
+10,720,Akhaura,03:20 pm,03:25 pm
+11,720,Quasba,03:41 pm,03:43 pm
+12,720,Cumilla,04:13 pm,04:15 pm
+13,720,Laksam,04:38 pm,04:40 pm
+14,720,Nangolkot,04:55 pm,04:57 pm
+15,720,Feni,05:24 pm,05:26 pm
+16,720,Chattogram,06:55 pm,NULL
+1,721,Chattogram,NULL,12:30 pm
+2,721,Kumira,12:53 pm,12:55 pm
+3,721,Feni,01:53 pm,01:56 pm
+4,721,Nangolkot,02:20 pm,02:22 pm
+5,721,Laksam,02:35 pm,02:40 pm
+6,721,Cumilla,03:02 pm,03:07 pm
+7,721,Quasba,03:37 pm,03:39 pm
+8,721,Akhaura,04:05 pm,04:08 pm
+9,721,Brahmanbaria,04:26 pm,04:30 pm
+10,721,Ashuganj,04:45 pm,04:47 pm
+11,721,Bhairab_Bazar,04:55 pm,04:57 pm
+12,721,Narsingdi,05:28 pm,05:30 pm
+13,721,Dhaka,06:40 pm,NULL
+1,722,Dhaka,NULL,09:20 pm
+2,722,Biman_Bandar,09:43 pm,09:48 pm
+3,722,Narsingdi,10:28 pm,10:30 pm
+4,722,Bhairab_Bazar,11:00 pm,11:03 pm
+5,722,Ashuganj,11:11 pm,11:13 pm
+6,722,Brahmanbaria,11:28 pm,11:32 pm
+7,722,Akhaura,11:55 pm,11:58 pm
+8,722,Quasba,12:14 am,12:16 am
+9,722,Cumilla,12:46 am,12:48 am
+10,722,Laksam,01:10 am,01:12 am
+11,722,Nangolkot,01:26 am,01:28 am
+12,722,Feni,01:53 am,01:55 am
+13,722,Kumira,02:55 am,NULL
+14,722,Chattogram,03:30 am,NULL
+1,723,Chattogram,NULL,09:45 pm
+2,723,Feni,11:04 pm,11:07 pm
+3,723,Laksam,11:45 pm,11:47 pm
+4,723,Cumilla,12:09 am,12:12 am
+5,723,Akhaura,01:05 am,01:10 am
+6,723,Shaistaganj,02:18 am,02:21 am
+7,723,Sreemangal,03:10 am,03:13 am
+8,723,Shamshernagar,03:38 am,03:40 am
+9,723,Kulaura,04:04 am,04:07 am
+10,723,Maijgaon,04:35 am,04:37 am
+11,723,Sylhet,05:45 am,NULL
+1,724,Sylhet,NULL,10:00 pm
+2,724,Maijgaon,10:39 pm,10:41 pm
+3,724,Baramchal,10:58 pm,11:00 pm
+4,724,Kulaura,11:13 pm,11:16 pm
+5,724,Shamshernagar,11:40 pm,11:42 pm
+6,724,Sreemangal,12:08 am,12:13 am
+7,724,Shaistaganj,12:50 am,12:53 am
+8,724,Akhaura,02:25 am,02:30 am
+9,724,Cumilla,03:13 am,03:15 am
+10,724,Laksam,03:37 am,03:39 am
+11,724,Feni,04:17 am,04:19 am
+12,724,Chattogram,05:50 am,NULL
+1,729,Chattogram,NULL,06:00 pm
+2,729,Feni,07:23 pm,07:25 pm
+3,729,Hasanpur,07:46 pm,07:48 pm
+4,729,Nangolkot,07:55 pm,07:57 pm
+5,729,Laksam,08:12 pm,08:32 pm
+6,729,Chitoshi_Road,08:46 pm,08:48 pm
+7,729,Meher,08:59 pm,09:01 pm
+8,729,Hajiganj,09:14 pm,09:16 pm
+9,729,Modhu_Road,09:28 pm,09:30 pm
+10,729,Chandpur_Court,09:43 pm,NULL
+11,729,Chandpur,10:00 pm,NULL
+1,730,Chandpur,NULL,05:00 am
+2,730,Chandpur_Court,05:03 am,05:05 am
+3,730,Modhu_Road,05:18 am,05:20 am
+4,730,Hajiganj,05:31 am,05:33 am
+5,730,Meher,05:46 am,05:48 am
+6,730,Chitoshi_Road,05:49 am,06:01 am
+7,730,Laksam,06:15 am,06:35 am
+8,730,Nangolkot,06:49 am,06:51 am
+9,730,Hasanpur,06:58 am,07:00 am
+10,730,Feni,07:22 am,07:25 am
+11,730,Chattogram,08:45 am,NULL
+12,730,Feni,07:22 am,NULL
+1,735,Dhaka,NULL,11:30 am
+2,735,Biman_Bandar,11:53 am,11:58 am
+3,735,Gafargaon,01:20 pm,01:23 pm
+4,735,Mymensingh,02:05 pm,02:10 pm
+5,735,Narundi,02:51 pm,NULL
+6,735,Jamalpur_Town,03:16 pm,03:21 pm
+7,735,Kendua_Bazar,03:41 pm,NULL
+8,735,Sarishabari,04:14 pm,04:16 pm
+9,735,Tarakandi,04:50 pm,NULL
+1,736,Tarakandi,NULL,06:30 pm
+2,736,Sarishabari,NULL,06:47 pm
+3,736,Kendua_Bazar,07:18 pm,NULL
+4,736,Jamalpur_Town,07:40 pm,07:42 pm
+5,736,Narundi,08:03 pm,NULL
+6,736,Mymensingh,08:44 pm,08:48 pm
+7,736,Gafargaon,09:30 pm,09:33 pm
+8,736,Biman_Bandar,11:07 pm,NULL
+9,736,Dhaka,11:50 pm,NULL
+1,736,Tarakandi,NULL,06:30 pm
+2,736,Sarishabari,NULL,06:47 pm
+3,736,Kendua_Bazar,07:18 pm,NULL
+4,736,Jamalpur_Town,07:40 pm,07:42 pm
+5,736,Narundi,08:03 pm,NULL
+6,736,Mymensingh,08:44 pm,08:48 pm
+7,736,Gafargaon,09:30 pm,09:33 pm
+8,736,Biman_Bandar,11:07 pm,NULL
+9,736,Dhaka,11:50 pm,NULL
+1,737,Dhaka,NULL,07:15 am
+2,737,Biman_Bandar,07:38 am,07:43 am
+3,737,Narsingdi,08:22 am,08:24 am
+4,737,Bhairab_Bazar,08:53 am,09:13 am
+5,737,Kuliarchar,09:32 am,09:34 am
+6,737,Bajitpur,09:42 am,09:44 am
+7,737,Sararchar,09:52 am,09:54 am
+8,737,Manikkhali,10:10 am,10:12 am
+9,737,Gachihata,10:22 am,10:24 am
+10,737,Kishorganj,11:10 am,NULL
+1,738,Kishorganj,NULL,06:30 am
+2,738,Gachihata,06:45 am,06:47 am
+3,738,Manikkhali,06:57 am,06:59 am
+4,738,Sararchar,07:15 am,07:17 am
+5,738,Bajitpur,07:25 am,07:27 am
+6,738,Kuliarchar,07:35 am,07:37 am
+7,738,Bhairab_Bazar,08:00 am,08:20 am
+8,738,Methikanda,08:38 am,08:40 am
+9,738,Narsingdi,09:02 am,09:04 am
+10,738,Biman_Bandar,09:50 am,NULL
+11,738,Dhaka,10:30 am,NULL
+1,739,Dhaka,NULL,10:00 pm
+2,739,Biman_Bandar,10:23 pm,10:28 pm
+3,739,Narsingdi,11:09 pm,11:11 pm
+4,739,Bhairab_Bazar,11:40 pm,11:42 pm
+5,739,Shaistaganj,01:22 am,01:25 am
+6,739,Sreemangal,02:06 am,02:11 am
+7,739,Bhanugach,02:30 am,02:32 am
+8,739,Shamshernagar,02:41 am,02:43 am
+9,739,Kulaura,03:08 am,03:11 am
+10,739,Baramchal,03:25 am,03:27 am
+11,739,Maijgaon,03:43 am,03:45 am
+12,739,Sylhet,05:00 am,NULL
+1,740,Sylhet,NULL,11:30 pm
+2,740,Maijgaon,12:09 am,12:11 am
+3,740,Baramchal,12:28 am,NULL
+4,740,Kulaura,12:43 am,12:46 am
+5,740,Shamshernagar,01:09 am,01:11 am
+6,740,Bhanugach,01:20 am,01:22 am
+7,740,Sreemangal,01:41 am,01:44 am
+8,740,Shaistaganj,02:30 am,02:33 am
+9,740,Bhairab_Bazar,04:03 am,04:06 am
+10,740,Biman_Bandar,05:12 am,NULL
+11,740,Dhaka,05:45 am,NULL
+1,741,Chattogram,NULL,11:30 pm
+2,741,Feni,12:50 am,12:52 am
+3,741,Laksam,01:30 am,01:32 am
+4,741,Cumilla,01:55 am,01:57 am
+5,741,Akhaura,02:47 am,02:50 am
+6,741,Brahmanbaria,03:07 am,03:10 am
+7,741,Bhairab_Bazar,03:30 am,03:33 am
+8,741,Dhaka,05:15 am,NULL
+1,742,Dhaka,NULL,11:15 pm
+2,742,Biman_Bandar,11:38 pm,11:43 pm
+3,742,Bhairab_Bazar,12:49 am,12:52 am
+4,742,Brahmanbaria,01:12 am,01:16 am
+5,742,Akhaura,01:45 am,01:50 am
+6,742,Cumilla,02:33 am,02:35 am
+7,742,Laksam,02:57 am,03:00 am
+8,742,Feni,03:40 am,03:42 am
+9,742,Chattogram,05:15 am,NULL
+1,743,Dhaka,NULL,06:15 pm
+2,743,Biman_Bandar,06:38 pm,06:43 pm
+3,743,Joydebpur,07:05 pm,07:07 pm
+4,743,Gafargaon,08:07 pm,08:10 pm
+5,743,Mymensingh,09:10 pm,09:15 pm
+6,743,Piyarpur,09:53 pm,09:55 pm
+7,743,Nandina,10:15 pm,10:17 pm
+8,743,Jamalpur_Town,10:30 pm,10:33 pm
+9,743,Melandah_Bazar,10:50 pm,10:55 pm
+10,743,Islampur_Bazar,11:11 pm,11:16 pm
+11,743,Dewanganj_Bazar,11:50 pm,NULL
+1,744,Dewanganj_Bazar,NULL,06:40 am
+2,744,Islampur_Bazar,06:53 am,06:58 am
+3,744,Melandah_Bazar,07:14 am,07:19 am
+4,744,Jamalpur_Town,07:35 am,07:40 am
+5,744,Nandina,07:53 am,07:56 am
+6,744,Piyarpur,08:16 am,08:19 am
+7,744,Mymensingh,08:50 am,08:55 am
+8,744,Gafargaon,09:52 am,09:55 am
+9,744,Biman_Bandar,11:14 am,NULL
+10,744,Dhaka,11:55 am,NULL
+1,745,Dhaka,NULL,04:45 pm
+2,745,Biman_Bandar,05:08 pm,05:13 pm
+3,745,Joydebpur,05:34 pm,05:37 pm
+4,745,Sreepur,06:04 pm,NULL
+5,745,Gafargaon,06:42 pm,06:45 pm
+6,745,Mymensingh,07:30 pm,07:35 pm
+7,745,Narundi,08:56 pm,NULL
+8,745,Piyarpur,08:41 pm,NULL
+9,745,Jamalpur_Town,09:22 pm,09:25 pm
+10,745,Sarishabari,10:08 pm,10:11 pm
+11,745,Tarakandi,10:50 pm,NULL
+1,746,Tarakandi,NULL,02:00 am
+2,746,Sarishabari,02:15 am,02:18 am
+3,746,Jamalpur_Town,03:06 am,03:11 am
+4,746,Piyarpur,03:46 am,NULL
+5,746,Narundi,03:33 am,NULL
+6,746,Bidyaganj,03:54 am,NULL
+7,746,Mymensingh,04:25 am,04:30 am
+8,746,Gafargaon,05:09 am,05:12 am
+9,746,Sreepur,05:44 am,NULL
+10,746,Joydebpur,06:12 am,06:14 am
+11,746,Biman_Bandar,06:37 am,NULL
+12,746,Dhaka,07:30 am,NULL
+1,749,Dhaka,NULL,06:45 pm
+2,749,Biman_Bandar,07:08 pm,07:13 pm
+3,749,Narsingdi,07:53 pm,07:55 pm
+4,749,Methikanda,09:48 pm,NULL
+5,749,Bhairab_Bazar,08:30 pm,08:50 pm
+6,749,Kuliarchar,09:09 pm,09:11 pm
+7,749,Bajitpur,09:20 pm,09:22 pm
+8,749,Sararchar,09:30 pm,09:32 pm
+9,749,Manikkhali,09:48 pm,09:50 pm
+10,749,Gachihata,10:00 pm,10:02 pm
+11,749,Kishorganj,10:40 pm,NULL
+1,750,Kishorganj,NULL,12:50 pm
+2,750,Gachihata,01:06 pm,01:08 pm
+3,750,Manikkhali,01:18 pm,01:20 pm
+4,750,Sararchar,01:50 pm,01:52 pm
+5,750,Bajitpur,02:00 pm,02:02 pm
+6,750,Kuliarchar,02:10 pm,02:12 pm
+7,750,Bhairab_Bazar,02:35 pm,02:55 pm
+8,750,Narsingdi,03:25 pm,03:27 pm
+9,750,Biman_Bandar,04:08 pm,NULL
+10,750,Dhaka,04:45 pm,NULL
+1,751,Dhaka,NULL,09:45 pm
+2,751,Biman_Bandar,10:08 pm,10:13 pm
+3,751,Joydebpur,10:36 pm,10:39 pm
+4,751,Tangail,11:33 pm,11:35 pm
+5,751,BBSetu_E,11:55 pm,12:05 am
+6,751,SH M Monsur Ali,12:31 am,12:34 am
+7,751,Ullapara,12:51 am,12:53 am
+8,751,Boral_Bridge,01:13 am,01:15 am
+9,751,Azim Nagar,02:01 am,02:03 am
+10,751,Natore,02:39 am,02:42 am
+11,751,Santahar,03:45 am,03:50 am
+12,751,Bogura,04:30 am,04:33 am
+13,751,Sonatola,05:03 am,05:05 am
+14,751,Bonar_Para,05:21 am,05:25 am
+15,751,Gaibandha,05:48 am,05:51 am
+16,751,Bamondanga,06:20 am,06:22 am
+17,751,Pirgacha,06:40 am,06:43 am
+18,751,Kaunia,07:00 am,07:03 am
+19,751,Teesta_Junction,07:10 am,07:12 am
+20,751,Lalmonirhat,07:30 am,NULL
+1,752,Lalmonirhat,NULL,10:00 am
+2,752,Teesta_Junction,10:16 am,10:18 am
+3,752,Kaunia,10:25 am,10:28 am
+4,752,Pirgacha,10:43 am,10:45 am
+5,752,Bamondanga,11:02 am,11:05 am
+6,752,Gaibandha,11:34 am,11:37 am
+7,752,Bonar_Para,11:59 am,12:02 pm
+8,752,Sonatola,12:19 pm,12:21 pm
+9,752,Bogura,12:51 pm,12:54 pm
+10,752,Santahar,01:35 pm,01:40 pm
+11,752,Natore,02:23 pm,02:26 pm
+12,752,Azim Nagar,02:51 pm,02:53 pm
+13,752,Boral_Bridge,03:31 pm,03:33 pm
+14,752,Ullapara,03:52 pm,03:54 pm
+15,752,SH M Monsur Ali,04:18 pm,04:21 pm
+16,752,BBSetu_E,05:01 pm,05:04 pm
+17,752,Tangail,05:26 pm,05:28 pm
+18,752,Joydebpur,06:40 pm,06:43 pm
+19,752,Dhaka,07:40 pm,NULL
+1,757,Dhaka,NULL,08:00 pm
+2,757,Biman_Bandar,08:23 pm,08:28 pm
+3,757,Joydebpur,08:53 pm,08:56 pm
+4,757,Tangail,10:01 pm,10:03 pm
+5,757,BBSetu_E,10:23 pm,10:35 pm
+6,757,Jamtail,11:04 pm,11:07 pm
+7,757,Chatmohar,11:44 pm,11:47 pm
+8,757,Natore,12:33 am,12:35 am
+9,757,Ahsanganj,12:55 am,12:57 am
+10,757,Santahar,01:25 am,01:30 am
+11,757,Akkelpur,01:50 am,01:52 am
+12,757,Joypurhat,02:06 am,02:09 am
+13,757,Panchbibi,02:20 am,02:22 am
+14,757,Birampur,02:43 am,02:46 am
+15,757,Fulbari,02:57 am,03:00 am
+16,757,Parbatipur,03:25 am,03:45 am
+17,757,Chirirbandar,04:00 am,04:02 am
+18,757,Dinajpur,04:20 am,04:25 am
+19,757,Setabganj,04:55 am,04:57 am
+20,757,Pirganj,05:11 am,05:14 am
+21,757,Thakurgaon_Road,05:37 am,05:40 am
+22,757,Ruhia,05:55 am,05:57 am
+23,757,Kismat,06:06 am,06:08 am
+24,757,B Sirajul Islam,06:45 am,NULL
+1,758,B Sirajul Islam,NULL,07:20 am
+2,758,Kismat,07:35 am,07:37 am
+3,758,Ruhia,07:45 am,07:47 am
+4,758,Thakurgaon_Road,08:01 am,08:04 am
+5,758,Pirganj,08:44 am,08:47 am
+6,758,Setabganj,09:01 am,09:03 am
+7,758,Dinajpur,09:35 am,09:45 am
+8,758,Chirirbandar,10:02 am,10:04 am
+9,758,Parbatipur,10:25 am,10:45 am
+10,758,Fulbari,11:04 am,11:07 am
+11,758,Birampur,11:18 am,11:21 am
+12,758,Panchbibi,11:41 am,11:43 am
+13,758,Joypurhat,11:54 am,11:57 am
+14,758,Akkelpur,12:10 pm,12:12 pm
+15,758,Santahar,12:30 pm,12:35 pm
+16,758,Ahsanganj,01:09 pm,01:11 pm
+17,758,Natore,01:44 pm,01:47 pm
+18,758,Ishwardi Bypass,02:26 pm,02:28 pm
+19,758,Chatmohar,02:47 pm,02:50 pm
+20,758,Jamtail,03:26 pm,03:30 pm
+21,758,BBSetu_E,04:21 pm,04:23 pm
+22,758,Tangail,04:43 pm,04:46 pm
+23,758,Joydebpur,05:57 pm,06:00 pm
+24,758,Dhaka,06:55 pm,NULL
+1,767,Santahar,NULL,11:00 am
+2,767,Talora,11:23 am,NULL
+3,767,Bogura,11:49 am,11:54 am
+4,767,Sonatola,12:40 pm,NULL
+5,767,Mahimaganj,12:52 pm,NULL
+6,767,Bonar_Para,01:04 pm,01:09 pm
+7,767,Badiakhali,01:18 pm,01:20 pm
+8,767,Gaibandha,01:35 pm,01:40 pm
+9,767,Bamondanga,02:10 pm,NULL
+10,767,Pirgacha,02:30 pm,NULL
+11,767,Kaunia,02:55 pm,03:20 pm
+12,767,Rangpur,03:42 pm,03:47 pm
+13,767,Badarganj,04:13 pm,NULL
+14,767,Kholahati,04:26 pm,NULL
+15,767,Parbatipur,04:40 pm,05:00 pm
+16,767,Chirirbandar,05:20 pm,NULL
+17,767,Dinajpur,05:42 pm,05:47 pm
+18,767,Setabganj,06:30 pm,NULL
+19,767,Pirganj,06:48 pm,06:50 pm
+20,767,Bhomradah,07:00 pm,07:02 pm
+21,767,Thakurgaon_Road,07:20 pm,07:23 pm
+22,767,Ruhia,07:41 pm,NULL
+23,767,Kismat,07:53 pm,NULL
+24,767,B Sirajul Islam,08:20 pm,NULL
+1,768,B Sirajul Islam,NULL,06:00 am
+2,768,Kismat,06:21 am,NULL
+3,768,Ruhia,06:33 am,NULL
+4,768,Thakurgaon_Road,06:51 am,06:54 am
+5,768,Bhomradah,07:13 am,07:15 am
+6,768,Pirganj,07:25 am,07:27 am
+7,768,Setabganj,07:43 am,NULL
+8,768,Dinajpur,08:28 am,08:33 am
+9,768,Chirirbandar,08:52 am,NULL
+10,768,Parbatipur,09:15 am,09:35 am
+11,768,Kholahati,09:46 am,NULL
+12,768,Badarganj,09:59 am,NULL
+13,768,Rangpur,10:26 am,10:31 am
+14,768,Kaunia,10:55 am,11:22 am
+15,768,Pirgacha,11:40 am,NULL
+16,768,Bamondanga,12:01 pm,NULL
+17,768,Gaibandha,12:42 pm,12:47 pm
+18,768,Badiakhali,01:05 pm,01:08 pm
+19,768,Bonar_Para,01:34 pm,01:39 pm
+20,768,Mahimaganj,01:48 pm,NULL
+21,768,Sonatola,02:00 pm,NULL
+22,768,Bogura,02:40 pm,02:45 pm
+23,768,Talora,03:28 pm,NULL
+24,768,Santahar,04:10 pm,NULL
+1,771,Dhaka,NULL,09:10 am
+2,771,Biman_Bandar,09:33 am,09:38 am
+3,771,BBSetu_E,11:28 am,11:38 am
+4,771,Chatmohar,12:52 pm,12:54 pm
+5,771,Natore,01:49 pm,01:52 pm
+6,771,Santahar,03:05 pm,03:10 pm
+7,771,Talora,03:33 pm,03:35 pm
+8,771,Bogura,03:56 pm,03:59 pm
+9,771,Sonatola,04:29 pm,04:31 pm
+10,771,Bonar_Para,04:47 pm,04:50 pm
+11,771,Gaibandha,05:20 pm,05:23 pm
+12,771,Bamondanga,05:52 pm,05:54 pm
+13,771,Pirgacha,06:11 pm,06:13 pm
+14,771,Kaunia,06:29 pm,06:49 pm
+15,771,Kurigram,07:20 pm,NULL
+16,771,Rangpur,07:10 pm,NULL
+1,772,Rangpur,NULL,08:10 pm
+2,772,Kurigram,07:20 pm,07:50 pm
+3,772,Kaunia,08:30 pm,08:50 pm
+4,772,Pirgacha,09:05 pm,09:07 pm
+5,772,Bamondanga,09:24 pm,09:26 pm
+6,772,Gaibandha,09:55 pm,09:58 pm
+7,772,Bonar_Para,10:20 pm,10:30 pm
+8,772,Sonatola,10:47 pm,10:49 pm
+9,772,Bogura,11:19 pm,11:22 pm
+10,772,Talora,11:42 pm,11:44 pm
+11,772,Santahar,12:07 am,12:12 am
+12,772,Natore,01:08 am,01:11 am
+13,772,BBSetu_E,03:43 am,03:45 am
+14,772,Dhaka,06:05 am,NULL
+1,773,Dhaka,NULL,02:55 pm
+2,773,Biman_Bandar,03:18 pm,03:23 pm
+3,773,Azampur,05:08 pm,05:10 pm
+4,773,Harashpur,05:30 pm,05:32 pm
+5,773,Shaistaganj,06:10 pm,06:13 pm
+6,773,Sreemangal,07:02 pm,07:05 pm
+7,773,Shamshernagar,07:41 pm,07:43 pm
+8,773,Kulaura,08:06 pm,08:09 pm
+9,773,Maijgaon,08:36 pm,08:38 pm
+10,773,Sylhet,09:30 pm,NULL
+1,774,Sylhet,NULL,06:15 am
+2,774,Maijgaon,06:55 am,06:57 am
+3,774,Kulaura,07:23 am,07:26 am
+4,774,Shamshernagar,07:50 am,07:52 am
+5,774,Sreemangal,08:17 am,08:20 am
+6,774,Shaistaganj,08:57 am,09:00 am
+7,774,Harashpur,09:52 am,09:54 am
+8,774,Azampur,10:20 am,10:22 am
+9,774,Bhairab_Bazar,11:08 am,11:10 am
+10,774,Narsingdi,11:40 am,11:42 am
+11,774,Biman_Bandar,12:22 pm,NULL
+12,774,Dhaka,01:00 pm,NULL
+1,777,Dhaka,NULL,10:15 pm
+2,777,Biman_Bandar,10:38 pm,10:43 pm
+3,777,Joydebpur,11:05 pm,11:08 pm
+4,777,Gafargaon,12:04 am,12:07 am
+5,777,Mymensingh,12:50 am,01:10 am
+6,777,Gouripur_Myn,01:35 am,01:40 am
+7,777,Shyamgonj,01:52 am,01:55 am
+8,777,Netrakona,02:17 am,02:20 am
+9,777,Barhatta,02:50 am,02:53 am
+10,777,Mohanganj,04:00 am,NULL
+1,778,Mohanganj,NULL,08:00 am
+2,778,Barhatta,08:14 am,08:16 am
+3,778,Thakrokona,08:26 am,NULL
+4,778,Netrakona,08:47 am,08:52 am
+5,778,Shyamgonj,09:15 am,09:17 am
+6,778,Gouripur_Myn,09:31 am,09:34 am
+7,778,Mymensingh,10:05 am,10:25 am
+8,778,Gafargaon,11:10 am,11:13 am
+9,778,Joydebpur,12:35 pm,12:37 pm
+10,778,Biman_Bandar,01:00 pm,01:03 pm
+11,778,Dhaka,01:40 pm,NULL
+1,781,Dhaka,NULL,10:30 am
+2,781,Biman_Bandar,10:53 am,10:58 am
+3,781,Narsingdi,11:36 am,11:41 am
+4,781,Methikanda,11:58 am,NULL
+5,781,Bhairab_Bazar,12:15 pm,12:35 pm
+6,781,Kuliarchar,12:54 pm,12:56 pm
+7,781,Bajitpur,01:04 pm,01:06 pm
+8,781,Sararchar,01:14 pm,01:16 pm
+9,781,Manikkhali,01:31 pm,01:33 pm
+10,781,Gachihata,01:40 pm,01:42 pm
+11,781,Kishorganj,02:10 pm,NULL
+1,782,Kishorganj,NULL,04:00 pm
+2,782,Gachihata,04:15 pm,04:17 pm
+3,782,Manikkhali,04:27 pm,04:29 pm
+4,782,Sararchar,04:45 pm,04:47 pm
+5,782,Bajitpur,04:55 pm,04:57 pm
+6,782,Kuliarchar,05:05 pm,05:07 pm
+7,782,Bhairab_Bazar,05:28 pm,05:48 pm
+8,782,Methikanda,06:05 pm,NULL
+9,782,Narsingdi,06:25 pm,06:30 pm
+10,782,Biman_Bandar,07:15 pm,NULL
+11,782,Dhaka,07:55 pm,NULL
+1,785,Chattogram,NULL,09:15 am
+2,785,Bhatiary,09:19 am,09:19 am
+3,785,Feni,10:39 am,10:41 am
+4,785,Laksam,11:18 am,11:20 am
+5,785,Cumilla,11:42 am,11:44 am
+6,785,Akhaura,12:35 pm,12:38 pm
+7,785,Bhairab_Bazar,01:12 pm,01:17 pm
+8,785,Sararchar,01:46 pm,01:48 pm
+9,785,Kishorganj,02:27 pm,02:32 pm
+10,785,Atharabari,03:05 pm,NULL
+11,785,Gouripur_Myn,03:32 pm,03:52 pm
+12,785,Mymensingh,04:25 pm,04:30 pm
+13,785,Piyarpur,05:10 pm,NULL
+14,785,Jamalpur_Town,06:10 pm,NULL
+1,786,Jamalpur_Town,NULL,08:10 pm
+2,786,Piyarpur,08:43 pm,NULL
+3,786,Mymensingh,09:20 pm,09:40 pm
+4,786,Gouripur_Myn,10:03 pm,10:23 pm
+5,786,Atharabari,10:50 pm,NULL
+6,786,Kishorganj,11:25 pm,11:30 pm
+7,786,Sararchar,12:05 am,12:07 am
+8,786,Bhairab_Bazar,12:37 am,12:42 am
+9,786,Akhaura,01:25 pm,01:30 am
+10,786,Cumilla,02:13 am,02:15 am
+11,786,Laksam,02:37 am,02:40 am
+12,786,Feni,03:20 am,03:22 am
+13,786,Bhatiary,04:30 am,04:32 am
+14,786,Chattogram,05:00 am,NULL
+1,787,Chattogram,NULL,04:45 pm
+2,787,Dhaka,09:40 pm,NULL
+1,788,Dhaka,NULL,07:00 am
+2,788,Biman_Bandar,07:22 am,07:27 am
+3,788,Chattogram,11:55 am,NULL
+1,789,Dhaka,NULL,01:15 pm
+2,789,Biman_Bandar,01:38 pm,01:43 pm
+3,789,Gafargaon,02:55 pm,02:58 pm
+4,789,Mymensingh,03:38 pm,03:58 pm
+5,789,Gouripur_Myn,04:23 pm,04:26 pm
+6,789,Shyamgonj,04:38 pm,04:41 pm
+7,789,Netrakona,05:02 pm,05:05 pm
+8,789,Thakrokona,05:21 pm,05:24 pm
+9,789,Barhatta,05:25 pm,05:27 pm
+10,789,Mohanganj,06:20 pm,NULL
+1,790,Mohanganj,NULL,11:00 pm
+2,790,Barhatta,11:16 pm,11:19 pm
+3,790,Thakrokona,11:29 pm,11:32 pm
+4,790,Netrakona,11:50 pm,11:53 pm
+5,790,Shyamgonj,12:15 am,12:18 am
+6,790,Gouripur_Myn,12:32 am,12:35 am
+7,790,Mymensingh,01:05 am,01:25 am
+8,790,Gafargaon,02:05 am,02:08 am
+9,790,Dhaka,04:15 am,NULL
+1,715,Khulna,NULL,06:45 am
+2,715,Noapara,07:18 am,07:21 am
+3,715,Jashore,07:49 am,07:52 am
+4,715,Mubarakganj,08:19 am,08:21 am
+5,715,Kotchandpur,08:32 am,08:34 am
+6,715,Safdarpur,08:43 am,NULL
+7,715,Darshana_Halt,09:03 am,09:06 am
+8,715,Chuadanga,09:25 am,09:28 am
+9,715,Alamdanga,09:44 am,09:46 am
+10,715,Poradaha,10:00 am,10:03 am
+11,715,Mirpur,10:13 am,10:15 am
+12,715,Bheramara,10:25 am,10:27 am
+13,715,Pakshi,10:39 am,10:41 am
+14,715,Ishwardi,10:50 am,11:10 am
+15,715,Azim Nagar,11:22 am,11:24 am
+16,715,Abdulpur,11:07 am,NULL
+17,715,Rajshahi,12:20 pm,NULL
+1,716,Rajshahi,NULL,02:30 pm
+2,716,Azim Nagar,03:16 pm,03:18 pm
+3,716,Ishwardi,03:30 pm,03:45 pm
+4,716,Pakshi,03:55 pm,03:57 pm
+5,716,Bheramara,04:09 pm,04:12 pm
+6,716,Mirpur,04:22 pm,04:24 pm
+7,716,Poradaha,04:34 pm,04:37 pm
+8,716,Alamdanga,04:52 pm,04:54 pm
+9,716,Chuadanga,05:10 pm,05:13 pm
+10,716,Darshana_Halt,05:33 pm,05:36 pm
+11,716,Safdarpur,05:55 pm,05:58 pm
+12,716,Kotchandpur,06:17 pm,06:19 pm
+13,716,Mubarakganj,06:31 pm,06:33 pm
+14,716,Jashore,07:05 pm,07:09 pm
+15,716,Noapara,07:37 pm,07:40 pm
+16,716,Khulna,08:25 pm,NULL
+1,725,Khulna,NULL,09:45 pm
+2,725,Daulatpur,09:56 pm,09:58 pm
+3,725,Noapara,10:21 pm,10:24 pm
+4,725,Jashore,10:52 pm,10:56 pm
+5,725,Mubarakganj,11:23 pm,11:25 pm
+6,725,Kotchandpur,11:37 pm,11:39 pm
+7,725,Chuadanga,12:20 am,12:23 am
+8,725,Alamdanga,12:39 am,12:41 am
+9,725,Poradaha,12:56 am,01:00 am
+10,725,Kushtia_Court,01:12 am,01:15 am
+11,725,Pangsha,01:49 am,01:51 am
+12,725,Rajbari,02:20 am,02:25 am
+13,725,Faridpur,02:57 am,03:00 am
+14,725,Bhanga,03:45 am,03:48 am
+15,725,Dhaka,05:10 am,NULL
+1,726,Dhaka,NULL,08:15 am
+2,726,Bhanga,09:26 am,09:29 am
+3,726,Faridpur,10:05 am,10:08 am
+4,726,Rajbari,10:40 am,10:50 am
+5,726,Pangsha,11:13 am,11:15 am
+6,726,Kushtia_Court,11:47 am,11:50 am
+7,726,Poradaha,12:15 pm,12:20 pm
+8,726,Alamdanga,12:35 pm,12:37 pm
+9,726,Chuadanga,12:53 pm,12:56 pm
+10,726,Darshana_Halt,01:21 pm,01:24 pm
+11,726,Kotchandpur,01:48 pm,01:50 pm
+12,726,Mubarakganj,02:02 pm,02:04 pm
+13,726,Jashore,02:32 pm,02:35 pm
+14,726,Noapara,03:03 pm,03:06 pm
+15,726,Daulatpur,03:30 pm,03:32 pm
+16,726,Khulna,03:50 pm,NULL
+1,727,Khulna,NULL,07:15 am
+2,727,Noapara,07:48 am,07:51 am
+3,727,Jashore,08:19 am,08:23 am
+4,727,Mubarakganj,08:50 am,08:52 am
+5,727,Kotchandpur,09:03 am,09:05 am
+6,727,Darshana_Halt,09:41 am,09:44 am
+7,727,Chuadanga,10:03 am,10:06 am
+8,727,Alamdanga,10:22 am,10:24 am
+9,727,Poradaha,10:38 am,10:41 am
+10,727,Bheramara,10:58 am,11:01 am
+11,727,Pakshi,11:13 am,11:15 am
+12,727,Ishwardi,11:25 am,11:40 am
+13,727,Natore,12:12 pm,12:15 pm
+14,727,Ahsanganj,12:54 pm,12:57 pm
+15,727,Santahar,01:20 pm,01:25 pm
+16,727,Akkelpur,01:45 pm,01:47 pm
+17,727,Joypurhat,02:02 pm,02:05 pm
+18,727,Birampur,02:33 pm,02:35 pm
+19,727,Fulbari,02:46 pm,02:48 pm
+20,727,Parbatipur,03:05 pm,03:15 pm
+21,727,Saidpur,03:32 pm,03:37 pm
+22,727,Nilphamari,04:13 pm,04:16 pm
+23,727,Domar,04:32 pm,04:35 pm
+24,727,Chilahati,05:05 pm,NULL
+1,728,Chilahati,NULL,08:30 am
+2,728,Domar,08:48 am,08:51 am
+3,728,Nilphamari,09:07 am,09:10 am
+4,728,Saidpur,09:30 am,09:35 am
+5,728,Parbatipur,09:55 am,10:15 am
+6,728,Fulbari,10:36 am,10:39 am
+7,728,Birampur,10:50 am,10:53 am
+8,728,Joypurhat,11:22 am,11:25 am
+9,728,Akkelpur,11:38 am,11:40 am
+10,728,Santahar,12:00 pm,12:05 pm
+11,728,Ahsanganj,12:28 pm,12:31 pm
+12,728,Natore,12:52 pm,12:55 pm
+13,728,Ishwardi,01:40 pm,02:00 pm
+14,728,Pakshi,02:10 pm,02:12 pm
+15,728,Bheramara,02:24 pm,02:27 pm
+16,728,Poradaha,02:44 pm,02:47 pm
+17,728,Alamdanga,03:02 pm,03:04 pm
+18,728,Chuadanga,03:20 pm,03:24 pm
+19,728,Darshana_Halt,03:51 pm,03:54 pm
+20,728,Kotchandpur,04:19 pm,04:21 pm
+21,728,Mubarakganj,04:33 pm,04:35 pm
+22,728,Jashore,05:07 pm,05:11 pm
+23,728,Noapara,05:39 pm,05:42 pm
+24,728,Khulna,06:20 pm,NULL
+1,731,Rajshahi,NULL,03:00 pm
+2,731,Abdulpur,03:40 pm,04:04 pm
+3,731,Natore,04:20 pm,04:23 pm
+4,731,Ahsanganj,04:43 pm,04:46 pm
+5,731,Santahar,05:20 pm,05:25 pm
+6,731,Akkelpur,05:50 pm,05:52 pm
+7,731,Joypurhat,06:06 pm,06:10 pm
+8,731,Panchbibi,06:28 pm,06:30 pm
+9,731,Birampur,06:50 pm,06:53 pm
+10,731,Fulbari,07:04 pm,07:07 pm
+11,731,Parbatipur,07:25 pm,07:40 pm
+12,731,Dinajpur,08:00 pm,NULL
+13,731,Saidpur,08:09 pm,08:13 pm
+14,731,Nilphamari,08:32 pm,08:35 pm
+15,731,Domar,08:58 pm,09:01 pm
+16,731,Chilahati,09:35 pm,NULL
+1,732,Chilahati,NULL,05:00 am
+2,732,Domar,05:18 am,05:21 am
+3,732,Nilphamari,05:45 am,05:48 am
+4,732,Saidpur,06:15 am,06:19 am
+5,732,Dinajpur,06:05 am,06:05 am
+6,732,Parbatipur,06:35 am,06:55 am
+7,732,Fulbari,07:13 am,07:16 am
+8,732,Birampur,07:27 am,07:30 am
+9,732,Hili,07:43 am,07:45 am
+10,732,Panchbibi,07:55 am,07:57 am
+11,732,Joypurhat,08:08 am,08:11 am
+12,732,Akkelpur,08:24 am,08:26 am
+13,732,Santahar,08:45 am,08:50 am
+14,732,Ahsanganj,09:12 am,09:15 am
+15,732,Natore,09:36 am,09:39 am
+16,732,Abdulpur,09:55 am,10:15 am
+17,732,Rajshahi,11:10 am,NULL
+1,733,Rajshahi,NULL,06:20 am
+2,733,Abdulpur,07:00 am,07:20 am
+3,733,Natore,07:49 am,07:52 am
+4,733,Madhnagar,08:05 am,08:07 am
+5,733,Ahsanganj,08:16 am,08:19 am
+6,733,Santahar,08:45 am,08:50 am
+7,733,Akkelpur,09:10 am,09:12 am
+8,733,Jamalganj,09:20 am,09:22 am
+9,733,Joypurhat,09:30 am,09:33 am
+10,733,Panchbibi,09:44 am,NULL
+11,733,Hili,09:56 am,09:58 am
+12,733,Birampur,10:10 am,10:13 am
+13,733,Fulbari,10:31 am,10:34 am
+14,733,Parbatipur,11:10 am,11:30 am
+15,733,Saidpur,11:47 am,11:52 am
+16,733,Nilphamari,12:11 pm,12:14 pm
+17,733,Domar,12:30 pm,12:33 pm
+18,733,Chilahati,01:00 pm,NULL
+1,734,Rajshahi,NULL,06:20 am
+2,734,Abdulpur,07:00 am,07:20 am
+3,734,Natore,07:49 am,07:52 am
+4,734,Madhnagar,08:05 am,08:07 am
+5,734,Ahsanganj,08:16 am,08:19 am
+6,734,Santahar,08:45 am,08:50 am
+7,734,Akkelpur,09:10 am,09:12 am
+8,734,Jamalganj,09:20 am,09:22 am
+9,734,Joypurhat,09:30 am,09:33 am
+10,734,Panchbibi,09:44 am,NULL
+11,734,Hili,09:56 am,09:58 am
+12,734,Birampur,10:10 am,10:13 am
+13,734,Fulbari,10:31 am,10:34 am
+14,734,Parbatipur,11:10 am,11:30 am
+15,734,Saidpur,11:47 am,11:52 am
+16,734,Nilphamari,12:11 pm,12:14 pm
+17,734,Domar,12:30 pm,12:33 pm
+18,734,Chilahati,01:00 pm,NULL
+1,747,Khulna,NULL,09:15 pm
+2,747,Daulatpur,09:26 pm,09:28 pm
+3,747,Noapara,09:49 pm,09:52 pm
+4,747,Jashore,10:22 pm,10:26 pm
+5,747,Mubarakganj,10:53 pm,10:55 pm
+6,747,Kotchandpur,11:07 pm,11:09 pm
+7,747,Darshana_Halt,11:34 pm,11:37 pm
+8,747,Chuadanga,11:56 pm,11:59 pm
+9,747,Alamdanga,12:15 am,12:17 am
+10,747,Poradaha,12:31 am,12:34 am
+11,747,Bheramara,12:52 am,12:55 am
+12,747,Ishwardi,01:20 am,01:30 am
+13,747,Natore,02:20 am,02:23 am
+14,747,Santahar,03:10 am,03:15 am
+15,747,Akkelpur,03:35 am,03:37 am
+16,747,Joypurhat,03:51 am,03:54 am
+17,747,Birampur,04:26 am,04:29 am
+18,747,Fulbari,04:40 am,04:43 am
+19,747,Parbatipur,05:00 am,05:10 am
+20,747,Saidpur,05:27 am,05:31 am
+21,747,Nilphamari,05:50 am,05:53 am
+22,747,Domar,06:09 am,06:12 am
+23,747,Chilahati,06:45 am,NULL
+1,748,Chilahati,NULL,06:45 pm
+2,748,Domar,07:03 pm,07:06 pm
+3,748,Nilphamari,07:22 pm,07:25 pm
+4,748,Saidpur,07:44 pm,07:48 pm
+5,748,Parbatipur,08:05 pm,08:25 pm
+6,748,Fulbari,08:43 pm,08:46 pm
+7,748,Birampur,08:57 pm,09:00 pm
+8,748,Joypurhat,09:29 pm,09:32 pm
+9,748,Akkelpur,09:46 pm,09:48 pm
+10,748,Santahar,10:10 pm,10:15 pm
+11,748,Natore,10:55 pm,10:58 pm
+12,748,Ishwardi,11:35 pm,11:55 pm
+13,748,Bheramara,12:15 am,12:18 am
+14,748,Poradaha,12:36 am,12:39 am
+15,748,Alamdanga,12:55 am,12:57 am
+16,748,Chuadanga,01:14 am,01:17 am
+17,748,Darshana_Halt,01:37 am,01:40 am
+18,748,Kotchandpur,02:05 am,02:07 am
+19,748,Mubarakganj,02:19 am,02:21 am
+20,748,Jashore,02:55 am,02:59 am
+21,748,Noapara,03:27 am,03:30 am
+22,748,Daulatpur,03:55 am,03:57 am
+23,748,Khulna,04:20 am,NULL
+1,753,Dhaka,NULL,02:40 pm
+2,753,Biman_Bandar,03:03 pm,03:08 pm
+3,753,Joydebpur,03:30 pm,03:33 pm
+4,753,Mirzapur,04:12 pm,04:14 pm
+5,753,Tangail,04:38 pm,04:40 pm
+6,753,BBSetu_E,05:04 pm,05:14 pm
+7,753,SH M Monsur Ali,05:40 pm,05:42 pm
+8,753,Jamtail,05:49 pm,05:51 pm
+9,753,Ullapara,06:03 pm,06:06 pm
+10,753,Boral_Bridge,06:24 pm,06:27 pm
+11,753,Chatmohar,06:47 pm,06:50 pm
+12,753,Ishwardi Bypass,07:21 pm,07:23 pm
+13,753,Abdulpur,07:38 pm,07:40 pm
+14,753,Rajshahi,08:30 pm,NULL
+1,754,Rajshahi,NULL,07:40 am
+2,754,Abdulpur,08:20 am,08:22 am
+3,754,Ishwardi Bypass,08:37 am,08:39 am
+4,754,Chatmohar,08:58 am,09:01 am
+5,754,Boral_Bridge,09:14 am,09:17 am
+6,754,Ullapara,09:38 am,09:40 am
+7,754,Jamtail,09:52 am,09:54 am
+8,754,SH M Monsur Ali,10:01 am,10:04 am
+9,754,BBSetu_E,10:44 am,10:46 am
+10,754,Tangail,11:06 am,11:08 am
+11,754,Mirzapur,11:35 am,11:37 am
+12,754,Joydebpur,12:20 pm,12:23 pm
+13,754,Dhaka,01:20 pm,NULL
+1,755,Dhaka,NULL,03:00 pm
+2,755,Mawa,03:38 pm,03:40 pm
+3,755,Padma,03:54 pm,03:57 pm
+4,755,Shibchar,04:08 pm,04:10 pm
+5,755,Bhanga,04:34 pm,04:37 pm
+6,755,Pukuria,04:45 pm,NULL
+7,755,Talma,04:58 pm,NULL
+8,755,Faridpur,05:17 pm,05:18 pm
+9,755,Amirabad,05:30 pm,NULL
+10,755,Pachuria,05:55 pm,NULL
+11,755,Rajbari,06:05 pm,06:20 pm
+12,755,Kalukhali,06:38 pm,NULL
+13,755,Pangsha,06:50 pm,06:53 pm
+14,755,Khoksha,07:07 pm,NULL
+15,755,Kumarkhali,07:19 pm,NULL
+16,755,Kushtia_Court,07:37 pm,07:40 pm
+17,755,Poradaha,07:55 pm,08:15 pm
+18,755,Mirpur,08:25 pm,NULL
+19,755,Bheramara,08:37 pm,08:40 pm
+20,755,Pakshi,08:52 pm,NULL
+21,755,Ishwardi,09:10 pm,09:30 pm
+22,755,Rajshahi,10:40 pm,NULL
+1,756,Rajshahi,NULL,06:40 am
+2,756,Ishwardi,07:40 am,08:00 am
+3,756,Pakshi,08:10 am,NULL
+4,756,Bheramara,08:24 am,08:27 am
+5,756,Mirpur,08:37 am,NULL
+6,756,Poradaha,08:50 am,09:10 am
+7,756,Kushtia_Court,09:22 am,09:25 am
+8,756,Kumarkhali,09:42 am,NULL
+9,756,Khoksha,09:53 am,NULL
+10,756,Pangsha,10:09 am,10:12 am
+11,756,Kalukhali,10:22 am,NULL
+12,756,Rajbari,10:45 am,11:00 am
+13,756,Pachuria,11:08 am,NULL
+14,756,Amirabad,11:25 am,NULL
+15,756,Faridpur,11:38 am,11:41 am
+16,756,Talma,11:57 am,NULL
+17,756,Pukuria,12:10 pm,NULL
+18,756,Bhanga,12:21 pm,12:23 pm
+19,756,Shibchar,12:44 pm,12:46 pm
+20,756,Padma,12:56 pm,12:58 pm
+21,756,Mawa,01:11 pm,01:13 pm
+22,756,Dhaka,02:00 pm,NULL
+1,759,Dhaka,NULL,10:45 pm
+2,759,Biman_Bandar,11:08 pm,11:13 pm
+3,759,Joydebpur,11:36 pm,11:38 pm
+4,759,Tangail,12:32 am,12:34 am
+5,759,BBSetu_E,12:54 am,01:04 am
+6,759,SH M Monsur Ali,01:30 am,01:33 am
+7,759,Ullapara,01:50 am,01:53 am
+8,759,Boral_Bridge,02:14 am,02:17 am
+9,759,Chatmohar,02:37 am,02:40 am
+10,759,Ishwardi Bypass,03:06 am,03:09 am
+11,759,Abdulpur,03:24 am,03:26 am
+12,759,Sardah_Road,03:52 am,NULL
+13,759,Rajshahi,04:25 am,NULL
+1,760,Rajshahi,NULL,04:00 pm
+2,760,Sardah_Road,04:17 pm,04:19 pm
+3,760,Abdulpur,04:46 pm,04:48 pm
+4,760,Ishwardi Bypass,05:02 pm,05:04 pm
+5,760,Chatmohar,05:23 pm,05:26 pm
+6,760,Boral_Bridge,05:39 pm,05:42 pm
+7,760,Ullapara,06:00 pm,06:04 pm
+8,760,SH M Monsur Ali,06:20 pm,06:22 pm
+9,760,BBSetu_E,07:01 pm,07:03 pm
+10,760,Tangail,07:23 pm,07:25 pm
+11,760,Joydebpur,08:22 pm,08:25 pm
+12,760,Dhaka,09:25 pm,NULL
+1,761,Khulna,NULL,04:00 pm
+2,761,Noapara,04:32 pm,04:35 pm
+3,761,Jashore,05:03 pm,05:12 pm
+4,761,Mubarakganj,05:39 pm,05:41 pm
+5,761,Kotchandpur,05:53 pm,05:55 pm
+6,761,Safdarpur,06:03 pm,06:05 pm
+7,761,Darshana_Halt,06:23 pm,06:26 pm
+8,761,Chuadanga,06:45 pm,06:48 pm
+9,761,Alamdanga,07:04 pm,07:06 pm
+10,761,Poradaha,07:20 pm,07:23 pm
+11,761,Mirpur,07:33 pm,NULL
+12,761,Bheramara,07:48 pm,07:50 pm
+13,761,Pakshi,08:00 pm,08:02 pm
+14,761,Ishwardi,08:15 pm,08:35 pm
+15,761,Azim Nagar,08:47 pm,08:49 pm
+16,761,Abdulpur,08:58 pm,09:00 pm
+17,761,Rajshahi,10:00 pm,NULL
+1,762,Rajshahi,NULL,06:00 am
+2,762,Abdulpur,06:40 am,06:42 am
+3,762,Azim Nagar,06:51 am,06:53 am
+4,762,Ishwardi,07:10 am,07:20 am
+5,762,Pakshi,07:30 am,07:32 am
+6,762,Bheramara,07:44 am,07:48 am
+7,762,Mirpur,07:58 am,08:00 am
+8,762,Poradaha,08:10 am,08:14 am
+9,762,Alamdanga,08:29 am,08:31 am
+10,762,Chuadanga,08:47 am,08:50 am
+11,762,Darshana_Halt,09:20 am,09:23 am
+12,762,Safdarpur,09:40 am,09:42 am
+13,762,Kotchandpur,09:51 am,09:53 am
+14,762,Mubarakganj,10:05 am,10:07 am
+15,762,Jashore,10:35 am,10:39 am
+16,762,Noapara,11:07 am,11:10 am
+17,762,Khulna,12:10 pm,NULL
+1,763,Khulna,NULL,09:00 am
+2,763,Noapara,09:33 am,09:36 am
+3,763,Jashore,10:04 am,10:08 am
+4,763,Mubarakganj,10:49 am,10:51 am
+5,763,Kotchandpur,11:02 am,11:04 am
+6,763,Darshana_Halt,11:28 am,11:31 am
+7,763,Chuadanga,11:50 am,11:53 am
+8,763,Alamdanga,12:09 pm,12:12 pm
+9,763,Poradaha,12:26 pm,12:29 pm
+10,763,Mirpur,12:39 pm,12:41 pm
+11,763,Bheramara,12:51 pm,12:54 pm
+12,763,Ishwardi,01:15 pm,01:25 pm
+13,763,Chatmohar,01:47 pm,01:53 pm
+14,763,Boral_Bridge,02:06 pm,02:09 pm
+15,763,Ullapara,02:27 pm,02:30 pm
+16,763,SH M Monsur Ali,02:46 pm,02:49 pm
+17,763,BBSetu_E,03:35 pm,03:37 pm
+18,763,Tangail,03:57 pm,03:59 pm
+19,763,Joydebpur,05:08 pm,05:11 pm
+20,763,Biman_Bandar,05:32 pm,05:35 pm
+21,763,Dhaka,06:05 pm,NULL
+1,764,Dhaka,NULL,07:30 pm
+2,764,Biman_Bandar,07:53 pm,07:58 pm
+3,764,Joydebpur,08:20 pm,08:23 pm
+4,764,Tangail,09:40 pm,09:42 pm
+5,764,BBSetu_E,10:02 pm,10:12 pm
+6,764,SH M Monsur Ali,10:38 pm,10:41 pm
+7,764,Ullapara,10:58 pm,11:00 pm
+8,764,Boral_Bridge,11:18 pm,11:20 pm
+9,764,Chatmohar,11:33 pm,11:35 pm
+10,764,Ishwardi,12:15 am,12:35 am
+11,764,Bheramara,12:55 am,12:58 am
+12,764,Poradaha,01:16 am,01:20 am
+13,764,Alamdanga,01:35 am,01:37 am
+14,764,Chuadanga,01:54 am,01:57 am
+15,764,Kotchandpur,02:47 am,02:49 am
+16,764,Mubarakganj,03:03 am,03:05 am
+17,764,Jashore,03:40 am,03:44 am
+18,764,Noapara,04:12 am,04:15 am
+19,764,Khulna,05:00 am,NULL
+1,765,Dhaka,NULL,06:45 am
+2,765,Biman_Bandar,07:07 am,07:12 am
+3,765,Joydebpur,07:35 am,07:37 am
+4,765,BBSetu_E,08:59 am,09:09 am
+5,765,Muladhuli,10:39 am,10:42 am
+6,765,Natore,11:18 am,11:21 am
+7,765,Ahsanganj,11:41 am,11:43 am
+8,765,Santahar,12:30 pm,12:35 pm
+9,765,Akkelpur,12:55 pm,12:57 pm
+10,765,Joypurhat,01:11 pm,01:14 pm
+11,765,Birampur,01:42 pm,01:45 pm
+12,765,Fulbari,01:56 pm,01:58 pm
+13,765,Parbatipur,02:15 pm,02:25 pm
+14,765,Saidpur,02:42 pm,02:46 pm
+15,765,Nilphamari,03:05 pm,03:08 pm
+16,765,Domar,03:24 pm,03:27 pm
+17,765,Chilahati,04:00 pm,NULL
+1,766,Chilahati,NULL,08:00 pm
+2,766,Domar,08:18 pm,08:21 pm
+3,766,Nilphamari,08:37 pm,08:40 pm
+4,766,Saidpur,08:59 pm,09:04 pm
+5,766,Parbatipur,09:20 pm,09:40 pm
+6,766,Fulbari,09:58 pm,10:01 pm
+7,766,Birampur,10:12 pm,10:15 pm
+8,766,Joypurhat,10:44 pm,10:47 pm
+9,766,Akkelpur,11:00 pm,11:02 pm
+10,766,Santahar,11:20 pm,11:25 pm
+11,766,Ahsanganj,11:47 pm,11:49 pm
+12,766,Natore,12:10 am,12:13 am
+13,766,Muladhuli,01:15 am,01:17 am
+14,766,BBSetu_E,02:58 am,03:00 am
+15,766,Joydebpur,04:21 am,04:24 am
+16,766,Dhaka,05:30 am,NULL
+1,769,Dhaka,NULL,06:00 am
+2,769,Biman_Bandar,06:23 am,06:28 am
+3,769,Joydebpur,06:50 am,06:53 am
+4,769,Tangail,07:47 am,07:50 am
+5,769,BBSetu_E,08:14 am,08:24 am
+6,769,SH M Monsur Ali,08:54 am,08:57 am
+7,769,Jamtail,09:04 am,09:06 am
+8,769,Ullapara,09:18 am,09:20 am
+9,769,Boral_Bridge,09:45 am,09:48 am
+10,769,Chatmohar,10:01 am,10:04 am
+11,769,Ishwardi Bypass,10:23 am,10:25 am
+12,769,Abdulpur,10:39 am,10:41 am
+13,769,Arani,10:53 am,10:55 am
+14,769,Rajshahi,11:40 am,NULL
+1,770,Rajshahi,NULL,11:20 pm
+2,770,Arani,11:51 pm,NULL
+3,770,Abdulpur,12:05 am,12:07 am
+4,770,Ishwardi Bypass,12:23 am,12:25 am
+5,770,Chatmohar,12:44 am,12:47 am
+6,770,Boral_Bridge,01:00 am,01:03 am
+7,770,SH M Monsur Ali,01:49 am,01:51 am
+8,770,BBSetu_E,02:31 am,02:33 am
+9,770,Joydebpur,03:49 am,03:52 am
+10,770,Dhaka,05:00 am,NULL
+1,775,Sirajganj_Bazar,NULL,06:00 am
+2,775,Sirajganjraipur,06:08 am,06:10 am
+3,775,Jamtail,06:22 am,06:40 am
+4,775,SH M Monsur Ali,06:48 am,06:50 am
+5,775,BBSetu_W,06:57 am,07:07 am
+6,775,BBSetu_E,07:30 am,07:32 am
+7,775,Tangail,07:52 am,07:54 am
+8,775,Hi-Tech City,08:33 am,08:35 am
+9,775,Joydebpur,09:13 am,09:16 am
+10,775,Biman_Bandar,09:39 am,09:42 am
+11,775,Dhaka,10:10 am,NULL
+1,776,Dhaka,NULL,04:15 pm
+2,776,Biman_Bandar,04:38 pm,04:43 pm
+3,776,Joydebpur,05:06 pm,05:09 pm
+4,776,Mirzapur,05:49 pm,NULL
+5,776,Tangail,06:17 pm,06:20 pm
+6,776,BBSetu_E,06:40 pm,07:02 pm
+7,776,SH M Monsur Ali,07:28 pm,07:32 pm
+8,776,Jamtail,07:40 pm,08:00 pm
+9,776,Sirajganjraipur,08:13 pm,08:15 pm
+10,776,Sirajganj_Bazar,08:40 pm,NULL
+1,779,Dhalarchar,NULL,07:00 am
+2,779,Badherhat,07:09 am,07:09 am
+3,779,Kashinathpur,07:22 am,07:24 am
+4,779,Sathia_Rajapur,NULL,07:37 am
+5,779,Tantibandha,07:46 am,07:48 am
+6,779,Dublia,07:54 am,07:56 am
+7,779,Raghabpur,08:05 am,08:07 am
+8,779,Pabna,08:15 am,08:15 am
+9,779,Tebunia,08:30 am,08:34 am
+10,779,Dashuria,08:44 am,08:47 am
+11,779,Majhgram,08:56 am,08:58 am
+12,779,Ishwardi Bypass,09:05 am,09:08 am
+13,779,Azim Nagar,09:17 am,09:19 am
+14,779,Abdulpur,09:28 am,09:31 am
+15,779,Arani,09:42 am,09:44 am
+16,779,Sardah_Road,10:02 am,10:04 am
+17,779,Rajshahi,10:25 am,10:35 am
+18,779,Sitlai,10:39 am,NULL
+19,779,Kakonhat,11:03 am,NULL
+20,779,Lolitnagar,11:13 am,NULL
+21,779,Amnura_Bypass,11:24 am,NULL
+22,779,Chapai Nawabganj,11:50 am,NULL
+1,780,Chapai Nawabganj,NULL,03:30 pm
+2,780,Amnura_Bypass,03:44 pm,NULL
+3,780,Lolitnagar,04:00 pm,NULL
+4,780,Kakonhat,04:10 pm,NULL
+5,780,Sitlai,04:25 pm,NULL
+6,780,Rajshahi,04:45 pm,05:00 pm
+7,780,Sardah_Road,05:18 pm,NULL
+8,780,Arani,05:48 pm,NULL
+9,780,Abdulpur,06:02 pm,06:05 pm
+10,780,Azim Nagar,06:14 pm,NULL
+11,780,Ishwardi Bypass,06:25 pm,06:28 pm
+12,780,Majhgram,06:35 pm,NULL
+13,780,Dashuria,06:46 pm,NULL
+14,780,Tebunia,06:56 pm,NULL
+15,780,Pabna,07:10 pm,NULL
+16,780,Raghabpur,07:20 pm,NULL
+17,780,Dublia,07:34 pm,NULL
+18,780,Tantibandha,07:42 pm,NULL
+19,780,Sathia_Rajapur,07:53 pm,NULL
+20,780,Kashinathpur,08:06 pm,NULL
+21,780,Badherhat,08:20 pm,NULL
+22,780,Dhalarchar,08:45 pm,NULL
+1,783,Gobra,NULL,06:40 am
+2,783,Borashi,06:49 am,06:51 am
+3,783,Gopalganj,07:00 am,07:03 am
+4,783,Chandradighalia,07:15 am,07:17 am
+5,783,Choto Bahirbag,07:28 am,07:30 am
+6,783,Chapta,07:41 am,07:43 am
+7,783,Kashiani,07:53 am,07:58 am
+8,783,Boalmari_Bazar,08:19 am,08:21 am
+9,783,Madhukhali,08:40 am,08:42 am
+10,783,Baharpur,09:02 am,09:04 am
+11,783,Kalukhali,09:18 am,09:21 am
+12,783,Pangsha,09:30 am,09:32 am
+13,783,Khoksha,09:47 am,09:50 am
+14,783,Kumarkhali,10:07 am,10:09 am
+15,783,Kushtia_Court,10:26 am,10:29 am
+16,783,Poradaha,10:40 am,11:00 am
+17,783,Bheramara,11:17 am,11:20 am
+18,783,Ishwardi,11:40 am,12:00 pm
+19,783,Rajshahi,01:15 pm,NULL
+1,784,Rajshahi,NULL,03:30 pm
+2,784,Ishwardi,04:30 pm,04:40 pm
+3,784,Bheramara,05:01 pm,05:04 pm
+4,784,Poradaha,05:25 pm,05:45 pm
+5,784,Kushtia_Court,05:57 pm,06:00 pm
+6,784,Kumarkhali,06:18 pm,06:20 pm
+7,784,Khoksha,06:30 pm,06:30 pm
+8,784,Pangsha,06:45 pm,06:55 pm
+9,784,Kalukhali,07:04 pm,07:07 pm
+10,784,Naliagram,07:36 pm,NULL
+11,784,Baharpur,07:21 pm,07:23 pm
+12,784,Madhukhali,07:43 pm,07:47 pm
+13,784,Boalmari_Bazar,08:07 pm,08:09 pm
+14,784,Kashiani,08:32 pm,08:37 pm
+15,784,Chapta,08:46 pm,08:50 pm
+16,784,Choto Bahirbag,09:01 pm,09:03 pm
+17,784,Chandradighalia,09:14 pm,09:16 pm
+18,784,Gopalganj,09:25 pm,09:35 pm
+19,784,Borashi,09:43 pm,09:45 pm
+20,784,Gobra,10:10 pm,NULL
