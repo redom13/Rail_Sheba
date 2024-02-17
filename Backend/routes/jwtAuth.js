@@ -43,8 +43,8 @@ router.post('/register',validinfo.validRegister,async(req,res)=>{
         const newUser= await db.execute(sql,binds,db.options)
         const sql2=`INSERT INTO LOGIN_CREDENTIALS(USERNAME,NID,LOGIN_PASSWORD) VALUES(:username,:nid,:pass)`
         const newUser2= await db.execute(sql2,binds2,db.options)
-        const token=jwtGenerator(nid)
-        res.json({token})
+        const jwtToken=jwtGenerator(nid)
+        res.json({jwtToken})
     }catch(err){
         console.error(err.message)
         res.status(500).send('Server error')

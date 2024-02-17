@@ -4,7 +4,11 @@ import { Button, Flex, Input, VStack, useToast } from "@chakra-ui/react";
 import { ChangeEvent } from "react";
 import axios from "axios";
 
-const RegistrationForm = () => {
+interface Props {
+  setAuth: (auth: boolean) => void;
+}
+
+const RegistrationForm = ({setAuth}:Props) => {
   const [formData, setFormData] = useState({
     nid: "",
     first_name:"",
@@ -27,12 +31,26 @@ const RegistrationForm = () => {
       .then((response) => {
         // Handle success
         console.log("Response:", response.data);
+        if (response.data.jwtToken) {
+          localStorage.setItem("jwtToken", response.data.jwtToken);
+          setAuth(true);
         toast({
           title: "Account created successfully",
           status: "success",
           duration: 3000, // Optional duration for the toast
           isClosable: true,
         });
+        }
+        else {
+          setAuth(false);
+          toast({
+            title: "Error creating account",
+            description: response.data.message || "An error occurred",
+            status: "error",
+            duration: 3000, // Optional duration for the toast
+            isClosable: true,
+          });
+        }
       })
       .catch((error) => {
         // Handle error

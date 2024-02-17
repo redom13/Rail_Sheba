@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const authorize = (req, res, next) => {
   // Get token from header
-  const jwtToken = req.header("token");
+  const jwtToken = req.header("jwtToken");
   // Check if token exists
   if (!jwtToken) {
     return res.status(403).json({ msg: "Authorization denied" });
