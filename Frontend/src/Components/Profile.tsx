@@ -29,9 +29,10 @@ const Profile = () => {
 
   const getUser = async () => {
     try {
+      console.log("jwtToken:", localStorage.jwtToken);
       const response = await fetch("http://localhost:5000/api/v1/dashboard", {
         method: "GET",
-        headers: { jwt_token: localStorage.jwtToken },
+        headers: { jwtToken: localStorage.jwtToken },
       });
 
       const parseRes = await response.json();

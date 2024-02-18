@@ -7,9 +7,10 @@ import backgroundImage from '../train.jpg';
 interface Props {
     setAuth: (auth: boolean) => void;
     setLogin: (auth: boolean) => void;
+    setLogged: (auth: boolean) => void;
   }
 
-const Login = ({setAuth,setLogin}:Props) => {
+const Login = ({setAuth,setLogin,setLogged}:Props) => {
     const navigate = useNavigate();
     const location = useLocation();
     const toast = useToast();
@@ -45,6 +46,7 @@ const Login = ({setAuth,setLogin}:Props) => {
                 if (response.data.jwtToken) {
                     localStorage.setItem("jwtToken", response.data.jwtToken);
                     setAuth(true);
+                    setLogged(true);
                     setLogin(false);
                     if (location.pathname === "/login") navigate("/");
                     else navigate(location.pathname);

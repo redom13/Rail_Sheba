@@ -9,13 +9,15 @@ function isEmail(userEmail) {
 
 router.get('/',authorize,async(req,res)=>{
     try{
-        const {username}=req.user;
+        const username=req.user.id;
+        console.log(username)
         if (!isEmail(username)) {
             const user=await db.execute('SELECT * FROM passengers WHERE contact_no=:username',[username],db.options)
             res.json(user.rows[0])
         }
         else{
             const user=await db.execute('SELECT * FROM passengers WHERE email=:username',[username],db.options)
+            console.log(user.rows[0])
             res.json(user.rows[0])
         }
     }

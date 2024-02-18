@@ -15,17 +15,17 @@ import { Link as RouterLink,useLocation } from "react-router-dom";
 import Profile from "./Profile";
 
 interface Props {
-  isAuthenticated: boolean;
+  isLogged: boolean;
   isLoginPage:boolean;
 }
 
-const NavBar = ({ isAuthenticated,isLoginPage }: Props) => {
-  const [isAuth, setAuth] = useState(false);
+const NavBar = ({ isLogged,isLoginPage }: Props) => {
+  const [logged, setLogged] = useState(false);
   const location = useLocation();
   useEffect(() => {
-    setAuth(isAuthenticated);
-    console.log("NavBar isAuthenticated:", isAuth);
-  }, [isAuthenticated]);
+    setLogged(isLogged);
+    console.log("NavBar isLogged:", isLogged);
+  }, [isLogged]);
   const linkStyles = {
     textDecoration: "none", // Remove underline
     _hover: {
@@ -65,7 +65,7 @@ const NavBar = ({ isAuthenticated,isLoginPage }: Props) => {
           <Link as={RouterLink} to="/register" mx={2} {...linkStyles}>
             <Tab>Register</Tab>
           </Link>
-          {!isAuth && login}
+          {!logged && login}
           <Link as={RouterLink} to="/contact" mx={2} {...linkStyles}>
             <Tab>Contact</Tab>
           </Link>
@@ -77,7 +77,7 @@ const NavBar = ({ isAuthenticated,isLoginPage }: Props) => {
           borderRadius="1px"
         />
       </Tabs>
-      {isAuth && <Profile/>}
+      {logged && <Profile/>}
     </Flex>
   );
 };

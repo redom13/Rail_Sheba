@@ -35,6 +35,7 @@ const App = () => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoginPage, setIsLoginPage] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
 
   const setAuth = (bool: boolean) => {
     console.log("setAuth called", bool);
@@ -46,12 +47,17 @@ const App = () => {
     setIsLoginPage(bool);
   }
 
+  const setLogged = (bool: boolean) => {
+    console.log("setLogged called", bool);
+    setIsLogged(bool);
+  }
+
   return (
     <Router>
-      <NavBar isAuthenticated={isAuthenticated} isLoginPage={isLoginPage}/>
+      <NavBar isLogged={isLogged} isLoginPage={isLoginPage}/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login setAuth={setAuth} setLogin={setLogin}/>} />
+        <Route path="/login" element={<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
         <Route
           path="/register"
           element={<RegistrationForm setAuth={setAuth} />}
@@ -60,7 +66,7 @@ const App = () => {
         <Route path="/trains" element={<AvailableTrains />} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/*<Route path="/trains/:id" element={<Seat/>}/>*/}
-       <Route path="/trains/:id" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin}/>} />
+       <Route path="/trains/:id" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
         {/*<Route path="/trains/:id" element={<SeatBooking />} />*/}
       </Routes>
     </Router>

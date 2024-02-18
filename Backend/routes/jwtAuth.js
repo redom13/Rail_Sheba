@@ -66,7 +66,8 @@ router.post('/login',validinfo.validLogin, async(req,res)=>{
         if (!validPassword) {
             return res.status(401).json("Invalid password! Please provide correct password");
         }
-        const jwtToken = jwtGenerator(userLogin.rows[0].username);
+        console.log("For Login Username:",userLogin.rows[0].USERNAME);
+        const jwtToken = jwtGenerator(userLogin.rows[0].USERNAME);
         console.log("login successful");
         return res.json({ jwtToken });
     }
