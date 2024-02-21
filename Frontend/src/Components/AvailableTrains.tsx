@@ -16,18 +16,25 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
+  Flex,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams,Link as RouterLink } from "react-router-dom";
+import { useNavigate,useLocation, useParams,Link as RouterLink } from "react-router-dom";
 import { taka } from "../Constants";
+import axios from "axios";
 
 // interface QueryParams {
 //   [key: string]: string | null;
 // }
+type CLASS_FARE={
+  CLASS:string,
+  AMOUNT: number,
+}
 
 type train = {
-  train_id: number;
-  name: string;
+  TRAIN_ID: number;
+  TRAIN_NAME: string;
+  CF:CLASS_FARE[]
 };
 // Custom hook to extract URL query parameters
 // function useQueryParams(): QueryParams {
@@ -47,19 +54,80 @@ type train = {
 
 
 
+
 function AvailableTrains() {
   const navigate = useNavigate();
-  const { date, classType, source, destination } = useParams();
-  const selectedDate = date ? new Date(date) : null;
+  //const { date, classType, source, destination } = useParams();
+  const selectedDate = new Date()
   //const [trains, setTrains] = useState<train[]>([]);
-  const [train, setTrain] = useState<train | null>(null); // [1
+  const [trains, setTrains] = useState<train[]>([]); // [1
   const [filter, setFilter] = useState({
-    source: "",
-    destination: "",
-    date: selectedDate,
-    classType: "",
+    fromStation: "",
+    toStation: "",
+    selectedDate: selectedDate,
+    className: "",
   });
-  const trains = [
+  const location = useLocation()
+  useEffect(() => {
+    // Retrieve data from location state
+    const { fromStation, toStation, selectedDate, className } = location.state;
+    console.log(fromStation)
+    console.log(toStation)
+    //console.log("selected date of available trains",selectedDate)
+    // You can now use this data to set your component state or perform any necessary operations
+    setFilter({
+      fromStation:fromStation,
+      toStation: toStation,
+      selectedDate: new Date(selectedDate),
+      className: className,
+    });
+    //getTrains()
+  }, [location.state]);
+
+  useEffect(() => {
+    // Call getTrains whenever filter state changes
+    if (filter.fromStation && filter.toStation && filter.selectedDate && filter.className) {
+      getTrains();
+    }
+  }, [filter]);
+
+  async function getTrains() {
+    try {
+      // Make GET request to backend API
+      //console.log(filter)
+      //console.log("selected date of available trains",filter.selectedDate)
+      const response = await axios.get("http://localhost:5000/api/v1/trains", { params: filter });
+      
+      // Handle response
+      if (response.data.success) {
+        // Update state with fetched train data
+        console.log("Response1",response.data.data);
+        //setTrains(response.data.data.rows);
+        const response2 = await axios.get(`http://localhost:5000/api/v1/trains/${filter.fromStation}/${filter.toStation}`);
+        //console.log(trains)
+        console.log(response2.data.data.rows)
+        let t=[]
+        for (let tmp of response.data.data.rows){
+          let temp={
+            TRAIN_ID:tmp.TRAIN_ID,
+            TRAIN_NAME:tmp.TRAIN_NAME,
+            CF:response2.data.data.rows
+          }
+          t.push(temp)
+        }
+        setTrains(t);
+        console.log("trains:",trains)
+      } else {
+        // Handle error condition if necessary
+        console.error("Error fetching trains:", response.data.message);
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error("Error fetching trains:", error);
+    }
+  }
+
+  const trainsa = [
     {
       train_id: 765,
       name: "Nilsagar Express",
@@ -83,12 +151,12 @@ function AvailableTrains() {
   // useEffect(() => {
   //   initialize();
   // }, []);
-  return (
+  return (trains.length===0? <h1>Not Found</h1> :(
     <Box>
       <Heading as="h2" mb="4" mt='8px' marginLeft="10px">
         Available Trains
       </Heading>
-      <p>{train?.name}</p>
+      {/*<p>{train?.name}</p>
       {/*<List spacing={3} mb="4">
         {trains.map((train, index) => (
           <ListItem key={index}>
@@ -96,28 +164,31 @@ function AvailableTrains() {
           </ListItem>
         ))}
       </List>*/}
-      {trains.map((train, index) => (
+      {trains?.map((train, index) => (
         <Box key={index} id={`train-${index}`} mt="4" marginLeft="10px">
           <Heading as="h1" size="md" color='brown'>
-            {train.name}
+            {train.TRAIN_NAME}
           </Heading>
           <SimpleGrid
             spacing={4}
             templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
             mt="2"
           >
-            {train.seat.map((seat, index) => (
+            {train.CF.map((seat, index) => (
               <Card key={index} size="sm" backgroundColor='cornsilk' borderRadius='10px'>
                 <CardHeader color='black'>
-                  <Heading size="md"> {seat.classType}</Heading>
-                  <Text>{seat.fare}</Text>
+                  <Heading size="md"> {seat.CLASS}</Heading>
                   <Text size="sm">Including VAT</Text>
+                  <Flex>
+                  <Text>{seat.AMOUNT}</Text>
+                  <Text fontSize="lg" fontWeight="bold">{taka}</Text>
+                  </Flex>
                 </CardHeader>
                 <CardBody>
                   <Text>Available Tickets Counter+Online</Text>
                 </CardBody>
                 <CardFooter display='flex' justifyContent='center' alignContent='center'>
-                  <Link as={RouterLink} to={`/trains/${train.train_id}`}>
+                  <Link as={RouterLink} to={`/trains/${train.TRAIN_ID}`}>
                   <Button colorScheme="teal" borderRadius="20px">Book Now</Button>
                   </Link>
                 </CardFooter>
@@ -127,7 +198,7 @@ function AvailableTrains() {
         </Box>
       ))}
     </Box>
-  );
+  ))
 }
 
 export default AvailableTrains;
