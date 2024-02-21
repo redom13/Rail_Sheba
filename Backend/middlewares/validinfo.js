@@ -1,7 +1,7 @@
 const validRegister = function(req, res, next) {
   console.log("hi");  
   const {nid,first_name,last_name,date_of_birth,contact_no,idtype,email,password} = req.body;
-  
+  console.log(req.body)
     function validEmail(userEmail) {
       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(userEmail);
     }

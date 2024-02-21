@@ -1,19 +1,42 @@
 // RegistrationForm.js
-import { useState } from "react";
-import { Button, Flex, Input, VStack, useToast } from "@chakra-ui/react";
+import { SyntheticEvent, useState } from "react";
+import { Button, Flex, FormControl, FormLabel, Input, Select, VStack, useToast } from "@chakra-ui/react";
 import { ChangeEvent } from "react";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 interface Props {
   setAuth: (auth: boolean) => void;
 }
+
+const date=new Date();
+
+interface DateOfBirthPickerProps {
+  selected: Date | null;
+  onChange: (date: Date | null, event: SyntheticEvent<any> | undefined) => void;
+}
+
+const DateOfBirthPicker = ({ selected, onChange }:DateOfBirthPickerProps) => (
+  <DatePicker
+    selected={selected}
+    onChange={onChange}
+    dateFormat="MM/dd/yyyy"
+    showYearDropdown
+    scrollableYearDropdown
+    dropdownMode="select"
+    placeholderText="Date Of Birth"
+    className="form-control"
+    maxDate={new Date()} // Optional: Set a max date to prevent future dates
+  />
+);
 
 const RegistrationForm = ({setAuth}:Props) => {
   const [formData, setFormData] = useState({
     nid: "",
     first_name:"",
     last_name:"",
-    date_of_birth:"",
+    date_of_birth:date,
     contact_no:"",
     idtype:"",
     email: "",
@@ -21,8 +44,12 @@ const RegistrationForm = ({setAuth}:Props) => {
   });
   const toast = useToast();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleDateChange = (date: Date | null) => {
+    setFormData({ ...formData, date_of_birth: date || new Date() });
   };
 
   const handleSubmit = () => {
@@ -96,25 +123,22 @@ const RegistrationForm = ({setAuth}:Props) => {
           value={formData.last_name}
           onChange={handleChange}
         />
-        <Input
+        {/*<Input
           type="text"
           name="date_of_birth"
           placeholder="date_of_birth"
           value={formData.date_of_birth}
           onChange={handleChange}
-        />
+        />*/}
+        <FormControl>
+        <FormLabel>Date of Birth</FormLabel>
+        <DateOfBirthPicker selected={formData.date_of_birth} onChange={handleDateChange} />
+        </FormControl>
         <Input
           type="text"
           name="contact_no"
           placeholder="contact_no"
           value={formData.contact_no}
-          onChange={handleChange}
-        />
-          <Input
-          type="text"
-          name="idtype"
-          placeholder="idtype"
-          value={formData.idtype}
           onChange={handleChange}
         />
         <Input
@@ -124,6 +148,15 @@ const RegistrationForm = ({setAuth}:Props) => {
           value={formData.email}
           onChange={handleChange}
         />
+        <Select
+          name="idtype"
+          placeholder="Choose your username"
+          value={formData.idtype}
+          onChange={handleChange}
+        >
+          <option value="email">Email</option>
+          <option value="phone">Phone</option>
+        </Select>
         <Input
           type="password"
           name="password"

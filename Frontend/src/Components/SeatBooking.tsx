@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Grid,
@@ -10,6 +10,8 @@ import {
   Divider,
   Spacer,
 } from "@chakra-ui/react";
+import { useNavigate,useLocation } from "react-router-dom";import axios from "axios";
+
 
 interface Props {
   number: number;
@@ -40,6 +42,27 @@ const BoxComponent = ({
 
 const SeatBooking = () => {
   const [seatCount, setSeatCount] = useState(0);
+  const [compartments, setCompartments] = useState<string[]|null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const getCompartments = (id:Number,className:string) => {
+      axios
+      .get(`http://localhost:5000/api/v1/compartments/${id}/${className}`)
+      .then((response) => {
+        console.log(response.data);
+        setCompartments(response.data.data);
+        console.log("Compartments:",compartments);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  // useEffect(() => {
+  //   const {id,className}=location.state;
+  //   getCompartments(id,className);
+  // },[location.state]);
 
   const updateSeatCount = (clicked:boolean) => {
     if (!clicked) setSeatCount(seatCount + 1);
