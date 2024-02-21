@@ -10,8 +10,8 @@ import {
   Divider,
   Spacer,
 } from "@chakra-ui/react";
-import { useNavigate,useLocation } from "react-router-dom";import axios from "axios";
-
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 
 interface Props {
   number: number;
@@ -20,7 +20,7 @@ interface Props {
 const BoxComponent = ({
   number,
   updateSeatCount,
-}: Props & { updateSeatCount: (clicked:boolean) => void }) => {
+}: Props & { updateSeatCount: (clicked: boolean) => void }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -36,35 +36,37 @@ const BoxComponent = ({
       bg={clicked ? "teal" : "gray"}
       borderRadius="20px"
       onClick={handleClick}
-    ></Box>
+    >
+      <Center>{number}</Center>
+    </Box>
   );
 };
 
 const SeatBooking = () => {
   const [seatCount, setSeatCount] = useState(0);
-  const [compartments, setCompartments] = useState<string[]|null>(null);
+  const [compartments, setCompartments] = useState<string[] | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const getCompartments = (id:Number,className:string) => {
-      axios
+  const getCompartments = (id: Number, className: string) => {
+    axios
       .get(`http://localhost:5000/api/v1/compartments/${id}/${className}`)
       .then((response) => {
         console.log(response.data);
         setCompartments(response.data.data);
-        console.log("Compartments:",compartments);
+        console.log("Compartments:", compartments);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   // useEffect(() => {
   //   const {id,className}=location.state;
   //   getCompartments(id,className);
   // },[location.state]);
 
-  const updateSeatCount = (clicked:boolean) => {
+  const updateSeatCount = (clicked: boolean) => {
     if (!clicked) setSeatCount(seatCount + 1);
     else setSeatCount(seatCount - 1);
   };
@@ -136,6 +138,7 @@ const SeatBooking = () => {
                 h="800px"
                 w="400px"
                 templateColumns="repeat(6, 1fr)"
+                templateRows="repeat(9, 1fr)" // Add an extra row for the gap
                 gap={4}
                 p={4}
                 boxShadow="lg"
@@ -147,6 +150,7 @@ const SeatBooking = () => {
                       index % 5 <= 2 ? (index % 5) + 1 : (index % 5) + 2
                     }
                     colSpan={1}
+                    rowSpan={index === 20 ? 2 : 1} // Set rowSpan to 2 for the gap row
                   >
                     <BoxComponent
                       number={index + 1}
