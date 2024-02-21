@@ -10,15 +10,17 @@ import {
   Divider,
   Spacer,
 } from "@chakra-ui/react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 interface Props {
   number: number;
+  name: string;
 }
 
 const BoxComponent = ({
   number,
+  name,
   updateSeatCount,
 }: Props & { updateSeatCount: (clicked: boolean) => void }) => {
   const [clicked, setClicked] = useState(false);
@@ -37,7 +39,12 @@ const BoxComponent = ({
       borderRadius="20px"
       onClick={handleClick}
     >
-      <Center>{number}</Center>
+      <Center>
+        {name}
+      </Center>
+      <Center>
+        {number}
+      </Center>
     </Box>
   );
 };
@@ -45,21 +52,37 @@ const BoxComponent = ({
 const SeatBooking = () => {
   const [seatCount, setSeatCount] = useState(0);
   const [compartments, setCompartments] = useState<string[] | null>(null);
+  const [selectedCompartment, setSelectedCompartment] = useState<string>("");
   const navigate = useNavigate();
   const location = useLocation();
+  const { id, className } = useParams();
 
   const getCompartments = (id: Number, className: string) => {
     axios
       .get(`http://localhost:5000/api/v1/compartments/${id}/${className}`)
       .then((response) => {
-        console.log(response.data);
-        setCompartments(response.data.data);
+        console.log(response.data.COMPARTMENT_NAME);
+        let comp_name = [];
+        for (let tmp of response.data) {
+          comp_name.push(tmp.COMPARTMENT_NAME);
+        }
+        console.log(comp_name);
+        setCompartments(comp_name);
         console.log("Compartments:", compartments);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    if (id && className) getCompartments(Number(id), className);
+  }, []);
+
+  useEffect(() => {
+    // Reset seat count to zero when selectedCompartment changes
+    setSeatCount(0);
+  }, [selectedCompartment]);
 
   // useEffect(() => {
   //   const {id,className}=location.state;
@@ -90,9 +113,12 @@ const SeatBooking = () => {
               <Text fontSize="lg" fontWeight="bold">
                 Select Coach
               </Text>
-              <Select>
-                <option value="AC">AC</option>
-                <option value="Non-AC">Non-AC</option>
+              <Select value={selectedCompartment} onChange={(e) => setSelectedCompartment(e.target.value)}>
+                {compartments?.map((compartment) => (
+                  <option key={compartment} value={compartment}>
+                    {compartment}
+                  </option>
+                ))}
               </Select>
               <Flex>
                 <Flex mt={2}>
@@ -154,6 +180,7 @@ const SeatBooking = () => {
                   >
                     <BoxComponent
                       number={index + 1}
+                      name={selectedCompartment}
                       updateSeatCount={updateSeatCount}
                     />
                   </GridItem>

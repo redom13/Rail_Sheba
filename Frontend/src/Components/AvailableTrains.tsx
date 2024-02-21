@@ -188,7 +188,7 @@ function AvailableTrains() {
                   <Text>Available Tickets Counter+Online</Text>
                 </CardBody>
                 <CardFooter display='flex' justifyContent='center' alignContent='center'>
-                  <Link as={RouterLink} to={`/trains/${train.TRAIN_ID}`}>
+                  <Link as={RouterLink} to={`/trains/${train.TRAIN_ID}/${seat.CLASS}`}>
                   <Button colorScheme="teal" borderRadius="20px">Book Now</Button>
                   </Link>
                 </CardFooter>

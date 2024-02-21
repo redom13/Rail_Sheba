@@ -66,7 +66,7 @@ const App = () => {
         <Route path="/trains" element={<AvailableTrains />} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/*<Route path="/trains/:id" element={<Seat/>}/>*/}
-       <Route path="/trains/:id" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
+       <Route path="/trains/:id/:className" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
         {/*<Route path="/trains/:id" element={<SeatBooking />} />*/}
       </Routes>
     </Router>
