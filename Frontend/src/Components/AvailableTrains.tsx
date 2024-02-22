@@ -23,9 +23,6 @@ import { useNavigate,useLocation, useParams,Link as RouterLink } from "react-rou
 import { taka } from "../Constants";
 import axios from "axios";
 
-// interface QueryParams {
-//   [key: string]: string | null;
-// }
 type CLASS_FARE={
   CLASS:string,
   AMOUNT: number,
@@ -36,24 +33,6 @@ type train = {
   TRAIN_NAME: string;
   CF:CLASS_FARE[]
 };
-// Custom hook to extract URL query parameters
-// function useQueryParams(): QueryParams {
-//   const [queryParams, setQueryParams] = useState<QueryParams>({});
-
-//   useEffect(() => {
-//     const searchParams = new URLSearchParams(window.location.search);
-//     const params: QueryParams = {};
-//     for (const [key, value] of searchParams) {
-//       params[key] = value;
-//     }
-//     setQueryParams(params);
-//   }, []);
-
-//   return queryParams;
-// 
-
-
-
 
 function AvailableTrains() {
   const navigate = useNavigate();
@@ -127,43 +106,12 @@ function AvailableTrains() {
     }
   }
 
-  const trainsa = [
-    {
-      train_id: 765,
-      name: "Nilsagar Express",
-      seat: [
-        { classType: "S_CHAIR", fare: `${taka}490` },
-        { classType: "Snigdha", fare: `${taka}770` },
-        { classType: "AC_S", fare: `${taka}1150` },
-      ],
-    },
-    {
-      train_id: 795,
-      name: "Benapole Express",
-      seat: [
-        { classType: "S_CHAIR", fare: `${taka}490` },
-        { classType: "Snigdha", fare: `${taka}770` },
-      ],
-    },
-  ];
-  //const queryParams = useQueryParams();
 
-  // useEffect(() => {
-  //   initialize();
-  // }, []);
   return (trains.length===0? <h1>Not Found</h1> :(
     <Box>
       <Heading as="h2" mb="4" mt='8px' marginLeft="10px">
         Available Trains
       </Heading>
-      {/*<p>{train?.name}</p>
-      {/*<List spacing={3} mb="4">
-        {trains.map((train, index) => (
-          <ListItem key={index}>
-            <Link href={`/trains/${train.train_id}`}>{train.name}</Link>
-          </ListItem>
-        ))}
-      </List>*/}
       {trains?.map((train, index) => (
         <Box key={index} id={`train-${index}`} mt="4" marginLeft="10px">
           <Heading as="h1" size="md" color='brown'>
