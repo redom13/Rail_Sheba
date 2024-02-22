@@ -49,17 +49,31 @@ const BoxComponent = ({
   );
 };
 
-const SeatBooking = () => {
+// Props for seatBooking
+interface Props2{
+  trainID: Number,
+  className:string,
+  fromStation:string,
+  toStation:string,
+  selectedDate:Date
+}
+
+type Seat={
+  compName:string,
+  no:Number
+}
+
+const SeatBooking = ({trainID,className,fromStation,toStation,selectedDate}:Props2) => {
   const [seatCount, setSeatCount] = useState(0);
   const [compartments, setCompartments] = useState<string[] | null>(null);
+  const [selectedSeat,setSelectedSeat]=useState<Seat[]>([])
   const [selectedCompartment, setSelectedCompartment] = useState<string>("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { id, className } = useParams();
-
+  //const { id, className2 } = useParams();
   const getCompartments = (id: Number, className: string) => {
     axios
-      .get(`http://localhost:5000/api/v1/compartments/${id}/${className}`)
+      .get(`http://localhost:5000/api/v1/compartments/${trainID}/${className}`)
       .then((response) => {
         console.log(response.data.COMPARTMENT_NAME);
         let comp_name = [];
@@ -76,7 +90,7 @@ const SeatBooking = () => {
   };
 
   useEffect(() => {
-    if (id && className) getCompartments(Number(id), className);
+    if (trainID && className) getCompartments(Number(trainID), className);
   }, []);
 
   useEffect(() => {

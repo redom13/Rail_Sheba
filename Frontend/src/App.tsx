@@ -63,10 +63,10 @@ const App = () => {
           element={<RegistrationForm setAuth={setAuth} />}
         />
         <Route path="/contact" element={<h1>Contact</h1>} />
-        <Route path="/trains" element={<AvailableTrains />} />
+        <Route path="/trains" element={<AvailableTrains isAuthenticated={isAuthenticated}/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/*<Route path="/trains/:id" element={<Seat/>}/>*/}
-       <Route path="/trains/:id/:className/:date/:fromStation/:toStation" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
+       {/*<Route path="/trains/:id/:className" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />*/}
         {/*<Route path="/trains/:id" element={<SeatBooking />} />*/}
       </Routes>
     </Router>

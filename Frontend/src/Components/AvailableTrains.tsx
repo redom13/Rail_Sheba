@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { useNavigate,useLocation, useParams,Link as RouterLink } from "react-router-dom";
 import { taka } from "../Constants";
 import axios from "axios";
+import SeatBooking from "./SeatBooking";
 
 type CLASS_FARE={
   CLASS:string,
@@ -34,11 +35,18 @@ type train = {
   CF:CLASS_FARE[]
 };
 
-function AvailableTrains() {
+interface Props{
+  isAuthenticated:boolean
+}
+
+function AvailableTrains({isAuthenticated}:Props) {
   const navigate = useNavigate();
   //const { date, classType, source, destination } = useParams();
   const selectedDate = new Date()
   //const [trains, setTrains] = useState<train[]>([]);
+  const [isClicked,setIsClicked]=useState(false)
+  const [className,setClassName]=useState("")
+  const [id,setId]=useState(-2)
   const [trains, setTrains] = useState<train[]>([]); // [1
   const [filter, setFilter] = useState({
     fromStation: "",
@@ -136,13 +144,14 @@ function AvailableTrains() {
                   <Text>Available Tickets Counter+Online</Text>
                 </CardBody>
                 <CardFooter display='flex' justifyContent='center' alignContent='center'>
-                  <Link as={RouterLink} to={`/trains/${train.TRAIN_ID}/${seat.CLASS}`}>
-                  <Button colorScheme="teal" borderRadius="20px">Book Now</Button>
-                  </Link>
+                  {/*<Link as={RouterLink} to={`/trains/${train.TRAIN_ID}/${seat.CLASS}`}>*/}
+                  <Button colorScheme="teal" borderRadius="20px" onClick={(e)=>{setIsClicked(true);setClassName(seat.CLASS);setId(train.TRAIN_ID)}}>Book Now</Button>
+                  {/*</Link>*/}
                 </CardFooter>
               </Card>
             ))}
           </SimpleGrid>
+          {isClicked && id===train.TRAIN_ID && <SeatBooking trainID={id} className={className} fromStation={filter.fromStation} toStation={filter.toStation} selectedDate={filter.selectedDate}></SeatBooking>}
         </Box>
       ))}
     </Box>
