@@ -39,60 +39,107 @@ const BoxComponent = ({
       borderRadius="20px"
       onClick={handleClick}
     >
-      <Center>
-        {name}
-      </Center>
-      <Center>
-        {number}
-      </Center>
+      <Center>{name}</Center>
+      <Center>{number}</Center>
     </Box>
   );
 };
 
 // Props for seatBooking
-interface Props2{
-  trainID: Number,
-  className:string,
-  fromStation:string,
-  toStation:string,
-  selectedDate:Date
+interface Props2 {
+  trainID: Number;
+  className: string;
+  fromStation: string;
+  toStation: string;
+  selectedDate: Date;
 }
 
-type Seat={
-  compName:string,
-  no:Number
-}
+type Seat = {
+  compName: string;
+  no: Number;
+};
 
-const SeatBooking = ({trainID,className,fromStation,toStation,selectedDate}:Props2) => {
+type Compartment = {
+  compId: Number;
+  compName: string;
+};
+
+const SeatBooking = ({
+  trainID,
+  className,
+  fromStation,
+  toStation,
+  selectedDate,
+}: Props2) => {
   const [seatCount, setSeatCount] = useState(0);
-  const [compartments, setCompartments] = useState<string[] | null>(null);
-  const [selectedSeat,setSelectedSeat]=useState<Seat[]>([])
+  const [compartments, setCompartments] = useState<Compartment[]>([]);
+  const [selectedSeat, setSelectedSeat] = useState<Seat[]>([]);
   const [selectedCompartment, setSelectedCompartment] = useState<string>("");
+  const [bookedSeats, setBookedSeats] = useState<Seat[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
   //const { id, className2 } = useParams();
+  const getBookedSeats = async (compId: Number) => {
+    try {
+      console.log("CALLED");
+      const response = await axios.get(
+        `http://localhost:5000/api/v1/reservation/bookedSeats`,
+        { params: { compId, selectedDate } }
+      );
+      console.log(response.data);
+      let bs = [];
+      //if (response.data)
+      for (let tmp of response.data) {
+        console.log(tmp)
+        bs.push({ compName: tmp.COMPARTMENT_NAME, no: tmp.SEAT_NO });
+      }
+      console.log("bs:",bs)
+      console.log("Booked Seats Previously:",bookedSeats)
+      setBookedSeats([...bs,...bookedSeats]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const getCompartments = (id: Number, className: string) => {
     axios
       .get(`http://localhost:5000/api/v1/compartments/${trainID}/${className}`)
       .then((response) => {
-        console.log(response.data.COMPARTMENT_NAME);
-        let comp_name = [];
+        let comp_name: Compartment[] = []; // Explicitly define the type of comp_name
         for (let tmp of response.data) {
-          comp_name.push(tmp.COMPARTMENT_NAME);
+          comp_name.push({
+            compId: tmp.COMPARTMENT_ID,
+            compName: tmp.COMPARTMENT_NAME,
+          });
         }
-        console.log(comp_name);
         setCompartments(comp_name);
-        console.log("Compartments:", compartments);
+        // Call getBookedSeats after setting compartments
+        comp_name.forEach(comp => getBookedSeats(comp.compId));
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  useEffect(() => {
+    console.log("Booked seats:", bookedSeats);
+  }, [bookedSeats]);
 
   useEffect(() => {
     if (trainID && className) getCompartments(Number(trainID), className);
   }, []);
 
+  // useEffect(() => {
+  //   if (compartments) {
+  //     for (let comp of compartments) {
+  //       getBookedSeats(comp.compId);
+  //     }
+  //   }
+  //   console.log("BOOKED SEATS:", bookedSeats);
+  // },[compartments]);
+
+  // useEffect(()=>
+  // {
+  //   if( trainID )
+  // },[])
   useEffect(() => {
     // Reset seat count to zero when selectedCompartment changes
     setSeatCount(0);
@@ -127,10 +174,16 @@ const SeatBooking = ({trainID,className,fromStation,toStation,selectedDate}:Prop
               <Text fontSize="lg" fontWeight="bold">
                 Select Coach
               </Text>
-              <Select value={selectedCompartment} onChange={(e) => setSelectedCompartment(e.target.value)}>
+              <Select
+                value={selectedCompartment}
+                onChange={(e) => setSelectedCompartment(e.target.value)}
+              >
                 {compartments?.map((compartment) => (
-                  <option key={compartment} value={compartment}>
-                    {compartment}
+                  <option
+                    key={compartment.compName}
+                    value={compartment.compName}
+                  >
+                    {compartment.compName}
                   </option>
                 ))}
               </Select>
