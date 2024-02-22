@@ -28,6 +28,7 @@ app.use("/api/v1/trains", trainRoutes);
 app.use("/api/v1/auth",require("./routes/jwtAuth"))
 app.use("/api/v1/dashboard",require("./routes/dashboard"))
 app.use("/api/v1/compartments",require("./routes/compartments"))
+app.use("/api/v1/reservation",require("./routes/reservation"))
 
 const PORT = process.env.PORT || 5000;
 
