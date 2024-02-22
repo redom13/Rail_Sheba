@@ -10,17 +10,19 @@ import {
   Divider,
   Spacer,
 } from "@chakra-ui/react";
-import { useNavigate,useLocation } from "react-router-dom";import axios from "axios";
-
+import { useNavigate, useLocation, useParams } from "react-router-dom";
+import axios from "axios";
 
 interface Props {
   number: number;
+  name: string;
 }
 
 const BoxComponent = ({
   number,
+  name,
   updateSeatCount,
-}: Props & { updateSeatCount: (clicked:boolean) => void }) => {
+}: Props & { updateSeatCount: (clicked: boolean) => void }) => {
   const [clicked, setClicked] = useState(false);
 
   const handleClick = () => {
@@ -36,35 +38,72 @@ const BoxComponent = ({
       bg={clicked ? "teal" : "gray"}
       borderRadius="20px"
       onClick={handleClick}
-    ></Box>
+    >
+      <Center>
+        {name}
+      </Center>
+      <Center>
+        {number}
+      </Center>
+    </Box>
   );
 };
 
-const SeatBooking = () => {
+// Props for seatBooking
+interface Props2{
+  trainID: Number,
+  className:string,
+  fromStation:string,
+  toStation:string,
+  selectedDate:Date
+}
+
+type Seat={
+  compName:string,
+  no:Number
+}
+
+const SeatBooking = ({trainID,className,fromStation,toStation,selectedDate}:Props2) => {
   const [seatCount, setSeatCount] = useState(0);
-  const [compartments, setCompartments] = useState<string[]|null>(null);
+  const [compartments, setCompartments] = useState<string[] | null>(null);
+  const [selectedSeat,setSelectedSeat]=useState<Seat[]>([])
+  const [selectedCompartment, setSelectedCompartment] = useState<string>("");
   const navigate = useNavigate();
   const location = useLocation();
-
-  const getCompartments = (id:Number,className:string) => {
-      axios
-      .get(`http://localhost:5000/api/v1/compartments/${id}/${className}`)
+  //const { id, className2 } = useParams();
+  const getCompartments = (id: Number, className: string) => {
+    axios
+      .get(`http://localhost:5000/api/v1/compartments/${trainID}/${className}`)
       .then((response) => {
-        console.log(response.data);
-        setCompartments(response.data.data);
-        console.log("Compartments:",compartments);
+        console.log(response.data.COMPARTMENT_NAME);
+        let comp_name = [];
+        for (let tmp of response.data) {
+          comp_name.push(tmp.COMPARTMENT_NAME);
+        }
+        console.log(comp_name);
+        setCompartments(comp_name);
+        console.log("Compartments:", compartments);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
+
+  useEffect(() => {
+    if (trainID && className) getCompartments(Number(trainID), className);
+  }, []);
+
+  useEffect(() => {
+    // Reset seat count to zero when selectedCompartment changes
+    setSeatCount(0);
+  }, [selectedCompartment]);
 
   // useEffect(() => {
   //   const {id,className}=location.state;
   //   getCompartments(id,className);
   // },[location.state]);
 
-  const updateSeatCount = (clicked:boolean) => {
+  const updateSeatCount = (clicked: boolean) => {
     if (!clicked) setSeatCount(seatCount + 1);
     else setSeatCount(seatCount - 1);
   };
@@ -88,9 +127,12 @@ const SeatBooking = () => {
               <Text fontSize="lg" fontWeight="bold">
                 Select Coach
               </Text>
-              <Select>
-                <option value="AC">AC</option>
-                <option value="Non-AC">Non-AC</option>
+              <Select value={selectedCompartment} onChange={(e) => setSelectedCompartment(e.target.value)}>
+                {compartments?.map((compartment) => (
+                  <option key={compartment} value={compartment}>
+                    {compartment}
+                  </option>
+                ))}
               </Select>
               <Flex>
                 <Flex mt={2}>
@@ -136,6 +178,7 @@ const SeatBooking = () => {
                 h="800px"
                 w="400px"
                 templateColumns="repeat(6, 1fr)"
+                templateRows="repeat(9, 1fr)" // Add an extra row for the gap
                 gap={4}
                 p={4}
                 boxShadow="lg"
@@ -147,9 +190,11 @@ const SeatBooking = () => {
                       index % 5 <= 2 ? (index % 5) + 1 : (index % 5) + 2
                     }
                     colSpan={1}
+                    rowSpan={index === 20 ? 2 : 1} // Set rowSpan to 2 for the gap row
                   >
                     <BoxComponent
                       number={index + 1}
+                      name={selectedCompartment}
                       updateSeatCount={updateSeatCount}
                     />
                   </GridItem>
