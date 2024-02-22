@@ -8,6 +8,7 @@ import Home from "./Home";
 import SeatBooking from "./Components/SeatBooking";
 import { useEffect, useState } from "react";
 import Dashboard from "./Components/Dashboard";
+import ReservationPage from "./Components/ReservationPage";
 
 const App = () => {
   const checkAuthenticated = async () => {
@@ -68,6 +69,7 @@ const App = () => {
         {/*<Route path="/trains/:id" element={<Seat/>}/>*/}
        <Route path="/trains/:id" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
         {/*<Route path="/trains/:id" element={<SeatBooking />} />*/}
+        <Route path="/reservation" element={<ReservationPage />} />
       </Routes>
     </Router>
   );
