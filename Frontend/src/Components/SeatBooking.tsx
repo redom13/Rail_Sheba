@@ -79,12 +79,12 @@ const SeatBooking = ({
   const navigate = useNavigate();
   const location = useLocation();
   //const { id, className2 } = useParams();
-  const getBookedSeats = async (compId: Number) => {
+  const getBookedSeats = async (trainId: Number) => {
     try {
       console.log("CALLED");
       const response = await axios.get(
         `http://localhost:5000/api/v1/reservation/bookedSeats`,
-        { params: { compId, selectedDate } }
+        { params: { trainId, selectedDate } }
       );
       console.log(response.data);
       let bs = [];
@@ -95,7 +95,8 @@ const SeatBooking = ({
       }
       console.log("bs:",bs)
       console.log("Booked Seats Previously:",bookedSeats)
-      setBookedSeats([...bs,...bookedSeats]);
+      setBookedSeats(bs);
+      // setBookedSeats([...bs,...bookedSeats]);
     } catch (err) {
       console.log(err);
     }
@@ -113,7 +114,7 @@ const SeatBooking = ({
         }
         setCompartments(comp_name);
         // Call getBookedSeats after setting compartments
-        comp_name.forEach(comp => getBookedSeats(comp.compId));
+        //comp_name.forEach(comp => getBookedSeats(comp.compId));
       })
       .catch((error) => {
         console.log(error);
@@ -124,7 +125,10 @@ const SeatBooking = ({
   }, [bookedSeats]);
 
   useEffect(() => {
-    if (trainID && className) getCompartments(Number(trainID), className);
+    if (trainID && className) {
+      getCompartments(Number(trainID), className);
+      getBookedSeats(Number(trainID));
+    }
   }, []);
 
   // useEffect(() => {
