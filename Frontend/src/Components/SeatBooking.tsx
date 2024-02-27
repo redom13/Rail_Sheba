@@ -25,10 +25,10 @@ const BoxComponent = ({
   name,
   isBooked,
   compId,
-  updateSeatCount,
+  setSeatCount,
   selectedSeats,
   setSelectedSeats,
-}: Props & { updateSeatCount: (clicked: boolean) => void,
+}: Props & { setSeatCount: (count:number) => void,
   selectedSeats: Seat[],
   setSelectedSeats: (seats: Seat[]) => void 
 }) => {
@@ -37,12 +37,13 @@ const BoxComponent = ({
     selectedSeats.some(seat => seat.compId === compId && seat.no === number)
   );
   console.log("Selected Seats:", selectedSeats);
+  setSeatCount(selectedSeats.length)
   //console.log("CompId:", compId, "Number:", number, "isBooked:", isBooked, "Clicked:", clicked, "SelectedSeats:", selectedSeats);
   const handleClick = () => {
     if (isBooked) {
       return; // Ignore clicks if the seat is booked
     }
-    updateSeatCount(selected);
+    //updateSeatCount(selected);
     setClicked(!clicked);
     //setSelected(!selected);
     // If the seat is already selected, remove it from the array
@@ -51,10 +52,12 @@ const BoxComponent = ({
       console.log("Removing seat:", number, "CompId:", compId);
       setSelectedSeats(selectedSeats.filter(seat => seat.no !==number || seat.compId !== compId));
       setSelected(false);
+      setSeatCount(selectedSeats.length)
       //console.log("Selected Seats:", selectedSeats);
     } else {
       setSelectedSeats([...selectedSeats, { compId, no: number }]);
       setSelected(true)
+      setSeatCount(selectedSeats.length)
       //console.log("Selected Seats:", selectedSeats);
     }
   };
@@ -290,7 +293,7 @@ const SeatBooking = ({
                       isBooked={bookedSeats.some(
                         (seat) => seat.no === index + 1 && seat.compId === selectedCompartment?.compId)}
                       compId={selectedCompartment?.compId || 0}
-                      updateSeatCount={updateSeatCount}
+                      setSeatCount={setSeatCount}
                       selectedSeats={selectedSeat}
                       setSelectedSeats={setSelectedSeat}
                     />
