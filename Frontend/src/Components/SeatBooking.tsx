@@ -48,13 +48,14 @@ const BoxComponent = ({
     // If the seat is already selected, remove it from the array
     // Otherwise, add it to the array
     if (selected) {
-      setSelectedSeats(selectedSeats.filter(seat => seat.no !==number && seat.compId !== compId));
+      console.log("Removing seat:", number, "CompId:", compId);
+      setSelectedSeats(selectedSeats.filter(seat => seat.no !==number || seat.compId !== compId));
       setSelected(false);
-      console.log("Selected Seats:", selectedSeats);
+      //console.log("Selected Seats:", selectedSeats);
     } else {
       setSelectedSeats([...selectedSeats, { compId, no: number }]);
       setSelected(true)
-      console.log("Selected Seats:", selectedSeats);
+      //console.log("Selected Seats:", selectedSeats);
     }
   };
 
