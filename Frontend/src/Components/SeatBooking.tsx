@@ -16,18 +16,46 @@ import axios from "axios";
 interface Props {
   number: number;
   name: string;
+  isBooked: boolean;
+  compId: Number;
 }
 
 const BoxComponent = ({
   number,
   name,
+  isBooked,
+  compId,
   updateSeatCount,
-}: Props & { updateSeatCount: (clicked: boolean) => void }) => {
+  selectedSeats,
+  setSelectedSeats,
+}: Props & { updateSeatCount: (clicked: boolean) => void,
+  selectedSeats: Seat[],
+  setSelectedSeats: (seats: Seat[]) => void 
+}) => {
   const [clicked, setClicked] = useState(false);
-
+  const [selected, setSelected] = useState(
+    selectedSeats.some(seat => seat.compId === compId && seat.no === number)
+  );
+  console.log("Selected Seats:", selectedSeats);
+  //console.log("CompId:", compId, "Number:", number, "isBooked:", isBooked, "Clicked:", clicked, "SelectedSeats:", selectedSeats);
   const handleClick = () => {
-    updateSeatCount(clicked);
+    if (isBooked) {
+      return; // Ignore clicks if the seat is booked
+    }
+    updateSeatCount(selected);
     setClicked(!clicked);
+    //setSelected(!selected);
+    // If the seat is already selected, remove it from the array
+    // Otherwise, add it to the array
+    if (selected) {
+      setSelectedSeats(selectedSeats.filter(seat => seat.no !==number && seat.compId !== compId));
+      setSelected(false);
+      console.log("Selected Seats:", selectedSeats);
+    } else {
+      setSelectedSeats([...selectedSeats, { compId, no: number }]);
+      setSelected(true)
+      console.log("Selected Seats:", selectedSeats);
+    }
   };
 
   return (
@@ -35,9 +63,10 @@ const BoxComponent = ({
       w="50px"
       h="50px"
       color="white"
-      bg={clicked ? "teal" : "gray"}
-      borderRadius="20px"
       onClick={handleClick}
+      bg={isBooked ? "orange" : (selected ? "teal" : "gray")} // Set bg to orange if the seat is booked
+      borderRadius="20px"
+      style={{ cursor: isBooked ? 'not-allowed' : 'pointer' }} // Show forbidden sign if the seat is booked
     >
       <Center>{name}</Center>
       <Center>{number}</Center>
@@ -55,7 +84,7 @@ interface Props2 {
 }
 
 type Seat = {
-  compName: string;
+  compId: Number;
   no: Number;
 };
 
@@ -74,7 +103,7 @@ const SeatBooking = ({
   const [seatCount, setSeatCount] = useState(0);
   const [compartments, setCompartments] = useState<Compartment[]>([]);
   const [selectedSeat, setSelectedSeat] = useState<Seat[]>([]);
-  const [selectedCompartment, setSelectedCompartment] = useState<string>("");
+  const [selectedCompartment, setSelectedCompartment] = useState<Compartment>();
   const [bookedSeats, setBookedSeats] = useState<Seat[]>([]);
   const navigate = useNavigate();
   const location = useLocation();
@@ -91,7 +120,7 @@ const SeatBooking = ({
       //if (response.data)
       for (let tmp of response.data) {
         console.log(tmp)
-        bs.push({ compName: tmp.COMPARTMENT_NAME, no: tmp.SEAT_NO });
+        bs.push({ compId: tmp.COMPARTMENT_ID, no: tmp.SEAT_NO });
       }
       console.log("bs:",bs)
       console.log("Booked Seats Previously:",bookedSeats)
@@ -144,10 +173,10 @@ const SeatBooking = ({
   // {
   //   if( trainID )
   // },[])
-  useEffect(() => {
-    // Reset seat count to zero when selectedCompartment changes
-    setSeatCount(0);
-  }, [selectedCompartment]);
+  // useEffect(() => {
+  //   // Reset seat count to zero when selectedCompartment changes
+  //   setSeatCount(0);
+  // }, [selectedCompartment]);
 
   // useEffect(() => {
   //   const {id,className}=location.state;
@@ -179,8 +208,13 @@ const SeatBooking = ({
                 Select Coach
               </Text>
               <Select
-                value={selectedCompartment}
-                onChange={(e) => setSelectedCompartment(e.target.value)}
+                value={selectedCompartment?.compName}
+                onChange={(e) => {
+                  const selectedCompName = e.target.value;
+                  const selectedCompartment = compartments?.find(compartment => compartment.compName === selectedCompName);
+                  setSelectedCompartment(selectedCompartment);
+                  console.log("Selected Compartment:", selectedCompartment);
+              }}
               >
                 {compartments?.map((compartment) => (
                   <option
@@ -242,7 +276,7 @@ const SeatBooking = ({
               >
                 {[...Array(50).keys()].map((index) => (
                   <GridItem
-                    key={index}
+                    key={selectedCompartment?.compId+""+index}
                     colStart={
                       index % 5 <= 2 ? (index % 5) + 1 : (index % 5) + 2
                     }
@@ -251,8 +285,13 @@ const SeatBooking = ({
                   >
                     <BoxComponent
                       number={index + 1}
-                      name={selectedCompartment}
+                      name={selectedCompartment?.compName || ""}
+                      isBooked={bookedSeats.some(
+                        (seat) => seat.no === index + 1 && seat.compId === selectedCompartment?.compId)}
+                      compId={selectedCompartment?.compId || 0}
                       updateSeatCount={updateSeatCount}
+                      selectedSeats={selectedSeat}
+                      setSelectedSeats={setSelectedSeat}
                     />
                   </GridItem>
                 ))}
