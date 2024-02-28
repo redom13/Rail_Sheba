@@ -84,6 +84,8 @@ function SearchTrains() {
             dateFormat="MM/dd/yyyy"
             placeholderText="Pick a date"
             className="form-control"
+            minDate={new Date()}
+            maxDate={new Date(new Date().setDate(new Date().getDate() + 10))}
           ></DatePicker>
         </FormControl>
         <FormControl mb={4}>

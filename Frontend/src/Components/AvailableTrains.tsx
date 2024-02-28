@@ -151,7 +151,7 @@ function AvailableTrains({isAuthenticated}:Props) {
               </Card>
             ))}
           </SimpleGrid>
-          {isClicked && id===train.TRAIN_ID && <SeatBooking trainID={id} className={className} fromStation={filter.fromStation} toStation={filter.toStation} selectedDate={filter.selectedDate}></SeatBooking>}
+          {isClicked && id===train.TRAIN_ID && <SeatBooking key={`${id}-${className}`} trainID={id} className={className} fromStation={filter.fromStation} toStation={filter.toStation} selectedDate={filter.selectedDate}></SeatBooking>}
         </Box>
       ))}
     </Box>
