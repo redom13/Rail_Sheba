@@ -24,6 +24,7 @@ const Login = ({setAuth,setLogin,setLogged}:Props) => {
       };
 
     useEffect(() => {
+        // setLogin to identify if the user is on the login page
         setLogin(true);
     }, []);
 

@@ -9,6 +9,7 @@ import {
   Select,
   Divider,
   Spacer,
+  Button,
 } from "@chakra-ui/react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
@@ -301,11 +302,16 @@ const SeatBooking = ({
                 ))}
               </Grid>
             </div>
+            <div>
             <Box w="400px" h="300px" bg="cornsilk" mt="20px" ml={2}>
               <Text fontSize="lg" margin="5px">
                 Seat Details {seatCount}
               </Text>
             </Box>
+            <Button w="400px" colorScheme="green" margin="5px" borderRadius="10px" onClick={() => navigate("/reservation", { state: { trainID, className, fromStation, toStation, selectedDate, selectedSeat } })}>
+              Continue Purchase
+            </Button>
+            </div>
           </Flex>
         </div>
       </Center>
