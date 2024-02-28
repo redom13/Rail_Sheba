@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
+import { taka } from "../Constants";
 
 interface Props {
   number: number;
@@ -29,16 +30,17 @@ const BoxComponent = ({
   setSeatCount,
   selectedSeats,
   setSelectedSeats,
-}: Props & { setSeatCount: (count:number) => void,
-  selectedSeats: Seat[],
-  setSelectedSeats: (seats: Seat[]) => void 
+}: Props & {
+  setSeatCount: (count: number) => void;
+  selectedSeats: Seat[];
+  setSelectedSeats: (seats: Seat[]) => void;
 }) => {
   const [clicked, setClicked] = useState(false);
   const [selected, setSelected] = useState(
-    selectedSeats.some(seat => seat.compId === compId && seat.no === number)
+    selectedSeats.some((seat) => seat.compId === compId && seat.no === number)
   );
-  console.log("Selected Seats:", selectedSeats);
-  setSeatCount(selectedSeats.length)
+  //console.log("Selected Seats:", selectedSeats);
+  setSeatCount(selectedSeats.length);
   //console.log("CompId:", compId, "Number:", number, "isBooked:", isBooked, "Clicked:", clicked, "SelectedSeats:", selectedSeats);
   const handleClick = () => {
     if (isBooked) {
@@ -51,14 +53,18 @@ const BoxComponent = ({
     // Otherwise, add it to the array
     if (selected) {
       console.log("Removing seat:", number, "CompId:", compId);
-      setSelectedSeats(selectedSeats.filter(seat => seat.no !==number || seat.compId !== compId));
+      setSelectedSeats(
+        selectedSeats.filter(
+          (seat) => seat.no !== number || seat.compId !== compId
+        )
+      );
       setSelected(false);
-      setSeatCount(selectedSeats.length)
+      setSeatCount(selectedSeats.length);
       //console.log("Selected Seats:", selectedSeats);
     } else {
       setSelectedSeats([...selectedSeats, { compId, no: number }]);
-      setSelected(true)
-      setSeatCount(selectedSeats.length)
+      setSelected(true);
+      setSeatCount(selectedSeats.length);
       //console.log("Selected Seats:", selectedSeats);
     }
   };
@@ -69,9 +75,9 @@ const BoxComponent = ({
       h="50px"
       color="white"
       onClick={handleClick}
-      bg={isBooked ? "orange" : (selected ? "teal" : "gray")} // Set bg to orange if the seat is booked
+      bg={isBooked ? "orange" : selected ? "teal" : "gray"} // Set bg to orange if the seat is booked
       borderRadius="20px"
-      style={{ cursor: isBooked ? 'not-allowed' : 'pointer' }} // Show forbidden sign if the seat is booked
+      style={{ cursor: isBooked ? "not-allowed" : "pointer" }} // Show forbidden sign if the seat is booked
     >
       <Center>{name}</Center>
       <Center>{number}</Center>
@@ -110,6 +116,7 @@ const SeatBooking = ({
   const [selectedSeat, setSelectedSeat] = useState<Seat[]>([]);
   const [selectedCompartment, setSelectedCompartment] = useState<Compartment>();
   const [bookedSeats, setBookedSeats] = useState<Seat[]>([]);
+  const [fare, setFare] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
   //const { id, className2 } = useParams();
@@ -124,11 +131,11 @@ const SeatBooking = ({
       let bs = [];
       //if (response.data)
       for (let tmp of response.data) {
-        console.log(tmp)
+        console.log(tmp);
         bs.push({ compId: tmp.COMPARTMENT_ID, no: tmp.SEAT_NO });
       }
-      console.log("bs:",bs)
-      console.log("Booked Seats Previously:",bookedSeats)
+      console.log("bs:", bs);
+      console.log("Booked Seats Previously:", bookedSeats);
       setBookedSeats(bs);
       // setBookedSeats([...bs,...bookedSeats]);
     } catch (err) {
@@ -147,7 +154,7 @@ const SeatBooking = ({
           });
         }
         setCompartments(comp_name);
-        setSelectedCompartment(comp_name[0])
+        setSelectedCompartment(comp_name[0]);
         // Call getBookedSeats after setting compartments
         //comp_name.forEach(comp => getBookedSeats(comp.compId));
       })
@@ -155,14 +162,37 @@ const SeatBooking = ({
         console.log(error);
       });
   };
-  useEffect(() => {
-    console.log("Booked seats:", bookedSeats);
-  }, [bookedSeats]);
+
+  const getFare = (
+    fromStation: string,
+    toStation: string,
+    className: string
+  ) => {
+    axios
+      .get(
+        `http://localhost:5000/api/v1/fare/${fromStation}/${toStation}/${className}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        console.log("Fare:", response.data[0].FARE);
+        setFare(response.data[0].FARE);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // useEffect(() => {
+  //   console.log("Booked seats:", bookedSeats);
+  // }, [bookedSeats]);
 
   useEffect(() => {
     if (trainID && className) {
       getCompartments(Number(trainID), className);
       getBookedSeats(Number(trainID));
+    }
+    if (fromStation && toStation && className) {
+      getFare(fromStation, toStation, className);
     }
   }, []);
 
@@ -217,10 +247,12 @@ const SeatBooking = ({
                 value={selectedCompartment?.compName}
                 onChange={(e) => {
                   const selectedCompName = e.target.value;
-                  const selectedCompartment = compartments?.find(compartment => compartment.compName === selectedCompName);
+                  const selectedCompartment = compartments?.find(
+                    (compartment) => compartment.compName === selectedCompName
+                  );
                   setSelectedCompartment(selectedCompartment);
                   console.log("Selected Compartment:", selectedCompartment);
-              }}
+                }}
               >
                 {compartments?.map((compartment) => (
                   <option
@@ -282,7 +314,7 @@ const SeatBooking = ({
               >
                 {[...Array(50).keys()].map((index) => (
                   <GridItem
-                    key={selectedCompartment?.compId+""+index}
+                    key={selectedCompartment?.compId + "" + index}
                     colStart={
                       index % 5 <= 2 ? (index % 5) + 1 : (index % 5) + 2
                     }
@@ -293,7 +325,10 @@ const SeatBooking = ({
                       number={index + 1}
                       name={selectedCompartment?.compName || ""}
                       isBooked={bookedSeats.some(
-                        (seat) => seat.no === index + 1 && seat.compId === selectedCompartment?.compId)}
+                        (seat) =>
+                          seat.no === index + 1 &&
+                          seat.compId === selectedCompartment?.compId
+                      )}
                       compId={selectedCompartment?.compId || 0}
                       setSeatCount={setSeatCount}
                       selectedSeats={selectedSeat}
@@ -304,14 +339,76 @@ const SeatBooking = ({
               </Grid>
             </div>
             <div>
-            <Box w="400px" h="300px" bg="cornsilk" mt="20px" ml={2}>
-              <Text fontSize="lg" margin="5px">
-                Seat Details {seatCount}
-              </Text>
-            </Box>
-            <Button w="400px" colorScheme="green" margin="5px" borderRadius="20px" onClick={() => navigate("/reservation", { state: { trainID, className, fromStation, toStation, selectedDate, selectedSeat } })}>
-              Continue Purchase
-            </Button>
+              <Box w="400px" h="300px" bg="cornsilk" mt="20px" ml={2}>
+                <Text fontSize="lg" margin="5px" fontWeight="bold">
+                  Seat Details
+                </Text>
+                <Grid templateColumns="repeat(3, 1fr)" gap={0}>
+                  <Box bg="azure" color="black" p={0} height="30px">
+                    <Text fontSize="md" fontWeight="bold">
+                      Class
+                    </Text>
+                  </Box>
+                  <Box bg="azure" color="black" p={0} height="30px">
+                    <Text fontSize="md" fontWeight="bold">
+                      Seat
+                    </Text>
+                  </Box>
+                  <Box bg="azure" color="black" p={0} height="30px">
+                    <Text fontSize="md" fontWeight="bold">
+                      Fare
+                    </Text>
+                  </Box>
+                  {selectedSeat?.map((seat, index) => {
+                    const compartment = compartments.find(
+                      (comp) => comp.compId === seat.compId
+                    );
+                    return (
+                      <React.Fragment key={index}>
+                        <Text fontSize="md" mb="1px">
+                          {className} {/* Replace with your className state */}
+                        </Text>
+                        <Text fontSize="md" mb="1px">
+                          {compartment
+                            ? `${compartment.compName} - ${seat.no}`
+                            : "Compartment not found"}
+                        </Text>
+                        <Text fontSize="md" mb="1px">
+                          {`${taka}${fare}`}
+                          {/* Replace with your fare state */}
+                        </Text>
+                      </React.Fragment>
+                    );
+                  })}
+                </Grid>
+              </Box>
+              <Box bg="azure">
+                <Text fontSize="lg" margin="5px" fontWeight="bold">
+                  Total Fare: {taka}
+                  {fare * selectedSeat.length}
+                </Text>
+              </Box>
+              <Button
+                w="400px"
+                colorScheme="green"
+                margin="5px"
+                borderRadius="20px"
+                onClick={() =>
+                  navigate("/reservation", {
+                    state: {
+                      trainID,
+                      className,
+                      fromStation,
+                      toStation,
+                      selectedDate,
+                      selectedSeat,
+                      fare: fare * selectedSeat.length,
+                    },
+                  })
+                }
+              >
+                Continue Purchase
+              </Button>
             </div>
           </Flex>
         </div>
