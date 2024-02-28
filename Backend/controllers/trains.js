@@ -38,10 +38,7 @@ const getTrain = async (payload) => {
   console.log(payload)
   const  id  = payload;
   console.log(`In controller ${id}`);
-  const sql = `SELECT * FROM trains t1 WHERE t1.train_name = (
-    SELECT t2.train_name FROM trains t2 WHERE t2.train_id = :id
-  ) and t1.train_id=:id
-  `;
+  const sql = `SELECT TRAIN_NAME FROM TRAINS WHERE TRAIN_ID = :id`;
   const binds = {
     id: id,
   };
