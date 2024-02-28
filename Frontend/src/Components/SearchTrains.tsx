@@ -95,9 +95,9 @@ function SearchTrains() {
             value={className}
             onChange={(e) => setClassName(e.target.value)}
           >
-            <option value="economy">Economy</option>
-            <option value="business">Business</option>
-            <option value="firstClass">First Class</option>
+            <option value="economy">AC_S</option>
+            <option value="business">SNIGDHA</option>
+            <option value="firstClass">S_CHAIR</option>
           </Select>
         </FormControl>
         <Button colorScheme="teal" type="submit" width="100%">

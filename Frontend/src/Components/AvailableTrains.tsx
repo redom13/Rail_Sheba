@@ -131,13 +131,13 @@ function AvailableTrains({isAuthenticated}:Props) {
             mt="2"
           >
             {train.CF.map((seat, index) => (
-              <Card key={index} size="sm" backgroundColor='cornsilk' borderRadius='10px'>
+              <Card key={index} size="sm" backgroundColor='cornsilk' borderRadius='10px' border={className === seat.CLASS && id === train.TRAIN_ID ? "2px solid blue" : "none"}>
                 <CardHeader color='black'>
                   <Heading size="md"> {seat.CLASS}</Heading>
                   <Text size="sm">Including VAT</Text>
-                  <Flex>
-                  <Text>{seat.AMOUNT}</Text>
-                  <Text fontSize="lg" fontWeight="bold">{taka}</Text>
+                  <Flex direction="row">
+                  <Text fontSize="xl" fontWeight="bold">{taka}</Text>
+                  <Text fontSize="xl">{seat.AMOUNT}</Text>
                   </Flex>
                 </CardHeader>
                 <CardBody>

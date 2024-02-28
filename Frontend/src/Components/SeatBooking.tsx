@@ -147,6 +147,7 @@ const SeatBooking = ({
           });
         }
         setCompartments(comp_name);
+        setSelectedCompartment(comp_name[0])
         // Call getBookedSeats after setting compartments
         //comp_name.forEach(comp => getBookedSeats(comp.compId));
       })
@@ -308,7 +309,7 @@ const SeatBooking = ({
                 Seat Details {seatCount}
               </Text>
             </Box>
-            <Button w="400px" colorScheme="green" margin="5px" borderRadius="10px" onClick={() => navigate("/reservation", { state: { trainID, className, fromStation, toStation, selectedDate, selectedSeat } })}>
+            <Button w="400px" colorScheme="green" margin="5px" borderRadius="20px" onClick={() => navigate("/reservation", { state: { trainID, className, fromStation, toStation, selectedDate, selectedSeat } })}>
               Continue Purchase
             </Button>
             </div>
