@@ -304,22 +304,22 @@ const SeatBooking = ({
                 </Flex>
               </Flex>
               <Grid
-                h="800px"
                 w="400px"
                 templateColumns="repeat(6, 1fr)"
-                templateRows="repeat(9, 1fr)" // Add an extra row for the gap
+                templateRows={`repeat(${className==='AC_S'?3:9}, 1fr)`} // Add an extra row for the gap
                 gap={4}
                 p={4}
                 boxShadow="lg"
+                borderRadius="10px"
               >
-                {[...Array(50).keys()].map((index) => (
+                {[...Array(className==='AC_S'?20:50).keys()].map((index) => (
                   <GridItem
                     key={selectedCompartment?.compId + "" + index}
                     colStart={
                       index % 5 <= 2 ? (index % 5) + 1 : (index % 5) + 2
                     }
                     colSpan={1}
-                    rowSpan={index === 20 ? 2 : 1} // Set rowSpan to 2 for the gap row
+                    rowSpan={index === (className==='AC_S'?5:20) ? 2 : 1} // Set rowSpan to 2 for the gap row
                   >
                     <BoxComponent
                       number={index + 1}
