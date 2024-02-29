@@ -15,9 +15,14 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
-const Profile = () => {
+interface Props {
+  setAuth: (auth: boolean) => void;
+  setIsLogged: (auth: boolean) => void;
+}
+
+const Profile = ({setAuth,setIsLogged}:Props) => {
   const [user, setUser] = useState({
     NID: "",
     FIRST_NAME: "",
@@ -26,6 +31,24 @@ const Profile = () => {
     CONTACT_NO: "",
     EMAIL: "",
   });
+  const navigate=useNavigate();
+
+  const handleProfileClick=()=>{
+    navigate("/dashboard",{state:user});
+  }
+
+  const handleLogoutClick=async (e:React.MouseEvent<HTMLButtonElement>)=>{
+    e.preventDefault();
+    try{
+    localStorage.removeItem("jwtToken");
+    setAuth(false);
+    setIsLogged(false);
+    navigate("/");
+    }
+    catch(err:any){
+      console.error(err.message);
+    }
+  }
 
   const getUser = async () => {
     try {
@@ -70,16 +93,18 @@ const Profile = () => {
         <Divider />
         <MenuItem>
           <Flex>
-            <Link as={RouterLink} to="/dashboard">
+            <Button onClick={handleProfileClick}>
               Profile
-            </Link>
+            </Button>
           </Flex>
         </MenuItem>
         <MenuItem>
           <Flex>
-            <Link as={RouterLink} to="/">
-              Log out
-            </Link>
+            <Button onClick={e=>{
+              handleLogoutClick(e);
+            }}>
+              Logout
+            </Button>
           </Flex>
         </MenuItem>
       </MenuList>

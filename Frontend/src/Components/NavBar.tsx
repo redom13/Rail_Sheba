@@ -17,9 +17,11 @@ import Profile from "./Profile";
 interface Props {
   isLogged: boolean;
   isLoginPage:boolean;
+  setAuth: (auth: boolean) => void;
+  setIsLogged: (auth: boolean) => void;
 }
 
-const NavBar = ({ isLogged,isLoginPage }: Props) => {
+const NavBar = ({ isLogged,isLoginPage,setAuth,setIsLogged }: Props) => {
   const [logged, setLogged] = useState(false);
   const location = useLocation();
   useEffect(() => {
@@ -77,7 +79,7 @@ const NavBar = ({ isLogged,isLoginPage }: Props) => {
           borderRadius="1px"
         />
       </Tabs>
-      {logged && <Profile/>}
+      {logged && <Profile setAuth={setAuth} setIsLogged={setIsLogged}/>}
     </Flex>
   );
 };

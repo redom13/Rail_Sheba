@@ -55,7 +55,7 @@ const App = () => {
 
   return (
     <Router>
-      <NavBar isLogged={isLogged} isLoginPage={isLoginPage}/>
+      <NavBar isLogged={isLogged} isLoginPage={isLoginPage} setAuth={setAuth} setIsLogged={setIsLogged}/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
