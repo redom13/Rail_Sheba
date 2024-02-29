@@ -6,7 +6,7 @@ const db = require("../db/db");
 router.get("/:id/:className", async (req, res,next) => {
   try {
     const { id, className } = req.params;
-    const sql = `SELECT * FROM compartments WHERE train_id=:id AND class=:className`;
+    const sql = `SELECT COMPARTMENT_ID,COMPARTMENT_NAME FROM COMPARTMENTS WHERE TRAIN_ID=:id AND CLASS =:className`;
     const binds = {
       id: id,
       className: className,
