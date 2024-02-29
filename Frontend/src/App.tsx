@@ -15,13 +15,16 @@ const App = () => {
   const checkAuthenticated = async () => {
     try {
       const res = await fetch("http://localhost:5000/api/v1/auth/verify", {
-        method: "POST",
+        method: "GET",
         headers: { jwtToken: localStorage.jwtToken },
       });
 
       const parseRes = await res.json();
-
+      console.log("parseRes:",parseRes);
       parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      if (parseRes ===true){
+        setIsLogged(true);
+      }
     } catch (err) {
       if (err instanceof Error) {
         console.error(err.message);
