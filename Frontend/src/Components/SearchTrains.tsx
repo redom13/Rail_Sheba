@@ -3,13 +3,9 @@ import { useNavigate } from "react-router-dom";
 import {
   Box,
   Button,
-  Center,
-  ChakraProvider,
-  Flex,
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
   Select,
 } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
@@ -22,23 +18,22 @@ function SearchTrains() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [className, setClassName] = useState("");
   const [stations, setStations] = useState<string[]>([]);
+  const [fromSuggestions, setFromSuggestions] = useState<string[]>([]);
+  const [toSuggestions, setToSuggestions] = useState<string[]>([]);
   const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission, e.g., make API call to fetch train data
-    // console.log("From Station:", fromStation);
-    // console.log("To Station:", toStation);
-    // console.log("Date:", selectedDate);
-    // console.log("Class:", className);
-    navigate(`/trains`,{state: {
-      fromStation,
-      toStation,
-      selectedDate,
-      className
-    }});
-
+    navigate(`/trains`, {
+      state: {
+        fromStation,
+        toStation,
+        selectedDate,
+        className,
+      },
+    });
   };
+
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
   };
@@ -46,19 +41,39 @@ function SearchTrains() {
   const getStations = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/v1/stations");
-      const tmp = [];
-      for (let i = 0; i < res.data.length; i++) {
-        tmp.push(res.data[i].STATION_NAME);
-      }
+      const tmp = res.data.map((station: any) => station.STATION_NAME);
       setStations(tmp);
-      console.log(res.data);
     } catch (err) {
-      if (err instanceof Error) {
-        console.error(err.message);
-      } else {
-        console.error(err);
-      }
+      console.error(err instanceof Error ? err.message : err);
     }
+  };
+
+  const filterSuggestions = (input: string, suggestions: string[]) => {
+    return suggestions.filter(
+      (suggestion) =>
+        suggestion.toLowerCase().includes(input.toLowerCase()) &&
+        suggestion !== input
+    );
+  };
+
+  const handleFromInputChange = (input: string) => {
+    setFromStation(input);
+    setFromSuggestions(input ? filterSuggestions(input, stations) : []);
+  };
+
+  const handleToInputChange = (input: string) => {
+    setToStation(input);
+    setToSuggestions(input ? filterSuggestions(input, stations) : []);
+  };
+
+  const handleFromSuggestionClick = (suggestion: string) => {
+    setFromStation(suggestion);
+    setFromSuggestions([]);
+  };
+
+  const handleToSuggestionClick = (suggestion: string) => {
+    setToStation(suggestion);
+    setToSuggestions([]);
   };
 
   useEffect(() => {
@@ -66,20 +81,7 @@ function SearchTrains() {
   }, []);
 
   return (
-    <Box
-      maxW="md"
-      mx="auto"
-      mt={20}
-      p={5}
-      borderWidth="1px"
-      borderRadius="md"
-      position="relative"
-      //top="80%"
-      right="20%"
-      bottom="80%"
-      width={500}
-      boxShadow="lg"
-    >
+    <Box maxW="md" mx="auto" mt={20} p={5} borderWidth="1px" borderRadius="md" width={500} boxShadow="lg">
       <form onSubmit={handleSubmit}>
         <FormControl mb={4}>
           <FormLabel>From</FormLabel>
@@ -87,8 +89,20 @@ function SearchTrains() {
             type="text"
             placeholder="From station"
             value={fromStation}
-            onChange={(e) => setFromStation(e.target.value)}
+            onChange={(e) => handleFromInputChange(e.target.value)}
           />
+          {fromSuggestions.length > 0 && (
+            <ul>
+              {fromSuggestions.map((suggestion) => (
+                <li
+                  key={suggestion}
+                  onClick={() => handleFromSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          )}
         </FormControl>
         <FormControl mb={4}>
           <FormLabel>To</FormLabel>
@@ -96,8 +110,20 @@ function SearchTrains() {
             type="text"
             placeholder="To station"
             value={toStation}
-            onChange={(e) => setToStation(e.target.value)}
+            onChange={(e) => handleToInputChange(e.target.value)}
           />
+          {toSuggestions.length > 0 && (
+            <ul>
+              {toSuggestions.map((suggestion) => (
+                <li
+                  key={suggestion}
+                  onClick={() => handleToSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </li>
+              ))}
+            </ul>
+          )}
         </FormControl>
         <FormControl mt={4}>
           <FormLabel>Date of Journey</FormLabel>
