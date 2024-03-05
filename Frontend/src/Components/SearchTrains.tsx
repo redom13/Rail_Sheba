@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -21,6 +21,7 @@ function SearchTrains() {
   const [toStation, setToStation] = useState("");
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [className, setClassName] = useState("");
+  const [stations, setStations] = useState<string[]>([]);
   const navigate = useNavigate();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -41,6 +42,28 @@ function SearchTrains() {
   const handleDateChange = (date: Date) => {
     setSelectedDate(date);
   };
+
+  const getStations = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/v1/stations");
+      const tmp = [];
+      for (let i = 0; i < res.data.length; i++) {
+        tmp.push(res.data[i].STATION_NAME);
+      }
+      setStations(tmp);
+      console.log(res.data);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error(err.message);
+      } else {
+        console.error(err);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getStations();
+  }, []);
 
   return (
     <Box
