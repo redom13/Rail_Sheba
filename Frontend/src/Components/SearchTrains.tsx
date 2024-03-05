@@ -7,6 +7,8 @@ import {
   FormLabel,
   Input,
   Select,
+  VStack,
+  Portal,
 } from "@chakra-ui/react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -51,7 +53,7 @@ function SearchTrains() {
   const filterSuggestions = (input: string, suggestions: string[]) => {
     return suggestions.filter(
       (suggestion) =>
-        suggestion.toLowerCase().includes(input.toLowerCase()) &&
+        suggestion.toLowerCase().startsWith(input.toLowerCase()) &&
         suggestion !== input
     );
   };
@@ -81,7 +83,16 @@ function SearchTrains() {
   }, []);
 
   return (
-    <Box maxW="md" mx="auto" mt={20} p={5} borderWidth="1px" borderRadius="md" width={500} boxShadow="lg">
+    <Box
+      maxW="md"
+      mx="auto"
+      mt={20}
+      p={5}
+      borderWidth="1px"
+      borderRadius="md"
+      width={500}
+      boxShadow="lg"
+    >
       <form onSubmit={handleSubmit}>
         <FormControl mb={4}>
           <FormLabel>From</FormLabel>
@@ -92,18 +103,23 @@ function SearchTrains() {
             onChange={(e) => handleFromInputChange(e.target.value)}
           />
           {fromSuggestions.length > 0 && (
-            <ul>
+            <VStack align="start" spacing={1}>
               {fromSuggestions.map((suggestion) => (
-                <li
+                <Box
                   key={suggestion}
                   onClick={() => handleFromSuggestionClick(suggestion)}
+                  p={1}
+                  borderRadius="md"
+                  _hover={{ bg: "gray.200", cursor: "pointer" }}
+                  w="100%"
                 >
                   {suggestion}
-                </li>
+                </Box>
               ))}
-            </ul>
+            </VStack>
           )}
         </FormControl>
+
         <FormControl mb={4}>
           <FormLabel>To</FormLabel>
           <Input
@@ -113,16 +129,20 @@ function SearchTrains() {
             onChange={(e) => handleToInputChange(e.target.value)}
           />
           {toSuggestions.length > 0 && (
-            <ul>
+            <VStack align="start" spacing={1}>
               {toSuggestions.map((suggestion) => (
-                <li
+                <Box
                   key={suggestion}
                   onClick={() => handleToSuggestionClick(suggestion)}
+                  p={1}
+                  borderRadius="md"
+                  _hover={{ bg: "gray.200", cursor: "pointer" }}
+                  w="100%"
                 >
                   {suggestion}
-                </li>
+                </Box>
               ))}
-            </ul>
+            </VStack>
           )}
         </FormControl>
         <FormControl mt={4}>
