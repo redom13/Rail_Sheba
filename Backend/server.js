@@ -31,6 +31,7 @@ app.use("/api/v1/compartments",require("./routes/compartments"))
 app.use("/api/v1/reservation",require("./routes/reservation"))
 app.use("/api/v1/fare",require("./routes/fare"))
 app.use("/api/v1/payment",require("./routes/payment"))
+app.use("/api/v1/stations",require("./routes/stations"))
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
