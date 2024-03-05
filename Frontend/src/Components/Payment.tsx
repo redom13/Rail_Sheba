@@ -29,6 +29,11 @@ import { set } from "lodash";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 
+type seat = {
+  compId: Number;
+  no: Number;
+};
+
 const Payment = () => {
   const location = useLocation();
   const [payableAmount, setPayableAmount] = useState(100); // Set default payable amount
@@ -36,6 +41,14 @@ const Payment = () => {
   const [method, setMethod] = useState("Mobile Pay");
   const [mobilePayMethod, setMobilePayMethod] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState({
+    NID: "",
+    FIRST_NAME: "",
+    LAST_NAME: "",
+    DATE_OF_BIRTH: "",
+    CONTACT_NO: "",
+    EMAIL: "",
+  });
   const {
     pnr,
     fromStation,
@@ -60,6 +73,29 @@ const Payment = () => {
   useEffect(() => {
     setPayableAmount(TOTAL_FARE);
   }, [TOTAL_FARE]);
+  
+  const getUser = async () => {
+    try {
+      console.log("jwtToken:", localStorage.jwtToken);
+      const response = await fetch("http://localhost:5000/api/v1/dashboard", {
+        method: "GET",
+        headers: { jwtToken: localStorage.jwtToken },
+      });
+
+      const parseRes = await response.json();
+      setUser(parseRes);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error(err.message);
+      } else {
+        console.error(err);
+      }
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
+
   const handleMobileConfirmClick = () => {
     console.log(accNo);
     console.log(method);
@@ -75,7 +111,48 @@ const Payment = () => {
         });
     } catch (err) {
       console.log(err);
+      console.log("Payment failed");
     }
+    try{
+      axios
+      .post("http://localhost:5000/api/v1/reservation", {
+      PNR: pnr,  
+      NID: user.NID,
+      SEATS: SEATS,
+      FROM_ST: fromStation,
+      TO_ST: toStation,
+      ISSUE_DATE: issueDate,
+      DATE_OF_JOURNEY: selectedDate,
+      TOTAL_FARE: TOTAL_FARE,
+    })
+    .then((response) => {
+      console.log(response);
+    });
+    }
+    catch(err){
+      console.log(err);
+      console.log("Reservation failed");
+    }
+    // try {
+    //   SEATS.forEach(async (seat:seat) => {
+    //     await axios.post("http://localhost:5000/api/v1/reservation", {
+    //       PNR: pnr,
+    //       NID: user.NID,
+    //       COMPARTMENT_ID: seat.compId,
+    //       SEAT_NO: seat.no,
+    //       FROM_ST: fromStation,
+    //       TO_ST: toStation,
+    //       ISSUE_DATE: issueDate,
+    //       DATE_OF_JOURNEY: selectedDate,
+    //     })
+    //     .then((response) => {
+    //       console.log(response);
+    //     });
+    //   });
+    // } catch(err) {
+    //   console.log(err);
+    //   console.log("Reservation failed");
+    // }
   };
 
   return (

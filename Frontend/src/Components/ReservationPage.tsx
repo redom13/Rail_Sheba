@@ -54,6 +54,14 @@ const ReservationPage = () => {
     TOTAL_FARE: 0,
     SEATS: [],
   });
+  const [user, setUser] = useState({
+    NID: "",
+    FIRST_NAME: "",
+    LAST_NAME: "",
+    DATE_OF_BIRTH: "",
+    CONTACT_NO: "",
+    EMAIL: "",
+  });
   const [pnr, setPnr] = useState<string>("");
   const location = useLocation();
   useEffect(() => {
@@ -90,19 +98,7 @@ const ReservationPage = () => {
     getTrainName(trainID);
     getCompartmentName(trainID, className);
   }, []);
-  // useEffect(() => {
-  //   (async () => {
-  //     const generatedPnr = await generatePNR(filter.TRAIN_ID, filter.fromStation, filter.toStation);
-  //     setPnr(generatedPnr);
-  //   })();
-  // }, [filter.TRAIN_ID, filter.fromStation, filter.toStation]);
 
-  // useEffect(() => {
-  //     // Call getTrains whenever filter state changes
-  //     if (filter.fromStation && filter.toStation && filter.selectedDate && filter.className) {
-  //       getTrainName();
-  //     }
-  //   }, [filter]);
   useEffect(() => {
     setPnr(generatePNR());
   }, []);
@@ -117,6 +113,28 @@ const ReservationPage = () => {
   //   const randomChars = Math.random().toString(36).slice(-5); // Generate random characters
   //   return timestamp + randomChars; // Combine timestamp and random characters
   // }
+
+  const getUser = async () => {
+    try {
+      console.log("jwtToken:", localStorage.jwtToken);
+      const response = await fetch("http://localhost:5000/api/v1/dashboard", {
+        method: "GET",
+        headers: { jwtToken: localStorage.jwtToken },
+      });
+
+      const parseRes = await response.json();
+      setUser(parseRes);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error(err.message);
+      } else {
+        console.error(err);
+      }
+    }
+  };
+  useEffect(() => {
+    getUser();
+  }, []);
   function generatePNR() {
     return uuidv4();
   }
@@ -200,6 +218,19 @@ const ReservationPage = () => {
                 fontSize={20}
                 textAlign="center"
               >
+                PASSENGER NAME:
+              </Heading>
+              <Text pt="2" fontSize={18} textAlign="center">
+                {user.FIRST_NAME + " " + user.LAST_NAME}
+              </Text>
+            </Box>
+            <Box>
+              <Heading
+                size="xs"
+                textTransform="uppercase"
+                fontSize={20}
+                textAlign="center"
+              >
                 PNR:
               </Heading>
               <Text pt="2" fontSize={18} textAlign="center">
@@ -271,24 +302,6 @@ const ReservationPage = () => {
                 {filter.className}
               </Text>
             </Box>
-            {/* <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                SEAT NUMBERS:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {filter.SEATS.map(
-                  (seat) =>
-                    `Compartment: ${compartmentMap.get(seat.compId)}, Seat: ${
-                      seat.no
-                    }`
-                ).join(", ")}
-              </Text>
-            </Box> */}
             <Box>
               <Heading
                 size="xs"
