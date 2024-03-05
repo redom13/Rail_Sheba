@@ -22,6 +22,7 @@ const App = () => {
       const parseRes = await res.json();
       console.log("parseRes:",parseRes);
       parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      console.log("isAuthenticated:",isAuthenticated);
       if (parseRes ===true){
         setIsLogged(true);
       }
@@ -73,7 +74,7 @@ const App = () => {
         {/*<Route path="/trains/:id" element={<Seat/>}/>*/}
        {/*<Route path="/trains/:id/:className" element={isAuthenticated?<SeatBooking />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />*/}
         {/*<Route path="/trains/:id" element={<SeatBooking />} />*/}
-        <Route path="/reservation" element={<ReservationPage />} />
+        <Route path="/reservation" element={isAuthenticated?<ReservationPage />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
         <Route path="/payment" element={<Payment/>} />
       </Routes>
     </Router>

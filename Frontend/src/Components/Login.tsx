@@ -49,8 +49,9 @@ const Login = ({setAuth,setLogin,setLogged}:Props) => {
                     setAuth(true);
                     setLogged(true);
                     setLogin(false);
+                    console.log("Location:", location.pathname);
                     if (location.pathname === "/login") navigate("/");
-                    else navigate(location.pathname);
+                    else navigate(location.pathname,{state:location.state});
                     toast({
                         title: "Login successful",
                         status: "success",

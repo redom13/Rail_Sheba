@@ -47,7 +47,7 @@ const NavBar = ({ isLogged,isLoginPage,setAuth,setIsLogged }: Props) => {
       <Tab>Login</Tab>
     </Link>
   );
-  return !isLoginPage && (
+  return (
     <Flex p={4} bg="white" color="black" boxShadow="lg">
       <Link
         as={RouterLink}
