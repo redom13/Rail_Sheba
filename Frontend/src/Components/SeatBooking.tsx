@@ -175,7 +175,7 @@ const SeatBooking = ({
       .then((response) => {
         console.log(response.data);
         console.log("Fare:", response.data[0].FARE);
-        setFare(response.data[0].FARE);
+        setFare(response.data[0].FARE?response.data[0].FARE:response.data[1].FARE);
       })
       .catch((error) => {
         console.log(error);

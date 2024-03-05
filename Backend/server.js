@@ -30,7 +30,7 @@ app.use("/api/v1/dashboard",require("./routes/dashboard"))
 app.use("/api/v1/compartments",require("./routes/compartments"))
 app.use("/api/v1/reservation",require("./routes/reservation"))
 app.use("/api/v1/fare",require("./routes/fare"))
-
+app.use("/api/v1/payment",require("./routes/payment"))
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

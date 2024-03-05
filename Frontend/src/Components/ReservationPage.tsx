@@ -1,3 +1,5 @@
+import { sha256 } from "crypto-hash";
+import { v4 as uuidv4 } from "uuid";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 import { groupBy } from "lodash";
 import {
@@ -16,7 +18,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { taka } from "../Constants";
-import backgroundImage from '../reservation-img.jpg';
+import backgroundImage from "../reservation-img.jpg";
 
 type seat = {
   compId: Number;
@@ -52,6 +54,7 @@ const ReservationPage = () => {
     TOTAL_FARE: 0,
     SEATS: [],
   });
+  const [pnr, setPnr] = useState<string>("");
   const location = useLocation();
   useEffect(() => {
     // Retrieve data from location state
@@ -62,7 +65,7 @@ const ReservationPage = () => {
       toStation,
       selectedDate,
       selectedSeat,
-      fare
+      fare,
     } = location.state;
     console.log(
       fromStation,
@@ -87,6 +90,12 @@ const ReservationPage = () => {
     getTrainName(trainID);
     getCompartmentName(trainID, className);
   }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const generatedPnr = await generatePNR(filter.TRAIN_ID, filter.fromStation, filter.toStation);
+  //     setPnr(generatedPnr);
+  //   })();
+  // }, [filter.TRAIN_ID, filter.fromStation, filter.toStation]);
 
   // useEffect(() => {
   //     // Call getTrains whenever filter state changes
@@ -94,6 +103,23 @@ const ReservationPage = () => {
   //       getTrainName();
   //     }
   //   }, [filter]);
+  useEffect(() => {
+    setPnr(generatePNR());
+  }, []);
+  // function generatePNR(trainID: any, fromStation: any, toStation: any) {
+  //   // const timestamp = Date.now(); // Current timestamp
+  //   // const randomComponent = Math.random().toString(36).substring(7); // Random string
+  //   // const combinedString = `${trainID}-${fromStation}-${toStation}-${timestamp}-${randomComponent}`;
+
+  //   // // Generate SHA-256 hash
+  //   // return sha256(combinedString);
+  //   const timestamp = Date.now().toString(36).slice(-5); // Extract last 5 characters of current timestamp
+  //   const randomChars = Math.random().toString(36).slice(-5); // Generate random characters
+  //   return timestamp + randomChars; // Combine timestamp and random characters
+  // }
+  function generatePNR() {
+    return uuidv4();
+  }
   async function getTrainName(trainID: Number) {
     try {
       const res = await axios.get(
@@ -133,22 +159,32 @@ const ReservationPage = () => {
       console.error(err);
     }
   }
+
   const groupedSeats = groupBy(filter.SEATS, "compId");
   return (
     <div
-      style={{
-           backgroundImage: `url(${backgroundImage})`,
-        //   backgroundSize: 'cover',
-        //   backgroundPosition: 'center',
-        //   backgroundColor: "teal",
-        //   width: '100vw',
-        //   height: '100vh',
-        //   display: 'flex',
-        //   justifyContent: 'center',
-        //   alignItems: 'center',
-      }}
+      style={
+        {
+          //  backgroundImage: `url(${backgroundImage})`,
+          //   backgroundSize: 'cover',
+          //   backgroundPosition: 'center',
+          //   backgroundColor: "teal",
+          //   width: '100vw',
+          //   height: '100vh',
+          //   display: 'flex',
+          //   justifyContent: 'center',
+          //   alignItems: 'center',
+        }
+      }
     >
-      <Card style={{ width: "50%", margin: "auto", marginTop:"0px" ,backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+      <Card
+        style={{
+          width: "50%",
+          margin: "auto",
+          marginTop: "0px",
+          backgroundColor: "rgba(255, 255, 255, 1)",
+        }}
+      >
         <CardHeader>
           <Heading size="md" fontSize={50} textAlign="center">
             RESERVATION DETAILS
@@ -157,6 +193,19 @@ const ReservationPage = () => {
 
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
+            <Box>
+              <Heading
+                size="xs"
+                textTransform="uppercase"
+                fontSize={20}
+                textAlign="center"
+              >
+                PNR:
+              </Heading>
+              <Text pt="2" fontSize={18} textAlign="center">
+                {pnr}
+              </Text>
+            </Box>
             <Box>
               <Heading
                 size="xs"
@@ -287,17 +336,33 @@ const ReservationPage = () => {
         </CardBody>
       </Card>
       <Button
-            rightIcon={<ArrowForwardIcon />}
-            colorScheme="blackAlpha"
-            variant="outline"
-            style={{
-              position: "absolute",
-              bottom: "10px", // Adjust as needed
-              right: "10px", // Adjust as needed
-            }}
-          >
-            Proceed to pay
-          </Button>
+        rightIcon={<ArrowForwardIcon />}
+        colorScheme="blackAlpha"
+        variant="outline"
+        style={{
+          position: "absolute",
+          bottom: "10px", // Adjust as needed
+          right: "10px", // Adjust as needed
+        }}
+        onClick={() =>
+          navigate("/payment", {
+            state: {
+              pnr: pnr,
+              fromStation: filter.fromStation,
+              toStation: filter.toStation,
+              TRAIN_ID: filter.TRAIN_ID,
+              trainName: trainName,
+              selectedDate: filter.selectedDate,
+              className: filter.className,
+              SEATS: filter.SEATS,
+              TOTAL_FARE: filter.TOTAL_FARE,
+              issueDate: formattedDate,
+            },
+          })
+        }
+      >
+        Proceed to pay
+      </Button>
     </div>
   );
 };

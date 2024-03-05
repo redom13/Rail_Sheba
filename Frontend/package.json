@@ -15,17 +15,20 @@
     "@emotion/styled": "^11.11.0",
     "axios": "^1.6.5",
     "bootstrap": "^5.2.3",
+    "crypto-hash": "^3.0.0",
     "framer-motion": "^10.17.9",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.3"
+    "react-router-dom": "^6.21.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-datepicker": "^4.19.5",
     "@types/react-dom": "^18.0.10",
+    "@types/uuid": "^9.0.8",
     "@vitejs/plugin-react": "^3.1.0",
     "typescript": "^4.9.3",
     "vite": "^4.1.0"

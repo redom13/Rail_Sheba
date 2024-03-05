@@ -12,6 +12,9 @@ router.get("/:fromStation/:toStation/:className", async (req, res) => {
         RETURN FARE;
     END;`
     const sql=`SELECT GIVE_FARE((SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = INITCAP(:fromStation)),(SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = INITCAP(:toStation)),:className) as FARE FROM DUAL
+    UNION(
+      SELECT GIVE_FARE((SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = INITCAP(:toStation)),(SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = INITCAP(:fromStation)),:className) as FARE FROM DUAL
+    )
     `;
     const binds={
         fromStation:fromStation,
