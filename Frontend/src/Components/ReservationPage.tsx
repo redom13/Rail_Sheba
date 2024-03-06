@@ -39,6 +39,7 @@ type Filter = {
   TRAIN_ID: Number;
   TOTAL_FARE: Number;
   SEATS: seat[];
+  FROM_DEPARTURE: string;
 };
 
 const ReservationPage = () => {
@@ -59,6 +60,7 @@ const ReservationPage = () => {
     TRAIN_ID: 0,
     TOTAL_FARE: 0,
     SEATS: [],
+    FROM_DEPARTURE: "",
   });
   const [user, setUser] = useState({
     NID: "",
@@ -80,15 +82,17 @@ const ReservationPage = () => {
       selectedDate,
       selectedSeat,
       fare,
+      FROM_DEPARTURE,
     } = location.state;
-    console.log(
+    console.log("INSIDE USE EFFECT:",
       fromStation,
       toStation,
       selectedDate,
       className,
       trainID,
       selectedSeat,
-      fare
+      fare,
+      FROM_DEPARTURE,
     );
     //console.log("selected date of available trains",selectedDate)
     // You can now use this data to set your component state or perform any necessary operations
@@ -100,6 +104,7 @@ const ReservationPage = () => {
       TRAIN_ID: trainID,
       TOTAL_FARE: fare,
       SEATS: selectedSeat,
+      FROM_DEPARTURE: FROM_DEPARTURE,
     });
     getTrainName(trainID);
     getCompartmentName(trainID, className);
@@ -211,7 +216,7 @@ const ReservationPage = () => {
       >
         <CardHeader>
           <Heading size="md" fontSize={50} textAlign="center">
-            RESERVATION DETAILS
+            JOURNEY DETAILS
           </Heading>
         </CardHeader>
 
@@ -243,6 +248,10 @@ const ReservationPage = () => {
                 <Td>{filter.selectedDate.toDateString()}</Td>
               </Tr>
               <Tr>
+                <Td fontWeight="bold">DEPARTURE TIME</Td>
+                <Td>{filter.FROM_DEPARTURE}</Td>
+              </Tr>
+              <Tr>
                 <Td fontWeight="bold">CLASS NAME</Td>
                 <Td>{filter.className}</Td>
               </Tr>
@@ -272,7 +281,9 @@ const ReservationPage = () => {
       </Card>
       <Button
         rightIcon={<ArrowForwardIcon />}
-        colorScheme="blackAlpha"
+        colorScheme="red"
+        loadingText='Submitting'
+        // spinner={<BeatLoader size={8} color='white' />}
         variant="outline"
         style={{
           position: "absolute",

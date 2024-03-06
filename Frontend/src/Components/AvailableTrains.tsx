@@ -18,6 +18,7 @@ import {
   AccordionPanel,
   Flex,
 } from "@chakra-ui/react";
+import moment from 'moment';
 import { useEffect, useState } from "react";
 import { useNavigate,useLocation, useParams,Link as RouterLink } from "react-router-dom";
 import { taka } from "../Constants";
@@ -32,7 +33,13 @@ type CLASS_FARE={
 type train = {
   TRAIN_ID: number;
   TRAIN_NAME: string;
-  CF:CLASS_FARE[]
+  CF:CLASS_FARE[];
+  FROM_ARRIVAL: string;
+  FROM_DEPARTURE: string;
+  TO_ARRIVAL: string;
+  TO_DEPARTURE: string;
+  Hr: number;
+  Min: number;
 };
 
 interface Props{
@@ -95,10 +102,21 @@ function AvailableTrains({isAuthenticated}:Props) {
         console.log(response2.data.data.rows)
         let t=[]
         for (let tmp of response.data.data.rows){
+          const fromDeparture = moment(tmp.FROM_DEPARTURE, 'HH:mm');
+          const toArrival = moment(tmp.TO_ARRIVAL, 'HH:mm');
+          const duration = moment.duration(toArrival.diff(fromDeparture));
+          const hours = Math.floor(duration.asHours());
+          const minutes = Math.floor(duration.asMinutes()) - hours * 60;
           let temp={
             TRAIN_ID:tmp.TRAIN_ID,
             TRAIN_NAME:tmp.TRAIN_NAME,
-            CF:response2.data.data.rows
+            CF:response2.data.data.rows,
+            FROM_ARRIVAL:tmp.FROM_ARRIVAL,
+            FROM_DEPARTURE:tmp.FROM_DEPARTURE,
+            TO_ARRIVAL:tmp.TO_ARRIVAL,
+            TO_DEPARTURE:tmp.TO_DEPARTURE,
+            Hr:hours,
+            Min:minutes,
           }
           t.push(temp)
         }
@@ -123,8 +141,9 @@ function AvailableTrains({isAuthenticated}:Props) {
       {trains?.map((train, index) => (
         <Box key={index} id={`train-${index}`} mt="4" marginLeft="10px">
           <Heading as="h1" size="md" color='brown'>
-            {train.TRAIN_NAME}
+            {train.TRAIN_NAME} {train.FROM_DEPARTURE} ------ {train.TO_ARRIVAL}
           </Heading>
+          <Text>Duration: {(train.Hr < 0)?train.Hr*-1:train.Hr} hours {train.Min} minutes</Text>
           <SimpleGrid
             spacing={4}
             templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
@@ -151,7 +170,7 @@ function AvailableTrains({isAuthenticated}:Props) {
               </Card>
             ))}
           </SimpleGrid>
-          {isClicked && id===train.TRAIN_ID && <SeatBooking key={`${id}-${className}`} trainID={id} className={className} fromStation={filter.fromStation} toStation={filter.toStation} selectedDate={filter.selectedDate}></SeatBooking>}
+          {isClicked && id===train.TRAIN_ID && <SeatBooking key={`${id}-${className}`} trainID={id} className={className} fromStation={filter.fromStation} toStation={filter.toStation} selectedDate={filter.selectedDate } FROM_DEPARTURE={train.FROM_DEPARTURE} ></SeatBooking>}
         </Box>
       ))}
     </Box>

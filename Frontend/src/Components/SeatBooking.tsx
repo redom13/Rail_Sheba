@@ -92,6 +92,7 @@ interface Props2 {
   fromStation: string;
   toStation: string;
   selectedDate: Date;
+  FROM_DEPARTURE: string;
 }
 
 type Seat = {
@@ -110,6 +111,7 @@ const SeatBooking = ({
   fromStation,
   toStation,
   selectedDate,
+  FROM_DEPARTURE,
 }: Props2) => {
   const [seatCount, setSeatCount] = useState(0);
   const [compartments, setCompartments] = useState<Compartment[]>([]);
@@ -403,6 +405,7 @@ const SeatBooking = ({
                       selectedDate,
                       selectedSeat,
                       fare: fare * selectedSeat.length,
+                      FROM_DEPARTURE,
                     },
                   })
                 }
