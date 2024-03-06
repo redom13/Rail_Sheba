@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -14,9 +14,21 @@ import {
   Divider,
   Button,
   Box,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Input,
+  FormControl,
+  FormLabel,
+  useToast,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { set } from "lodash";
+import axios from "axios";
 
 interface Props {
   setAuth: (auth: boolean) => void;
@@ -33,12 +45,63 @@ const Profile = ({ setAuth, setIsLogged }: Props) => {
     EMAIL: "",
   });
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const onClose = () => {
+    setIsOpen(false);
+    setOldPassword("");
+    setNewPassword("");
+  }
+  const cancelRef = React.useRef(null);
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const toast=useToast();
 
   const handleProfileClick = () => {
     navigate("/dashboard", { state: user });
   };
 
-  const handleLogoutClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleUpdatePasswordClick = () => {
+    setIsOpen(true);
+    setOldPassword("");
+    setNewPassword("");
+  };
+
+  const handleUpdatePassword = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Update Password");
+    try {
+      axios.put("http://localhost:5000/api/v1/dashboard/updatePassword", {
+        oldPassword: oldPassword,
+        newPassword: newPassword,
+        },
+        {
+          headers: { jwtToken: localStorage.jwtToken },
+        }
+      ).then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          onClose();
+          toast({
+            title: "Password updated successfully",
+            status: "success",
+            duration: 3000, // Optional duration for the toast
+            isClosable: true,
+          });
+        }
+      });
+    } catch (error: any) {
+      console.error(error.message);
+      toast({
+        title: "Error updating password",
+        description: error.message || "An error occurred",
+        status: "error",
+        duration: 3000, // Optional duration for the toast
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleLogoutClick = async (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     try {
       localStorage.removeItem("jwtToken");
@@ -94,24 +157,85 @@ const Profile = ({ setAuth, setIsLogged }: Props) => {
             </Box>
           </Flex>
         </MenuItem>
-        <Divider />
+        <Divider mb={1} />
         <MenuItem>
-          <Flex w="full">
-            <Button onClick={handleProfileClick} w="full">
-              Profile
-            </Button>
+          <Flex
+            onClick={handleProfileClick}
+            mt={0}
+            alignItems="center"
+            justifyContent="center"
+            w="full"
+          >
+            Profile
           </Flex>
         </MenuItem>
         <MenuItem>
-          <Flex w="full">
-            <Button
-              onClick={(e) => {
-                handleLogoutClick(e);
-              }}
-              w="full"
-            >
-              Logout
-            </Button>
+          <Flex
+            onClick={handleUpdatePasswordClick}
+            mt={0}
+            alignItems="center"
+            justifyContent="center"
+            w="full"
+          >
+            Update Password
+          </Flex>
+        </MenuItem>
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Update Password
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                <FormControl id="old-password" isRequired>
+                  <FormLabel>Old Password</FormLabel>
+                  <Input
+                    type="password"
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                  />
+                </FormControl>
+                <FormControl id="new-password" isRequired mt={3}>
+                  <FormLabel>New Password</FormLabel>
+                  <Input
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </FormControl>
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button
+                  colorScheme="blue"
+                  onClick={handleUpdatePassword}
+                  ml={3}
+                  isDisabled={oldPassword==="" || newPassword===""}
+                >
+                  Update
+                </Button>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
+        <MenuItem>
+          <Flex
+            w="full"
+            alignItems="center"
+            justifyContent="center"
+            onClick={(e) => {
+              handleLogoutClick(e);
+            }}
+          >
+            Logout
           </Flex>
         </MenuItem>
       </MenuList>
