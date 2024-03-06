@@ -5,7 +5,7 @@ const db = require("../db/db");
 
 router.get("/bookedSeats", async (req, res, next) => {
   try {
-    const { trainId, selectedDate } = req.query;
+    const { trainId, selectedDate, fromStation, toStation } = req.query;
     //console.log("compId,Date:",trainId,selectedDate)
     console.log(selectedDate);
     const selectedDateObject = new Date(selectedDate);
@@ -15,13 +15,59 @@ router.get("/bookedSeats", async (req, res, next) => {
     //console.log(selectedDate)
     // const sql = `SELECT COMPARTMENT_ID,SEAT_NO
     // FROM RESERVATION WHERE COMPARTMENT_ID IN (SELECT COMPARTMENT_ID FROM COMPARTMENTS WHERE TRAIN_ID = :trainId ) AND DATE_OF_JOURNEY = TO_DATE(:selectedDate, 'YYYY-MM-DD')`;
-    const sql = `SELECT B.COMPARTMENT_ID,B.SEAT_NO
-    FROM RESERVATION R NATURAL JOIN BOOKED_SEATS B WHERE B.COMPARTMENT_ID IN (SELECT COMPARTMENT_ID FROM COMPARTMENTS WHERE TRAIN_ID = :trainId ) AND R.DATE_OF_JOURNEY = TO_DATE(:selectedDate, 'YYYY-MM-DD')`;
+    // const sql = `SELECT B.COMPARTMENT_ID,B.SEAT_NO
+    // FROM RESERVATION R NATURAL JOIN BOOKED_SEATS B WHERE B.COMPARTMENT_ID IN (SELECT COMPARTMENT_ID FROM COMPARTMENTS WHERE TRAIN_ID = :trainId ) AND R.DATE_OF_JOURNEY = TO_DATE(:selectedDate, 'YYYY-MM-DD')`;
+    // const binds = {
+    //   trainId: trainId,
+    //   selectedDate: datePart,
+    // };
+    const sql1 = `CREATE OR REPLACE FUNCTION OVERLAP (FROM_ST1 IN VARCHAR2,TO_ST1 IN VARCHAR2, FROM_ST2 IN NUMBER,TO_ST2 IN NUMBER,TID IN NUMBER) 
+    RETURN NUMBER IS
+    STOP_NO1 NUMBER;
+    STOP_NO2 NUMBER;
+    STOP_NO3 NUMBER;
+    STOP_NO4 NUMBER;
+    MSG NUMBER;
+    BEGIN
+    SELECT STOP_NO INTO STOP_NO1
+    FROM TRAIN_STOPS WHERE  TRAIN_ID =TID AND STATION_ID = (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = INITCAP(FROM_ST1));
+    SELECT STOP_NO INTO STOP_NO2
+    FROM TRAIN_STOPS WHERE  TRAIN_ID =TID AND STATION_ID = (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = INITCAP(TO_ST1));
+    SELECT STOP_NO INTO STOP_NO3
+    FROM TRAIN_STOPS WHERE  TRAIN_ID =TID AND STATION_ID = FROM_ST2;
+    SELECT STOP_NO INTO STOP_NO4
+    FROM TRAIN_STOPS WHERE  TRAIN_ID =TID AND STATION_ID = TO_ST2;
+    DBMS_OUTPUT.PUT_LINE(STOP_NO1||' '||STOP_NO2||' '||STOP_NO3||' '||STOP_NO4);
+    IF STOP_NO4 <= STOP_NO1 THEN 
+    MSG:=0;
+    ELSIF STOP_NO3 >= STOP_NO2 THEN
+    MSG :=0;
+    ELSE
+    MSG:=1;
+     END IF ;
+     RETURN MSG;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+        MSG := 2 ;
+        RETURN MSG;
+        WHEN TOO_MANY_ROWS THEN
+        MSG := 4 ;
+        RETURN MSG;
+        WHEN OTHERS THEN
+        MSG := 6 ;
+        RETURN MSG;
+    END;`;
+    
+    const rst = await db.execute(sql1, [], db.options);
     const binds = {
       trainId: trainId,
       selectedDate: datePart,
+      fromStation: fromStation,
+      toStation: toStation,
     };
-    const result = await db.execute(sql, binds, db.options);
+    const sql2 =`SELECT B.COMPARTMENT_ID,B.SEAT_NO
+    FROM RESERVATION R NATURAL JOIN BOOKED_SEATS B WHERE B.COMPARTMENT_ID IN (SELECT COMPARTMENT_ID FROM COMPARTMENTS WHERE TRAIN_ID = :trainId ) AND R.DATE_OF_JOURNEY = TO_DATE(:selectedDate, 'YYYY-MM-DD') AND OVERLAP(:fromStation,:toStation,R.FROM_ST,R.TO_ST,:trainId)=1`;
+    const result = await db.execute(sql2, binds, db.options);
     console.log("BOOKED SEATS", result.rows);
     res.json(result.rows);
   } catch (err) {
@@ -66,10 +112,18 @@ router.get("/bookedSeats", async (req, res, next) => {
 //   }
 // });
 
-router.post("/", async (req, res,next) => {
-  console.log('POST / route hit');
-  const { PNR, NID, SEATS, FROM_ST, TO_ST, ISSUE_DATE, DATE_OF_JOURNEY,TOTAL_FARE } =
-  req.body;
+router.post("/", async (req, res, next) => {
+  console.log("POST / route hit");
+  const {
+    PNR,
+    NID,
+    SEATS,
+    FROM_ST,
+    TO_ST,
+    ISSUE_DATE,
+    DATE_OF_JOURNEY,
+    TOTAL_FARE,
+  } = req.body;
   console.log(`ISSUE_DATE: ${ISSUE_DATE}`);
   console.log(`DATE_OF_JOURNEY: ${DATE_OF_JOURNEY}`);
   console.log("req.query:", req.body);
@@ -112,26 +166,26 @@ router.post("/", async (req, res,next) => {
   // }
   try {
     //for (let seat of SEATS) {
-      await db.execute(
-        `INSERT INTO RESERVATION
+    await db.execute(
+      `INSERT INTO RESERVATION
          VALUES (:PNR, :NID, 
                 (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = :FROM_ST), 
                 (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = :TO_ST), 
                 TO_DATE(:datePart, 'YYYY-MM-DD'), 
                 TO_DATE(:datePart2, 'YYYY-MM-DD'),
                 :TOTAL_FARE)`,
-        {
-          PNR,
-          NID,
-          FROM_ST,
-          TO_ST,
-          TOTAL_FARE,
-          datePart,
-          datePart2,
-          TOTAL_FARE,
-        },
-        db.options
-      );
+      {
+        PNR,
+        NID,
+        FROM_ST,
+        TO_ST,
+        TOTAL_FARE,
+        datePart,
+        datePart2,
+        TOTAL_FARE,
+      },
+      db.options
+    );
     //}
     for (let seat of SEATS) {
       const binds = {

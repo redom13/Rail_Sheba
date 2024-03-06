@@ -127,7 +127,7 @@ const SeatBooking = ({
       console.log("CALLED");
       const response = await axios.get(
         `http://localhost:5000/api/v1/reservation/bookedSeats`,
-        { params: { trainId, selectedDate } }
+        { params: { trainId, selectedDate,fromStation,toStation } }
       );
       console.log(response.data);
       let bs = [];
