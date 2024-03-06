@@ -13,6 +13,7 @@ import {
   Text,
   Divider,
   Button,
+  Box,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, EmailIcon, PhoneIcon } from "@chakra-ui/icons";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
@@ -22,7 +23,7 @@ interface Props {
   setIsLogged: (auth: boolean) => void;
 }
 
-const Profile = ({setAuth,setIsLogged}:Props) => {
+const Profile = ({ setAuth, setIsLogged }: Props) => {
   const [user, setUser] = useState({
     NID: "",
     FIRST_NAME: "",
@@ -31,24 +32,23 @@ const Profile = ({setAuth,setIsLogged}:Props) => {
     CONTACT_NO: "",
     EMAIL: "",
   });
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const handleProfileClick=()=>{
-    navigate("/dashboard",{state:user});
-  }
+  const handleProfileClick = () => {
+    navigate("/dashboard", { state: user });
+  };
 
-  const handleLogoutClick=async (e:React.MouseEvent<HTMLButtonElement>)=>{
+  const handleLogoutClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    try{
-    localStorage.removeItem("jwtToken");
-    setAuth(false);
-    setIsLogged(false);
-    navigate("/");
-    }
-    catch(err:any){
+    try {
+      localStorage.removeItem("jwtToken");
+      setAuth(false);
+      setIsLogged(false);
+      navigate("/");
+    } catch (err: any) {
       console.error(err.message);
     }
-  }
+  };
 
   const getUser = async () => {
     try {
@@ -79,30 +79,37 @@ const Profile = ({setAuth,setIsLogged}:Props) => {
       </MenuButton>
       <MenuList>
         <MenuItem>
-          <Flex>
-            <EmailIcon />
-            <Text fontSize="md">{user.EMAIL}</Text>
+          <Flex alignItems="center">
+            <EmailIcon boxSize={4} style={{ verticalAlign: "middle" }} />
+            <Box ml={2}>
+              <Text fontSize="md">{user.EMAIL}</Text>
+            </Box>
           </Flex>
         </MenuItem>
         <MenuItem>
-          <Flex>
-            <PhoneIcon />
-            <Text fontSize="md">{user.CONTACT_NO}</Text>
+          <Flex alignItems="center">
+            <PhoneIcon style={{ verticalAlign: "middle" }} />
+            <Box ml={2}>
+              <Text fontSize="md">{user.CONTACT_NO}</Text>
+            </Box>
           </Flex>
         </MenuItem>
         <Divider />
         <MenuItem>
-          <Flex>
-            <Button onClick={handleProfileClick}>
+          <Flex w="full">
+            <Button onClick={handleProfileClick} w="full">
               Profile
             </Button>
           </Flex>
         </MenuItem>
         <MenuItem>
-          <Flex>
-            <Button onClick={e=>{
-              handleLogoutClick(e);
-            }}>
+          <Flex w="full">
+            <Button
+              onClick={(e) => {
+                handleLogoutClick(e);
+              }}
+              w="full"
+            >
               Logout
             </Button>
           </Flex>
