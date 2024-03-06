@@ -22,7 +22,7 @@ interface Props {
   setIsLogged: (auth: boolean) => void;
 }
 
-const Profile = ({setAuth,setIsLogged}:Props) => {
+const Profile = ({ setAuth, setIsLogged }: Props) => {
   const [user, setUser] = useState({
     NID: "",
     FIRST_NAME: "",
@@ -31,24 +31,23 @@ const Profile = ({setAuth,setIsLogged}:Props) => {
     CONTACT_NO: "",
     EMAIL: "",
   });
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const handleProfileClick=()=>{
-    navigate("/dashboard",{state:user});
-  }
+  const handleProfileClick = () => {
+    navigate("/dashboard", { state: user });
+  };
 
-  const handleLogoutClick=async (e:React.MouseEvent<HTMLButtonElement>)=>{
+  const handleLogoutClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    try{
-    localStorage.removeItem("jwtToken");
-    setAuth(false);
-    setIsLogged(false);
-    navigate("/");
-    }
-    catch(err:any){
+    try {
+      localStorage.removeItem("jwtToken");
+      setAuth(false);
+      setIsLogged(false);
+      navigate("/");
+    } catch (err: any) {
       console.error(err.message);
     }
-  }
+  };
 
   const getUser = async () => {
     try {
@@ -92,17 +91,20 @@ const Profile = ({setAuth,setIsLogged}:Props) => {
         </MenuItem>
         <Divider />
         <MenuItem>
-          <Flex>
-            <Button onClick={handleProfileClick}>
+          <Flex w="full">
+            <Button onClick={handleProfileClick} w="full">
               Profile
             </Button>
           </Flex>
         </MenuItem>
         <MenuItem>
-          <Flex>
-            <Button onClick={e=>{
-              handleLogoutClick(e);
-            }}>
+          <Flex w="full">
+            <Button
+              onClick={(e) => {
+                handleLogoutClick(e);
+              }}
+              w="full"
+            >
               Logout
             </Button>
           </Flex>

@@ -11,17 +11,17 @@ import {
   TabIndicator,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Link as RouterLink,useLocation } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import Profile from "./Profile";
 
 interface Props {
   isLogged: boolean;
-  isLoginPage:boolean;
+  isLoginPage: boolean;
   setAuth: (auth: boolean) => void;
   setIsLogged: (auth: boolean) => void;
 }
 
-const NavBar = ({ isLogged,isLoginPage,setAuth,setIsLogged }: Props) => {
+const NavBar = ({ isLogged, isLoginPage, setAuth, setIsLogged }: Props) => {
   const [logged, setLogged] = useState(false);
   const location = useLocation();
   useEffect(() => {
@@ -35,12 +35,18 @@ const NavBar = ({ isLogged,isLoginPage,setAuth,setIsLogged }: Props) => {
     },
   };
 
-  const getIndex=()=>{
-    if(location.pathname==="/") return 0;
-    if(location.pathname==="/register") return 1;
-    if(location.pathname==="/login") return 2;
-    if(location.pathname==="/contact") return 3;
-  }
+  const getIndex = () => {
+    console.log("Location in Navbar:", location.pathname);
+    if (location.pathname === "/") return 0;
+    if (location.pathname === "/register") return 1;
+    if (location.pathname === "/login") return 2;
+    if (location.pathname === "/contact") return 3;
+  };
+  const [tabIndex, setTabIndex] = useState(getIndex());
+
+  useEffect(() => {
+    setTabIndex(getIndex());
+  }, [location.pathname]);
 
   const login = (
     <Link as={RouterLink} to="/login" mx={2} {...linkStyles}>
@@ -59,7 +65,7 @@ const NavBar = ({ isLogged,isLoginPage,setAuth,setIsLogged }: Props) => {
         Rail Sheba
       </Link>
       <Spacer />
-      <Tabs position="relative" variant="unstyled" defaultIndex={getIndex()}>
+      <Tabs position="relative" variant="unstyled" defaultIndex={tabIndex} onChange={setTabIndex}>
         <TabList>
           <Link as={RouterLink} to="/" mx={2} {...linkStyles}>
             <Tab>Home</Tab>
@@ -79,7 +85,7 @@ const NavBar = ({ isLogged,isLoginPage,setAuth,setIsLogged }: Props) => {
           borderRadius="1px"
         />
       </Tabs>
-      {logged && <Profile setAuth={setAuth} setIsLogged={setIsLogged}/>}
+      {logged && <Profile setAuth={setAuth} setIsLogged={setIsLogged} />}
     </Flex>
   );
 };
