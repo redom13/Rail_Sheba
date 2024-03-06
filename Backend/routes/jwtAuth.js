@@ -9,37 +9,55 @@ require("dotenv").config();
 
 async function createSignUpTrigger() {
   const createTriggerQuery = `
-      CREATE OR REPLACE TRIGGER SIGN_UP
-      BEFORE INSERT ON PASSENGERS
-      FOR EACH ROW
-      DECLARE
-         SIGNUP_EXCEPTION EXCEPTION;
-      BEGIN
-      IF LENGTH(:NEW.nid) <> 15 OR NOT REGEXP_LIKE(:NEW.nid, '^[0-9]+$') THEN
-      RAISE SIGNUP_EXCEPTION;
-   END IF;
+  CREATE OR REPLACE TRIGGER SIGN_UP
+  BEFORE INSERT ON PASSENGERS
+  FOR EACH ROW
+  DECLARE
+    CONTACT_CT NUMBER;
+    EMAIL_CT NUMBER;
+     SIGNUP_EXCEPTION EXCEPTION;
+     INVALID_USERNAME EXCEPTION;
+  BEGIN
+  IF LENGTH(:NEW.nid) <> 15 OR NOT REGEXP_LIKE(:NEW.nid, '^[0-9]+$') THEN
+  RAISE SIGNUP_EXCEPTION;
+END IF;
 
-   -- Check if contact_no is exactly 11 digits
-   IF LENGTH(:NEW.contact_no) <> 11 OR NOT REGEXP_LIKE(:NEW.contact_no, '^[0-9]+$') THEN
-      RAISE SIGNUP_EXCEPTION;
-   END IF;
-  
-         -- Check if first_name contains only letters
-         IF :NEW.first_name IS NOT NULL AND NOT REGEXP_LIKE(:NEW.first_name, '^[A-Za-z]+$') THEN
-            RAISE SIGNUP_EXCEPTION;
-         END IF;
-  
-         -- Check if last_name contains only letters
-         IF :NEW.last_name IS NOT NULL AND NOT REGEXP_LIKE(:NEW.last_name, '^[A-Za-z]+$') THEN
-            RAISE SIGNUP_EXCEPTION;
-         END IF;
-  
-      EXCEPTION
-         WHEN SIGNUP_EXCEPTION THEN
-            -- Handle the exception (you can log, raise an error, or take appropriate action)
-            DBMS_OUTPUT.PUT_LINE('Invalid sign-up information');
-            RAISE_APPLICATION_ERROR(-20001, 'Invalid sign-up information');
-      END;
+-- Check if contact_no is exactly 11 digits
+IF LENGTH(:NEW.contact_no) <> 11 OR NOT REGEXP_LIKE(:NEW.contact_no, '^[0-9]+$') THEN
+  RAISE SIGNUP_EXCEPTION;
+END IF;
+    IF :NEW.CONTACT_NO IS NOT NULL THEN
+      SELECT COUNT(*) INTO CONTACT_CT FROM LOGIN_CREDENTIALS WHERE USERNAME=:NEW.CONTACT_NO;
+      IF CONTACT_CT >0 THEN 
+        RAISE INVALID_USERNAME;
+      END IF;
+    END IF;
+    
+    IF :NEW.EMAIL IS NOT NULL THEN
+      SELECT COUNT(*) INTO EMAIL_CT FROM LOGIN_CREDENTIALS WHERE USERNAME=:NEW.EMAIL;
+      IF EMAIL_CT >0 THEN 
+        RAISE INVALID_USERNAME;
+      END IF;
+    END IF;
+     -- Check if first_name contains only letters
+     IF :NEW.first_name IS NOT NULL AND NOT REGEXP_LIKE(:NEW.first_name, '^[A-Za-z ]+$') THEN
+        RAISE SIGNUP_EXCEPTION;
+     END IF;
+
+     -- Check if last_name contains only letters
+     IF :NEW.last_name IS NOT NULL AND NOT REGEXP_LIKE(:NEW.last_name, '^[A-Za-z ]+$') THEN
+        RAISE SIGNUP_EXCEPTION;
+     END IF;
+
+  EXCEPTION
+     WHEN SIGNUP_EXCEPTION THEN
+        -- Handle the exception (you can log, raise an error, or take appropriate action)
+        DBMS_OUTPUT.PUT_LINE('Invalid sign-up information');
+        RAISE_APPLICATION_ERROR(-20001, 'Invalid sign-up information');
+    WHEN INVALID_USERNAME THEN
+        DBMS_OUTPUT.PUT_LINE('Invalid sign-up information');
+        RAISE_APPLICATION_ERROR(-20001, 'Invalid USERNAME');
+  END;
     `;
 
   try {
@@ -84,16 +102,16 @@ router.post("/register", validinfo.validRegister, async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const bcryptPassword = await bcrypt.hash(password, salt);
     console.log(bcryptPassword);
-    const userEmail = await db.execute(
-      "SELECT * FROM LOGIN_CREDENTIALS WHERE username=:username",
-      [username],
-      db.options
-    );
-    if (userEmail.rows.length !== 0) {
-      return res
-        .status(401)
-        .json("Username already exists!! Try different username:)");
-    }
+    // const userEmail = await db.execute(
+    //   "SELECT * FROM LOGIN_CREDENTIALS WHERE username=:username",
+    //   [username],
+    //   db.options
+    // );
+    // if (userEmail.rows.length !== 0) {
+    //   return res
+    //     .status(401)
+    //     .json("Username already exists!! Try different username:)");
+    // }
     const binds = {
       nid: nid,
       first_name: first_name,
