@@ -10,6 +10,9 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  useToast,
+  Center,
+  VStack,
 } from "@chakra-ui/react";
 import {
   AlertDialog,
@@ -28,6 +31,7 @@ import ddblImage from "../DBBL.jpg"; // Import your ddbl image here
 import { set } from "lodash";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { taka } from "../Constants";
 
 type seat = {
   compId: Number;
@@ -36,11 +40,14 @@ type seat = {
 
 const Payment = () => {
   const location = useLocation();
+  const toast = useToast();
   const [payableAmount, setPayableAmount] = useState(100); // Set default payable amount
   const [accNo, setAccNo] = useState("");
   const [method, setMethod] = useState("Mobile Pay");
   const [mobilePayMethod, setMobilePayMethod] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [pin, setPin] = useState("");
   const [user, setUser] = useState({
     NID: "",
     FIRST_NAME: "",
@@ -61,7 +68,19 @@ const Payment = () => {
     TOTAL_FARE,
     issueDate,
   } = location.state;
-  console.log("Payment page:",pnr, fromStation, toStation, TRAIN_ID, trainName, selectedDate, className, SEATS, TOTAL_FARE, issueDate);
+  console.log(
+    "Payment page:",
+    pnr,
+    fromStation,
+    toStation,
+    TRAIN_ID,
+    trainName,
+    selectedDate,
+    className,
+    SEATS,
+    TOTAL_FARE,
+    issueDate
+  );
   const cancelRef = React.useRef(null);
   const handleMobileClick = (method: string) => {
     setMobilePayMethod(method);
@@ -70,10 +89,13 @@ const Payment = () => {
   const onMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccNo(e.target.value);
   };
+  const onPinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPin(e.target.value);
+  };
   useEffect(() => {
     setPayableAmount(TOTAL_FARE);
   }, [TOTAL_FARE]);
-  
+
   const getUser = async () => {
     try {
       console.log("jwtToken:", localStorage.jwtToken);
@@ -97,6 +119,11 @@ const Payment = () => {
   }, []);
 
   const handleMobileConfirmClick = () => {
+    if (accNo === "" || pin === "") {
+      setIsError(true);
+      // window.alert("Please fill in all fields");
+      return;
+    }
     console.log(accNo);
     console.log(method);
     try {
@@ -113,55 +140,61 @@ const Payment = () => {
       console.log(err);
       console.log("Payment failed");
     }
-    try{
+    try {
       axios
-      .post("http://localhost:5000/api/v1/reservation", {
-      PNR: pnr,  
-      NID: user.NID,
-      SEATS: SEATS,
-      FROM_ST: fromStation,
-      TO_ST: toStation,
-      ISSUE_DATE: issueDate,
-      DATE_OF_JOURNEY: selectedDate,
-      TOTAL_FARE: TOTAL_FARE,
-    })
-    .then((response) => {
-      console.log(response);
-    });
+        .post("http://localhost:5000/api/v1/reservation", {
+          PNR: pnr,
+          NID: user.NID,
+          SEATS: SEATS,
+          FROM_ST: fromStation,
+          TO_ST: toStation,
+          ISSUE_DATE: issueDate,
+          DATE_OF_JOURNEY: selectedDate,
+          TOTAL_FARE: TOTAL_FARE,
+        })
+        .then((response) => {
+          console.log(response);
+          toast({
+            title: "Payment successful",
+            status: "success",
+            duration: 3000, // Optional duration for the toast
+            isClosable: true,
+          });
+        });
+    } catch (err) {
+      if (err instanceof Error) {
+        console.log(err);
+        console.log("Reservation failed");
+        toast({
+          title: "Error reserving seats",
+          description: err.message || "An error occurred",
+          status: "error",
+          duration: 3000, // Optional duration for the toast
+          isClosable: true,
+        });
+      }
     }
-    catch(err){
-      console.log(err);
-      console.log("Reservation failed");
-    }
-    // try {
-    //   SEATS.forEach(async (seat:seat) => {
-    //     await axios.post("http://localhost:5000/api/v1/reservation", {
-    //       PNR: pnr,
-    //       NID: user.NID,
-    //       COMPARTMENT_ID: seat.compId,
-    //       SEAT_NO: seat.no,
-    //       FROM_ST: fromStation,
-    //       TO_ST: toStation,
-    //       ISSUE_DATE: issueDate,
-    //       DATE_OF_JOURNEY: selectedDate,
-    //     })
-    //     .then((response) => {
-    //       console.log(response);
-    //     });
-    //   });
-    // } catch(err) {
-    //   console.log(err);
-    //   console.log("Reservation failed");
-    // }
   };
 
   return (
     <Box p={4}>
-      <Text fontSize="xl" mb={4}>
-        Payable Amount: ${payableAmount}
+      <Center>
+      <VStack spacing={4} width="70%">
+      <Box border="solid" borderColor="blue.500" w="800px">
+        <Center>
+      <Text fontSize="xl" m={4} color="green">
+        <strong>
+        Total Payable Amount: {taka}{payableAmount}
+        </strong>
       </Text>
-
+      </Center>
+      </Box>
       <Tabs
+      border="solid"
+      borderColor="blue.500"
+      p={4}
+      w="800px"
+      h="600px"
         variant="soft-rounded"
         colorScheme="teal"
         onChange={(index) => setMethod(index === 0 ? "Mobile Pay" : "Bank Pay")}
@@ -240,6 +273,8 @@ const Payment = () => {
           </TabPanel>
         </TabPanels>
       </Tabs>
+      </VStack>
+      </Center>
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
@@ -261,18 +296,35 @@ const Payment = () => {
               </FormControl>
               <FormControl id="pinNumber">
                 <FormLabel>PIN</FormLabel>
-                <Input placeholder="Enter PIN number" type="password" />
+                <Input
+                  placeholder="Enter PIN number"
+                  type="password"
+                  onChange={onPinChange}
+                />
               </FormControl>
             </AlertDialogBody>
-
+            {/* {isError && <Text color="red">Please fill in all fields</Text>} */}
             <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={() => setIsOpen(false)}>
+              <Button
+                ref={cancelRef}
+                onClick={() => {
+                  setIsOpen(false);
+                  setAccNo("");
+                  setPin("");
+                }}
+              >
                 Cancel
               </Button>
               <Button
                 colorScheme="blue"
                 ml={3}
-                onClick={handleMobileConfirmClick}
+                onClick={() => {
+                  handleMobileConfirmClick();
+                  setIsOpen(false);
+                  setAccNo("");
+                  setPin("");
+                }}
+                isDisabled={accNo === "" || pin === ""}
               >
                 Confirm
               </Button>
