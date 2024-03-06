@@ -13,6 +13,12 @@ import {
   StackDivider,
   Text,
   Button,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -199,8 +205,8 @@ const ReservationPage = () => {
         style={{
           width: "50%",
           margin: "auto",
-          marginTop: "0px",
-          backgroundColor: "rgba(255, 255, 255, 1)",
+          marginTop: "4px",
+          boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
         }}
       >
         <CardHeader>
@@ -210,142 +216,58 @@ const ReservationPage = () => {
         </CardHeader>
 
         <CardBody>
-          <Stack divider={<StackDivider />} spacing="4">
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                PASSENGER NAME:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {user.FIRST_NAME + " " + user.LAST_NAME}
-              </Text>
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                PNR:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {pnr}
-              </Text>
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                FROM STATION:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {filter.fromStation}
-              </Text>
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                TO STATION:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {filter.toStation}
-              </Text>
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                TRAIN NAME:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {trainName + " (" + filter.TRAIN_ID + ")"}
-              </Text>
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                DATE OF JOURNEY:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {filter.selectedDate.toDateString()}
-              </Text>
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                CLASS NAME
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {filter.className}
-              </Text>
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                SEATS:
-              </Heading>
-              {Object.entries(groupedSeats).map(([compId, seats]) => (
-                <Text pt="2" fontSize={18} textAlign="center" key={compId}>
-                  {compartmentMap.get(Number(compId))} {"["}seats:{" "}
-                  {seats.map((seat: any) => seat.no).join(", ")}
-                  {"]"}
-                </Text>
-              ))}
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                TOTAL FARE:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {`${taka} ${filter.TOTAL_FARE}`}
-              </Text>
-            </Box>
-            <Box>
-              <Heading
-                size="xs"
-                textTransform="uppercase"
-                fontSize={20}
-                textAlign="center"
-              >
-                ISSUE DATE:
-              </Heading>
-              <Text pt="2" fontSize={18} textAlign="center">
-                {formattedDate}
-              </Text>
-            </Box>
-          </Stack>
+          <Table variant="striped">
+            <Tbody border="solid" borderColor="teal.500">
+              <Tr>
+                <Td fontWeight="bold">PASSENGER NAME</Td>
+                <Td>{user.FIRST_NAME + " " + user.LAST_NAME}</Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">PNR</Td>
+                <Td>{pnr}</Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">FROM STATION</Td>
+                <Td>{filter.fromStation}</Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">TO STATION</Td>
+                <Td>{filter.toStation}</Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">TRAIN NAME</Td>
+                <Td>{trainName + " (" + filter.TRAIN_ID + ")"}</Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">DATE OF JOURNEY</Td>
+                <Td>{filter.selectedDate.toDateString()}</Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">CLASS NAME</Td>
+                <Td>{filter.className}</Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">SEATS</Td>
+                <Td>
+                  {Object.entries(groupedSeats).map(([compId, seats]) => (
+                    <Text key={compId}>
+                      {compartmentMap.get(Number(compId))} {"["}seat(s):{" "}
+                      {seats.map((seat: any) => seat.no).join(", ")}
+                      {"]"}
+                    </Text>
+                  ))}
+                </Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">TOTAL FARE</Td>
+                <Td>{`${taka} ${filter.TOTAL_FARE}`}</Td>
+              </Tr>
+              <Tr>
+                <Td fontWeight="bold">ISSUE DATE</Td>
+                <Td>{formattedDate}</Td>
+              </Tr>
+            </Tbody>
+          </Table>
         </CardBody>
       </Card>
       <Button
