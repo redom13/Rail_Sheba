@@ -18,6 +18,7 @@ import {
   AccordionPanel,
   Flex,
   Center,
+  Spacer,
 } from "@chakra-ui/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
@@ -147,35 +148,55 @@ function AvailableTrains({ isAuthenticated }: Props) {
     }
   }
 
-  return trains.length === 0 ? (
-    <h1>Not Found</h1>
-  ) : (
-    <Box maxWidth="60%" m="0 auto">
-      <Heading as="h2" mb="4" mt="8px" marginLeft="10px">
-        Available Trains
-      </Heading>
+return trains.length === 0 ? (
+  <h1>Not Found</h1>
+) : (
+  <Box maxWidth="70%" m="0 auto">
+    <Heading as="h2" mb="4" mt="8px" marginLeft="10px">
+      Available Trains
+    </Heading>
+    <Accordion allowToggle>
       {trains?.map((train, index) => (
-        <Box key={index} id={`train-${index}`} mt="4" marginLeft="10px">
-          <Heading as="h1" size="md" color="brown">
-            {train.TRAIN_NAME}
-          </Heading>
-          <Flex direction="row" align="center">
-            <Text>
-              <strong>{train.FROM_DEPARTURE}</strong>
-            </Text>
-            <Box flex="1" borderBottom="1px solid black" my={2} mx={2} />
-            <Text>
-              <strong>
-                {train.Hr < 0 ? train.Hr * -1 : train.Hr} hours{" "}
-                {train.Min} minutes
-              </strong>
-            </Text>
-            <Box flex="1" borderBottom="1px solid black" my={2} mx={2} />
-            <Text>
-              <strong>{train.TO_ARRIVAL}</strong>
-            </Text>
-          </Flex>
-          <SimpleGrid
+        <AccordionItem key={index}>
+          <AccordionButton bg="#d5d6d4" mb={4}>
+            <Box flex="1" textAlign="left">
+              <Heading as="h1" size="md" color="brown">
+                {train.TRAIN_NAME} ({train.TRAIN_ID})
+              </Heading>
+            </Box>
+            <AccordionIcon />
+          </AccordionButton>
+          <AccordionPanel pb={4}>
+            <Box id={`train-${index}`} mt="4">
+              <Flex direction="row" align="center" >
+                <Text>
+                  <strong>{train.FROM_DEPARTURE}</strong>
+                </Text>
+                <Box flex="1" borderBottom="1px solid black" my={2} ml={2} />
+                {/* <Text>
+                  <strong>
+                    {(train.Hr < 0) ? train.Hr * -1 : train.Hr} hours {train.Min} minutes
+                  </strong>
+                </Text> */}
+                <Box border="solid" w="10px" h="10px" borderWidth="1px">
+                  </Box>
+                <Box flex="1" borderBottom="1px solid black" my={2} mr={2} />
+                <Text>
+                  <strong>{train.TO_ARRIVAL}</strong>
+                </Text>
+              </Flex>
+              <Flex direction="row" align="center" >
+                <Text><strong>{filter.fromStation}</strong></Text>
+                <Spacer />
+                <Text>
+                  <strong>
+                    {(train.Hr < 0) ? train.Hr * -1 : train.Hr} hours {train.Min} minutes
+                  </strong>
+                </Text>
+                <Spacer />
+                <Text><strong>{filter.toStation}</strong></Text>
+              </Flex>
+              <SimpleGrid
             spacing={4}
             templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
             mt="2"
@@ -238,10 +259,13 @@ function AvailableTrains({ isAuthenticated }: Props) {
               FROM_DEPARTURE={train.FROM_DEPARTURE}
             ></SeatBooking>
           )}
-        </Box>
+            </Box>
+          </AccordionPanel>
+        </AccordionItem>
       ))}
-    </Box>
-  );
+    </Accordion>
+  </Box>
+);
 }
 
 export default AvailableTrains;
