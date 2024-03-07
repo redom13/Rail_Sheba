@@ -48,6 +48,10 @@ const Payment = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isError, setIsError] = useState(false);
   const [pin, setPin] = useState("");
+  const [bankPayMethod, setBankPayMethod] = useState("");
+  const [bankAccNo, setBankAccNo] = useState("");
+  const [holderName, setHolderName] = useState("");
+  const [bankPin, setBankPin] = useState("");
   const [user, setUser] = useState({
     NID: "",
     FIRST_NAME: "",
@@ -92,6 +96,24 @@ const Payment = () => {
   const onPinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPin(e.target.value);
   };
+
+  const handleBankClick = (method: string) => {
+    setBankPayMethod(method);
+    setIsOpen(true);
+  };
+
+  const onBankAccChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBankAccNo(e.target.value);
+  };
+
+  const onHolderNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setHolderName(e.target.value);
+  };
+
+  const onBankPinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setBankPin(e.target.value);
+  };
+
   useEffect(() => {
     setPayableAmount(TOTAL_FARE);
   }, [TOTAL_FARE]);
@@ -118,21 +140,33 @@ const Payment = () => {
     getUser();
   }, []);
 
-  const handleMobileConfirmClick = () => {
-    if (accNo === "" || pin === "") {
+  const handleConfirmClick = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Confirm clicked");
+    console.log("Method:", method);
+    if (method === "Mobile Pay" && (accNo === "" || pin === "")) {
+      console.log("Returning from mobile pay");
       setIsError(true);
-      // window.alert("Please fill in all fields");
+      return;
+    } else if (method === "Bank Pay" && (bankAccNo === "" || holderName === "")) {
+      setIsError(true);
       return;
     }
-    console.log(accNo);
-    console.log(method);
+
+    interface PaymentData {
+      method: string;
+      amount: number;
+      accNo: string;
+      holderName?: string;
+    }
+
+    const paymentData: PaymentData = method === "Mobile Pay"
+      ? { method: mobilePayMethod, amount: payableAmount, accNo }
+      : { method, amount: payableAmount, accNo: bankAccNo, holderName };
+
     try {
       axios
-        .post("http://localhost:5000/api/v1/payment", {
-          method: method,
-          amount: payableAmount,
-          accNo: accNo,
-        })
+        .post("http://localhost:5000/api/v1/payment", paymentData)
         .then((response) => {
           console.log(response);
         });
@@ -145,12 +179,12 @@ const Payment = () => {
         .post("http://localhost:5000/api/v1/reservation", {
           PNR: pnr,
           NID: user.NID,
-          SEATS: SEATS,
+          SEATS,
           FROM_ST: fromStation,
           TO_ST: toStation,
           ISSUE_DATE: issueDate,
           DATE_OF_JOURNEY: selectedDate,
-          TOTAL_FARE: TOTAL_FARE,
+          TOTAL_FARE,
         })
         .then((response) => {
           console.log(response);
@@ -179,101 +213,105 @@ const Payment = () => {
   return (
     <Box p={4}>
       <Center>
-      <VStack spacing={4} width="70%">
-      <Box border="solid" borderColor="blue.500" w="800px">
-        <Center>
-      <Text fontSize="xl" m={4} color="green">
-        <strong>
-        Total Payable Amount: {taka}{payableAmount}
-        </strong>
-      </Text>
-      </Center>
-      </Box>
-      <Tabs
-      border="solid"
-      borderColor="blue.500"
-      p={4}
-      w="800px"
-      h="600px"
-        variant="soft-rounded"
-        colorScheme="teal"
-        onChange={(index) => setMethod(index === 0 ? "Mobile Pay" : "Bank Pay")}
-      >
-        <TabList>
-          <Tab>Mobile Pay</Tab>
-          <Tab>Bank Pay</Tab>
-        </TabList>
+        <VStack spacing={4} width="70%">
+          <Box border="solid" borderColor="blue.500" w="800px">
+            <Center>
+              <Text fontSize="xl" m={4} color="green">
+                <strong>
+                  Total Payable Amount: {taka}
+                  {payableAmount}
+                </strong>
+              </Text>
+            </Center>
+          </Box>
+          <Tabs
+            border="solid"
+            borderColor="blue.500"
+            p={4}
+            w="800px"
+            h="600px"
+            variant="soft-rounded"
+            colorScheme="teal"
+            onChange={(index) =>
+              setMethod(index === 0 ? "Mobile Pay" : "Bank Pay")
+            }
+          >
+            <TabList>
+              <Tab>Mobile Pay</Tab>
+              <Tab>Bank Pay</Tab>
+            </TabList>
 
-        <TabPanels>
-          <TabPanel>
-            {/* Mobile Pay Content */}
-            <Box p={4}>
-              {/* Add your mobile payment form or component here */}
-              <Text>Mobile payment options will be displayed here.</Text>
-              <Flex>
-                <img
-                  style={{
-                    width: "332px",
-                    height: "194px",
-                    objectFit: "cover",
-                    //border: "1px solid black",
-                    marginRight: "10px",
-                    boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
-                  }}
-                  src={bkashImage}
-                  alt="bkash"
-                  onClick={() => handleMobileClick("Bkash")}
-                />
-                <img
-                  style={{
-                    width: "332px",
-                    height: "194px",
-                    objectFit: "cover",
-                    //border: "1px solid black",
-                    boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
-                  }}
-                  src={nagadImage}
-                  alt="nagad"
-                  onClick={() => handleMobileClick("Nagad")}
-                />
-              </Flex>
-              <Flex pt={5}>
-                <img
-                  style={{
-                    width: "332px",
-                    height: "194px",
-                    objectFit: "cover",
-                    //border: "1px solid black",
-                    boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
-                  }}
-                  src={rocketImage}
-                  alt="rocket"
-                  onClick={() => handleMobileClick("Rocket")}
-                />
-              </Flex>
-            </Box>
-          </TabPanel>
-          <TabPanel>
-            {/* Bank Pay Content */}
-            <Box p={4}>
-              {/* Add your bank payment form or component here */}
-              <Text>Bank payment options will be displayed here.</Text>
-              <img
-                style={{
-                  width: "300px",
-                  height: "150px",
-                  objectFit: "cover",
-                  //border: "1px solid black",
-                  boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
-                }}
-                src={ddblImage}
-                alt="ddbl"
-              />
-            </Box>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-      </VStack>
+            <TabPanels>
+              <TabPanel>
+                {/* Mobile Pay Content */}
+                <Box p={4}>
+                  {/* Add your mobile payment form or component here */}
+                  <Text>Mobile payment options will be displayed here.</Text>
+                  <Flex>
+                    <img
+                      style={{
+                        width: "332px",
+                        height: "194px",
+                        objectFit: "cover",
+                        //border: "1px solid black",
+                        marginRight: "10px",
+                        boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      src={bkashImage}
+                      alt="bkash"
+                      onClick={() => handleMobileClick("Bkash")}
+                    />
+                    <img
+                      style={{
+                        width: "332px",
+                        height: "194px",
+                        objectFit: "cover",
+                        //border: "1px solid black",
+                        boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      src={nagadImage}
+                      alt="nagad"
+                      onClick={() => handleMobileClick("Nagad")}
+                    />
+                  </Flex>
+                  <Flex pt={5}>
+                    <img
+                      style={{
+                        width: "332px",
+                        height: "194px",
+                        objectFit: "cover",
+                        //border: "1px solid black",
+                        boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      src={rocketImage}
+                      alt="rocket"
+                      onClick={() => handleMobileClick("Rocket")}
+                    />
+                  </Flex>
+                </Box>
+              </TabPanel>
+              <TabPanel>
+                {/* Bank Pay Content */}
+                <Box p={4}>
+                  {/* Add your bank payment form or component here */}
+                  {/* <Text>Bank payment options will be displayed here.</Text> */}
+                  <img
+                    style={{
+                      width: "300px",
+                      height: "150px",
+                      objectFit: "cover",
+                      //border: "1px solid black",
+                      boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+                    }}
+                    src={ddblImage}
+                    onClick={() => handleBankClick("DBBL")}
+                    alt="ddbl"
+                  />
+                </Box>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </VStack>
       </Center>
       <AlertDialog
         isOpen={isOpen}
@@ -287,21 +325,51 @@ const Payment = () => {
             </AlertDialogHeader>
 
             <AlertDialogBody>
-              <FormControl id="accountNumber" mb={3}>
-                <FormLabel>{mobilePayMethod} Number</FormLabel>
-                <Input
-                  placeholder={`Enter ${mobilePayMethod} number`}
-                  onChange={onMobileChange}
-                />
-              </FormControl>
-              <FormControl id="pinNumber">
-                <FormLabel>PIN</FormLabel>
-                <Input
-                  placeholder="Enter PIN number"
-                  type="password"
-                  onChange={onPinChange}
-                />
-              </FormControl>
+              {method === "Mobile Pay" && (
+                <>
+                  <FormControl id="accountNumber" mb={3}>
+                    <FormLabel>Account Number</FormLabel>
+                    <Input
+                      placeholder={`Enter ${mobilePayMethod} account number`}
+                      onChange={onMobileChange}
+                    />
+                  </FormControl>
+                  <FormControl id="pinNumber">
+                    <FormLabel>PIN</FormLabel>
+                    <Input
+                      placeholder="Enter PIN number"
+                      type="password"
+                      onChange={onPinChange}
+                    />
+                  </FormControl>
+                </>
+              )}
+              {method === "Bank Pay" && (
+                <>
+                  <FormControl id="bankAccountNumber" mb={3}>
+                    <FormLabel>Bank Account Number</FormLabel>
+                    <Input
+                      placeholder={`Enter ${bankPayMethod} account number`}
+                      onChange={onBankAccChange}
+                    />
+                  </FormControl>
+                  <FormControl id="holderName" mb={3}>
+                    <FormLabel>Holder's Name</FormLabel>
+                    <Input
+                      placeholder="Enter holder's name"
+                      onChange={onHolderNameChange}
+                    />
+                  </FormControl>
+                  <FormControl id="bankPinNumber">
+                    <FormLabel>PIN</FormLabel>
+                    <Input
+                      placeholder="Enter PIN number"
+                      type="password"
+                      onChange={onBankPinChange}
+                    />
+                  </FormControl>
+                </>
+              )}
             </AlertDialogBody>
             {/* {isError && <Text color="red">Please fill in all fields</Text>} */}
             <AlertDialogFooter>
@@ -311,6 +379,9 @@ const Payment = () => {
                   setIsOpen(false);
                   setAccNo("");
                   setPin("");
+                  setBankAccNo("");
+                  setHolderName("");
+                  setBankPin("");
                 }}
               >
                 Cancel
@@ -318,13 +389,16 @@ const Payment = () => {
               <Button
                 colorScheme="blue"
                 ml={3}
-                onClick={() => {
-                  handleMobileConfirmClick();
+                onClick={(e) => {
+                  handleConfirmClick(e);
                   setIsOpen(false);
                   setAccNo("");
                   setPin("");
+                  setBankAccNo("");
+                  setHolderName("");
+                  setBankPin("");
                 }}
-                isDisabled={accNo === "" || pin === ""}
+                isDisabled={method==="Mobile Pay"?(accNo === "" || pin === ""):(bankAccNo === "" || holderName === "" || bankPin === "")}
               >
                 Confirm
               </Button>

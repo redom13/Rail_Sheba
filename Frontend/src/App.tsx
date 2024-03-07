@@ -11,6 +11,7 @@ import Dashboard from "./Components/Dashboard";
 import ReservationPage from "./Components/ReservationPage";
 import Payment from "./Components/Payment";
 import TrainInfo from "./Components/TrainInfo";
+import Statistics from "./Components/Statistics";
 
 const App = () => {
   const checkAuthenticated = async () => {
@@ -69,7 +70,7 @@ const App = () => {
           path="/register"
           element={<RegistrationForm setAuth={setAuth} />}
         />
-        <Route path="/contact" element={<h1>Contact</h1>} />
+        <Route path="/statistics" element={<Statistics/>} />
         <Route path="/trains" element={<AvailableTrains isAuthenticated={isAuthenticated}/>} />
         <Route path="/dashboard" element={<Dashboard />} />
         {/*<Route path="/trains/:id" element={<Seat/>}/>*/}
