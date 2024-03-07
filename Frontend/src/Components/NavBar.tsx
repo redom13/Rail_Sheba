@@ -77,6 +77,9 @@ const NavBar = ({ isLogged, isLoginPage, setAuth, setIsLogged }: Props) => {
           <Link as={RouterLink} to="/statistics" mx={2} {...linkStyles}>
             <Tab>Statistics</Tab>
           </Link>
+          <Link as={RouterLink} to="/TrainInfo" mx={2} {...linkStyles}>
+            <Tab>Train Information</Tab>
+          </Link>
         </TabList>
         <TabIndicator
           mt="-1.5px"

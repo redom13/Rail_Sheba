@@ -136,36 +136,45 @@ router.post("/", async (req, res, next) => {
   selectedDateObject2.setHours(selectedDateObject2.getHours() + 6);
   const datePart2 = selectedDateObject2.toISOString().split("T")[0];
 
-  // try {
-  //   for (let seat of SEATS) {
-  //     await db.execute(
-  //       `INSERT INTO RESERVATION (PNR, NID, COMPARTMENT_ID, SEAT_NO, FROM_ST, TO_ST, ISSUE_DATE, DATE_OF_JOURNEY)
-  //       VALUES (:PNR, :NID, :seat.comId,:seat.no,
-  //               (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = :FROM_ST),
-  //               (SELECT STATION_ID FROM STATIONS WHERE STATION_NAME = :TO_ST),
-  //               TO_DATE(:ISSUE_DATE, 'YYYY-MM-DD'),
-  //               TO_DATE(:DATE_OF_JOURNEY, 'YYYY-MM-DD'));`,
-  //       [
-  //         PNR,
-  //         NID,
-  //         seat.compId,
-  //         seat.no,
-  //         FROM_ST,
-  //         TO_ST,
-  //         ISSUE_DATE,
-  //         DATE_OF_JOURNEY,
-  //       ],
-  //       db.options
-  //     );
-  //   }
-
-  //   res.json({ success: true, message: "Reservation successful" });
-  // } catch (err) {
-  //   console.log(err);
-  //   res.status(500).json({ success: false, message: "Internal server error" });
-  // }
   try {
     //for (let seat of SEATS) {
+    const sql =
+     ` CREATE OR REPLACE TRIGGER RESERVATION_TRIGGER
+      BEFORE INSERT ON BOOKED_SEATS
+      FOR EACH ROW
+      DECLARE
+      JOURNEY_DATE DATE;
+      EX EXCEPTION;
+      COMP_ID NUMBER;
+      SEAT_NO NUMBER;
+      FROM_ST_NAME VARCHAR2(100);
+      TO_ST_NAME VARCHAR2(100);
+      BEGIN
+      SELECT DATE_OF_JOURNEY INTO JOURNEY_DATE FROM RESERVATION WHERE PNR = :NEW.PNR;
+      SELECT (SELECT STATION_NAME FROM STATIONS WHERE STATION_ID = R.FROM_ST) INTO FROM_ST_NAME 
+      FROM RESERVATION R WHERE R.PNR = :NEW.PNR;
+      SELECT (SELECT STATION_NAME FROM STATIONS WHERE STATION_ID = R.TO_ST) INTO TO_ST_NAME
+      FROM RESERVATION R WHERE R.PNR = :NEW.PNR;
+
+      FOR R IN ( SELECT B.COMPARTMENT_ID,B.SEAT_NO
+        FROM RESERVATION R NATURAL JOIN BOOKED_SEATS B WHERE 
+        B.COMPARTMENT_ID IN (SELECT COMPARTMENT_ID FROM COMPARTMENTS WHERE TRAIN_ID = (SELECT TRAIN_ID FROM COMPARTMENTS WHERE COMPARTMENT_ID = :NEW.COMPARTMENT_ID)) 
+        AND R.DATE_OF_JOURNEY = JOURNEY_DATE  
+        AND OVERLAP(FROM_ST_NAME,TO_ST_NAME,R.FROM_ST,R.TO_ST,(SELECT TRAIN_ID FROM COMPARTMENTS WHERE COMPARTMENT_ID = :NEW.COMPARTMENT_ID))=1 )
+        LOOP
+        IF R.COMPARTMENT_ID = :NEW.COMPARTMENT_ID AND R.SEAT_NO = :NEW.SEAT_NO THEN
+        DELETE FROM BOOKED_SEATS WHERE PNR = :NEW.PNR;
+        DELETE FROM RESERVATION WHERE PNR = :NEW.PNR;
+        RAISE EX;
+        END IF;
+        END LOOP;
+        EXCEPTION
+        WHEN EX THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Seat is already booked');
+        END;`;
+
+    const rst = await db.execute(sql, [], db.options);
+
     await db.execute(
       `INSERT INTO RESERVATION
          VALUES (:PNR, :NID, 
@@ -200,10 +209,25 @@ router.post("/", async (req, res, next) => {
         db.options
       );
     }
-
+    
     res.json({ success: true, message: "Reservation successful" });
   } catch (err) {
     console.log(err);
+    const errSql1 =
+    `DELETE FROM BOOKED_SEATS WHERE PNR = :PNR`;
+    const errSql2=
+    ` DELETE FROM RESERVATION WHERE PNR = :PNR`;
+    const errBinds = {
+      PNR: PNR,
+    };
+    try {
+      console.log("deleting reservation");
+      await db.execute(errSql1, errBinds, db.options);
+      await db.execute(errSql2, errBinds, db.options);
+    }
+    catch (err) {
+      console.log(err);
+    }
     res.status(500).json({ success: false, message: "Internal server error" });
     next(err);
   }

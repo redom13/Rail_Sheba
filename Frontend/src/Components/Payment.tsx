@@ -52,6 +52,7 @@ const Payment = () => {
   const [bankAccNo, setBankAccNo] = useState("");
   const [holderName, setHolderName] = useState("");
   const [bankPin, setBankPin] = useState("");
+  const [paymentID, setPaymentID] = useState("");
   const [user, setUser] = useState({
     NID: "",
     FIRST_NAME: "",
@@ -118,6 +119,31 @@ const Payment = () => {
     setPayableAmount(TOTAL_FARE);
   }, [TOTAL_FARE]);
 
+  function generateTransactionId(): string {
+    let result = "";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789";
+
+    for (let i = 0; i < 10; i++) {
+      result += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+
+    for (let i = 0; i < 5; i++) {
+      result += numbers.charAt(Math.floor(Math.random() * numbers.length));
+    }
+
+    return result
+      .split("")
+      .sort(() => Math.random() - 0.5)
+      .join("");
+  }
+
+  useEffect(() => {
+    setPaymentID(generateTransactionId());
+  }, []);
+
   const getUser = async () => {
     try {
       console.log("jwtToken:", localStorage.jwtToken);
@@ -148,32 +174,33 @@ const Payment = () => {
       console.log("Returning from mobile pay");
       setIsError(true);
       return;
-    } else if (method === "Bank Pay" && (bankAccNo === "" || holderName === "")) {
+    } else if (
+      method === "Bank Pay" &&
+      (bankAccNo === "" || holderName === "")
+    ) {
       setIsError(true);
       return;
     }
 
     interface PaymentData {
+      pnr: string;
       method: string;
       amount: number;
       accNo: string;
       holderName?: string;
     }
 
-    const paymentData: PaymentData = method === "Mobile Pay"
-      ? { method: mobilePayMethod, amount: payableAmount, accNo }
-      : { method, amount: payableAmount, accNo: bankAccNo, holderName };
+    const paymentData: PaymentData =
+      method === "Mobile Pay"
+        ? { pnr, method, amount: payableAmount, accNo }
+        : {
+            pnr,
+            method,
+            amount: payableAmount,
+            accNo: bankAccNo,
+            holderName,
+          };
 
-    try {
-      axios
-        .post("http://localhost:5000/api/v1/payment", paymentData)
-        .then((response) => {
-          console.log(response);
-        });
-    } catch (err) {
-      console.log(err);
-      console.log("Payment failed");
-    }
     try {
       axios
         .post("http://localhost:5000/api/v1/reservation", {
@@ -188,25 +215,38 @@ const Payment = () => {
         })
         .then((response) => {
           console.log(response);
+          if (response.data.success) {
+            toast({
+              title: "Payment successful.Seats reserved successfully!",
+              status: "success",
+              duration: 3000, // Optional duration for the toast
+              isClosable: true,
+            });
+            try {
+              axios
+                .post("http://localhost:5000/api/v1/payment", paymentData)
+                .then((response) => {
+                  console.log(response);
+                });
+            } catch (err) {
+              console.log(err);
+              console.log("Payment failed");
+            }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("Reservation failed");
           toast({
-            title: "Payment successful",
-            status: "success",
+            title: "Error reserving seats",
+            description: "Seat already reserved or payment failed!",
+            status: "error",
             duration: 3000, // Optional duration for the toast
             isClosable: true,
           });
         });
     } catch (err) {
-      if (err instanceof Error) {
-        console.log(err);
-        console.log("Reservation failed");
-        toast({
-          title: "Error reserving seats",
-          description: err.message || "An error occurred",
-          status: "error",
-          duration: 3000, // Optional duration for the toast
-          isClosable: true,
-        });
-      }
+      console.log("Error occured in ",err);
     }
   };
 
@@ -398,7 +438,11 @@ const Payment = () => {
                   setHolderName("");
                   setBankPin("");
                 }}
-                isDisabled={method==="Mobile Pay"?(accNo === "" || pin === ""):(bankAccNo === "" || holderName === "" || bankPin === "")}
+                isDisabled={
+                  method === "Mobile Pay"
+                    ? accNo === "" || pin === ""
+                    : bankAccNo === "" || holderName === "" || bankPin === ""
+                }
               >
                 Confirm
               </Button>
