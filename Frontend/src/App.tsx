@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import Dashboard from "./Components/Dashboard";
 import ReservationPage from "./Components/ReservationPage";
 import Payment from "./Components/Payment";
+import TrainInfo from "./Components/TrainInfo";
 
 const App = () => {
   const checkAuthenticated = async () => {
@@ -76,6 +77,7 @@ const App = () => {
         {/*<Route path="/trains/:id" element={<SeatBooking />} />*/}
         <Route path="/reservation" element={isAuthenticated?<ReservationPage />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
         <Route path="/payment" element={<Payment/>} />
+        <Route path="/TrainInfo" element={<TrainInfo />} />
       </Routes>
     </Router>
   );

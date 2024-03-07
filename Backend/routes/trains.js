@@ -109,6 +109,26 @@ router.get(`/:fromStation/:toStation`, async (req, res, next) => {
 });
 
 
+router.get("/all/trains/details", async (req, res, next) => {
+  try {
+    const trains = await db.execute(
+      `SELECT * FROM TRAINS`,
+      [],
+      db.options
+    );
+    console.log(trains);
+    res.json({
+      success: true,
+      message: "Trains searched successfully",
+      data: trains,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, message: "Internal server error" });
+    next(err);
+  }
+});
+
 
 
 module.exports = router;
