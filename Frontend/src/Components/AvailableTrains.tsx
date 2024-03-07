@@ -143,7 +143,7 @@ function AvailableTrains({isAuthenticated}:Props) {
           <Heading as="h1" size="md" color='brown'>
             {train.TRAIN_NAME} {train.FROM_DEPARTURE} ------ {train.TO_ARRIVAL}
           </Heading>
-          <Text>Duration: {(train.Hr < 0)?train.Hr*-1:train.Hr} hours {train.Min} minutes</Text>
+          <Text><strong>Duration: {(train.Hr < 0)?train.Hr*-1:train.Hr} hours {train.Min} minutes</strong></Text>
           <SimpleGrid
             spacing={4}
             templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
