@@ -33,6 +33,7 @@ const Statistics = () => {
   //const [year, setYear] = useState(new Date().getFullYear());
   const [criteria, setCriteria] = useState("all time");
   const [weekStats, setWeekStats] = useState<WeekStat[]>([]);
+  const [criteriaDays, setCriteriaDays] = useState("all time");
 
   const getRoutes = () => {
     try {
@@ -50,7 +51,7 @@ const Statistics = () => {
   const getWeekStats = () => {
     try {
       axios
-        .get(`http://localhost:5000/api/v1/stats/weekly`)
+        .get(`http://localhost:5000/api/v1/stats/weekly`,{ params: { criteria: criteriaDays } })
         .then((response) => {
           console.log(response.data);
           setWeekStats(response.data);
@@ -66,13 +67,14 @@ const Statistics = () => {
 
   useEffect(() => {
     getWeekStats();
-  }, []);
+  }, [criteriaDays]);
 
 //   const years = Array.from(
 //     { length: 5 },
 //     (_, i) => new Date().getFullYear() - i
 //   );
 const criteriaOptions = ["today", "this week", "this month", "this year", "all time"];
+const criteriaDaysOptions = ["this week", "this month", "this year","all time"];
 
 const weekStatData = {
     labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -140,6 +142,12 @@ return (
             ))}
           </Tbody>
         </Table>
+        <Text fontSize="xl" fontWeight="bold" mt={4}>Weekly No. of Reservations</Text>
+        <Select onChange={(e) => setCriteriaDays(e.target.value)} defaultValue={criteriaDays} w="40%">
+            {criteriaDaysOptions.map((option, index) => (
+                <option key={index} value={option}>{option}</option>
+            ))}
+        </Select>
         <Bar data={weekStatData} key={Math.random()}/>
     </VStack>
     </Center>
