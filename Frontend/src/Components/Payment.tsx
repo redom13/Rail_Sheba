@@ -222,7 +222,6 @@ const Payment = () => {
               duration: 3000, // Optional duration for the toast
               isClosable: true,
             });
-
             try {
               axios
                 .post("http://localhost:5000/api/v1/payment", paymentData)
@@ -234,19 +233,20 @@ const Payment = () => {
               console.log("Payment failed");
             }
           }
+        })
+        .catch((err) => {
+          console.log(err);
+          console.log("Reservation failed");
+          toast({
+            title: "Error reserving seats",
+            description: "Seat already reserved or payment failed!",
+            status: "error",
+            duration: 3000, // Optional duration for the toast
+            isClosable: true,
+          });
         });
     } catch (err) {
-      if (err instanceof Error) {
-        console.log(err);
-        console.log("Reservation failed");
-        toast({
-          title: "Error reserving seats",
-          description: err.message || "An error occurred",
-          status: "error",
-          duration: 3000, // Optional duration for the toast
-          isClosable: true,
-        });
-      }
+      console.log("Error occured in ",err);
     }
   };
 

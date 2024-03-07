@@ -220,8 +220,14 @@ router.post("/", async (req, res, next) => {
     const errBinds = {
       PNR: PNR,
     };
-    await db.execute(errSql1, errBinds, db.options);
-    await db.execute(errSql2, errBinds, db.options);
+    try {
+      console.log("deleting reservation");
+      await db.execute(errSql1, errBinds, db.options);
+      await db.execute(errSql2, errBinds, db.options);
+    }
+    catch (err) {
+      console.log(err);
+    }
     res.status(500).json({ success: false, message: "Internal server error" });
     next(err);
   }
