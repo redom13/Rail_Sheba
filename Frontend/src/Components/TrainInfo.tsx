@@ -108,6 +108,7 @@ const TrainInfo = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Enter train name"
+            w="250px"
           />
         </InputGroup>
         <Button
@@ -126,7 +127,7 @@ const TrainInfo = () => {
         >
           Search Train
         </Button>
-        <VStack borderWidth="1px" shadow="md" bg={boxBg} ml={0}>
+        <VStack borderWidth="1px" shadow="md" bg={boxBg} ml={0} w="250px">
           {suggestions.map((suggestion) => (
             <Box
               w="100%"
@@ -176,7 +177,7 @@ const TrainInfo = () => {
                     {" "}
                     <HStack spacing="10px">
                       <Icon as={IoIosSubway} /> {/* Display the landmark icon */}
-                      <Text>{station.STATION_NAME}</Text>
+                      <Text>{station.STATION_NAME.toUpperCase()}</Text>
                     </HStack>
                   </Td>
                   <Td>{station.ARR_TIME}</Td>

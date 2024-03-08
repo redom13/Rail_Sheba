@@ -1,10 +1,11 @@
 // RegistrationForm.js
 import { SyntheticEvent, useState } from "react";
-import { Button, Flex, FormControl, FormLabel, Input, Select, VStack, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormLabel, Input, Select, VStack, useToast,Text } from "@chakra-ui/react";
 import { ChangeEvent } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import backgroundImage from "../trainImg2.jpg"
 
 interface Props {
   setAuth: (auth: boolean) => void;
@@ -99,9 +100,14 @@ const RegistrationForm = ({setAuth}:Props) => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh",
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover", // Add this line
+        backgroundPosition: "center", // Add this line if you want the image to be centered
+        // backgroundRepeat: "no-repeat", // Add this line to prevent the image from repeating
       }}
     >
-      <VStack spacing={4} width="300px">
+      <Box p={5} shadow="md" borderWidth="1px" bg="rgba(255, 255, 255,0.8)" width="450px">
+      <VStack spacing={4} width="400px">
         <Input
           type="text"
           name="nid"
@@ -164,8 +170,13 @@ const RegistrationForm = ({setAuth}:Props) => {
           value={formData.password}
           onChange={handleChange}
         />
+        <Text fontSize="sm" color="black" fontWeight="bold" mb={4} align="center">
+        If you are under 18 years old or a foreign passport holder, 
+        you can register with your birth certificate or passport by clicking the submit data button.
+        </Text>
         <Button onClick={handleSubmit} colorScheme="teal">Sign Up</Button>
       </VStack>
+      </Box>
     </div>
   );
 };
