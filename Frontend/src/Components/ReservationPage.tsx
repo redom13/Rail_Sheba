@@ -303,12 +303,14 @@ const ReservationPage = () => {
               SEATS: filter.SEATS,
               TOTAL_FARE: filter.TOTAL_FARE,
               issueDate: formattedDate,
+              FROM_DEPARTURE: filter.FROM_DEPARTURE,
             },
           })
         }
       >
         Proceed to pay
       </Button>
+      {/* <Button onClick={downloadPdf}>Download PDF</Button> */}
     </div>
   );
 };

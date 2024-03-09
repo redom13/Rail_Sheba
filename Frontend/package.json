@@ -16,7 +16,9 @@
     "chart.js": "^4.4.2",
     "crypto-hash": "^3.0.0",
     "downshift": "^8.4.0",
+    "file-saver": "^2.0.5",
     "framer-motion": "^10.17.9",
+    "html2pdf.js": "^0.10.1",
     "lodash": "^4.17.21",
     "moment": "^2.30.1",
     "react": "^18.2.0",
@@ -28,6 +30,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
     "@types/moment": "^2.13.0",
     "@types/react": "^18.0.27",
     "@types/react-datepicker": "^4.19.5",

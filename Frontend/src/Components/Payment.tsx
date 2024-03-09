@@ -31,7 +31,7 @@ import ddblImage from "../DBBL.jpg"; // Import your ddbl image here
 import upaiImage from "../UPAI.jpg"; // Import your upai image here
 import { set } from "lodash";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { taka } from "../Constants";
 
 type seat = {
@@ -40,6 +40,7 @@ type seat = {
 };
 
 const Payment = () => {
+  const navigate = useNavigate(); // Use this to navigate to another page
   const location = useLocation();
   const toast = useToast();
   const [payableAmount, setPayableAmount] = useState(100); // Set default payable amount
@@ -73,6 +74,7 @@ const Payment = () => {
     SEATS,
     TOTAL_FARE,
     issueDate,
+    FROM_DEPARTURE,
   } = location.state;
   console.log(
     "Payment page:",
@@ -85,7 +87,8 @@ const Payment = () => {
     className,
     SEATS,
     TOTAL_FARE,
-    issueDate
+    issueDate,
+    FROM_DEPARTURE
   );
   const cancelRef = React.useRef(null);
   const handleMobileClick = (method: string) => {
@@ -233,6 +236,21 @@ const Payment = () => {
               console.log(err);
               console.log("Payment failed");
             }
+            navigate("/Ticket", {
+              state: {
+                pnr,
+                fromStation,
+                toStation,
+                TRAIN_ID,
+                trainName,
+                selectedDate,
+                className,
+                SEATS,
+                TOTAL_FARE,
+                issueDate,
+                FROM_DEPARTURE,
+              },
+            })
           }
         })
         .catch((err) => {
