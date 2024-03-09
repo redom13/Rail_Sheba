@@ -79,7 +79,7 @@ const Ticket = () => {
       issueDate,
       FROM_DEPARTURE,
     });
-    getCompartmentName(filter.TRAIN_ID, className);
+    getCompartmentName(TRAIN_ID, className);
     console.log(
       "INSIDE USE EFFECT:",
       pnr,
@@ -135,6 +135,8 @@ const Ticket = () => {
           );
         }
       );
+
+      console.log("Map:", newCompartmentMap);
 
       setCompartmentMap(newCompartmentMap);
 
@@ -278,7 +280,7 @@ const Ticket = () => {
         </Tbody>
       </Table>
       </div>
-      <button style={{ marginTop: "20px", padding: "10px 20px", backgroundColor: "#4CAF50", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }} onClick={downloadPdf}>Download PDF</button>
+      <button style={{ float: "right", marginRight: "10px", marginTop: "20px",marginBottom:"10px", padding: "10px 20px", backgroundColor: "#319795", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }} onClick={downloadPdf}>Download PDF</button>
     </div>
   );
 };
