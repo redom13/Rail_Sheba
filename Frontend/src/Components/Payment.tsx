@@ -24,10 +24,11 @@ import {
   Button,
   Input,
 } from "@chakra-ui/react";
-import bkashImage from "../BKASH.png"; // Import your bkash image here
+import bkashImage from "../bkash-nlo.jpg"; // Import your bkash image here
 import nagadImage from "../NAGAD.png"; // Import your nagad image here
 import rocketImage from "../ROCKET.png"; // Import your rocket image here
 import ddblImage from "../DBBL.jpg"; // Import your ddbl image here
+import upaiImage from "../UPAI.jpg"; // Import your upai image here
 import { set } from "lodash";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -246,7 +247,7 @@ const Payment = () => {
           });
         });
     } catch (err) {
-      console.log("Error occured in ",err);
+      console.log("Error occured in ", err);
     }
   };
 
@@ -322,10 +323,23 @@ const Payment = () => {
                         objectFit: "cover",
                         //border: "1px solid black",
                         boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+                        marginRight: "10px"
                       }}
                       src={rocketImage}
                       alt="rocket"
                       onClick={() => handleMobileClick("Rocket")}
+                    />
+                    <img
+                      style={{
+                        width: "310px",
+                        height: "194px",
+                        objectFit: "cover",
+                        //border: "1px solid black",
+                        boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.2)",
+                      }}
+                      src={upaiImage}
+                      alt="rocket"
+                      onClick={() => handleMobileClick("Upai")}
                     />
                   </Flex>
                 </Box>

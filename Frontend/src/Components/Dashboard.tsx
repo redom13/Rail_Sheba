@@ -24,7 +24,7 @@ const Dashboard = () => {
 
   return (
     <Center h="100vh">
-      <Box w="400px" p={4} boxShadow="lg">
+      <Box w="400px" p={4} boxShadow="lg" bg="yellow.200">
         <Flex justifyContent="center">
           <Text fontSize="2xl" mb={4}>Dashboard</Text>
         </Flex>

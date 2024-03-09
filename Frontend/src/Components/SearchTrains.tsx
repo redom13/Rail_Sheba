@@ -13,6 +13,7 @@ import {
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
+import backgroundImage from "../trainImg3.jpg";
 
 function SearchTrains() {
   const [fromStation, setFromStation] = useState("");
@@ -83,15 +84,29 @@ function SearchTrains() {
   }, []);
 
   return (
+    <div
+    style={
+      {
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        height: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }
+    }
+    >
     <Box
       maxW="md"
       mx="auto"
+      ml={20} 
       mt={20}
       p={5}
       borderWidth="1px"
       borderRadius="md"
       width={500}
       boxShadow="lg"
+      bg="rgba(255, 255, 255,0.85)"
     >
       <form onSubmit={handleSubmit}>
         <FormControl mb={4}>
@@ -119,7 +134,6 @@ function SearchTrains() {
             </VStack>
           )}
         </FormControl>
-
         <FormControl mb={4}>
           <FormLabel>To</FormLabel>
           <Input
@@ -174,6 +188,7 @@ function SearchTrains() {
         </Button>
       </form>
     </Box>
+    </div>
   );
 }
 
