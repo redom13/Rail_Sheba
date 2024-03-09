@@ -165,13 +165,14 @@ const Ticket = () => {
   return (
     <div>
     <div id="ticket-container">
-      <text fontSize="lg" >
-        Dear {user.FIRST_NAME + " " + user.LAST_NAME}, Your request to book
-        e-ticket for your journey in Bangladesh Railway was successful. You can
-        travel on the train mentioned in the ticket subject to showing your NID
-        or Photo ID card. The details of your e-ticket are as below:
-      </text>
+    <p style={{ width: "70%", margin: "auto", marginBottom: "20px", textAlign: "justify", lineHeight: "1.6",fontWeight:"bold" }}>
+      Dear {user.FIRST_NAME + " " + user.LAST_NAME}, Your request to book
+      e-ticket for your journey in Bangladesh Railway was successful. You can
+      travel on the train mentioned in the ticket subject to showing your NID
+      or Photo ID card. The details of your e-ticket are as below:
+    </p>
       <Table
+      mt={10}
         variant="striped"
         style={{
           width: "70%",
@@ -277,7 +278,7 @@ const Ticket = () => {
         </Tbody>
       </Table>
       </div>
-      <button onClick={downloadPdf}>Download PDF</button>
+      <button style={{ marginTop: "20px", padding: "10px 20px", backgroundColor: "#4CAF50", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }} onClick={downloadPdf}>Download PDF</button>
     </div>
   );
 };
