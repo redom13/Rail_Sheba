@@ -60,6 +60,10 @@ const Profile = ({ setAuth, setIsLogged }: Props) => {
     navigate("/dashboard", { state: user });
   };
 
+  const handleCancelReservationClick = () => {
+    navigate("/cancelReservation",{state: user});
+  };
+
   const handleUpdatePasswordClick = () => {
     setIsOpen(true);
     setOldPassword("");
@@ -167,6 +171,17 @@ const Profile = ({ setAuth, setIsLogged }: Props) => {
             w="full"
           >
             Profile
+          </Flex>
+        </MenuItem>
+        <MenuItem>
+          <Flex
+            onClick={handleCancelReservationClick}
+            mt={0}
+            alignItems="center"
+            justifyContent="center"
+            w="full"
+          >
+            Cancel Reservation
           </Flex>
         </MenuItem>
         <MenuItem>

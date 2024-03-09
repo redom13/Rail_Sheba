@@ -13,6 +13,7 @@ import Payment from "./Components/Payment";
 import TrainInfo from "./Components/TrainInfo";
 import Statistics from "./Components/Statistics";
 import Ticket from "./Components/Ticket";
+import CancelReservation from "./Components/CancelReservation";
 
 const App = () => {
   const checkAuthenticated = async () => {
@@ -81,6 +82,7 @@ const App = () => {
         <Route path="/payment" element={<Payment/>} />
         <Route path="/TrainInfo" element={<TrainInfo />} />
         <Route path="/Ticket" element={<Ticket />} />
+        <Route path="/cancelReservation" element={<CancelReservation />} />
       </Routes>
     </Router>
   );
