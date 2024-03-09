@@ -111,6 +111,41 @@ router.get("/bookedSeats", async (req, res, next) => {
 //     next(err);
 //   }
 // });
+router.delete("/:pnr", async (req, res, next) => {
+  try {
+    const { pnr } = req.params;
+    const sql = `DELETE FROM RESERVATION WHERE PNR = :pnr`;
+    const binds = { pnr: pnr };
+    const result = await db.execute(sql, binds, db.options);
+    console.log("RESERVATION :->", result);
+    if (result.rowsAffected === 0) {
+      res.status(404).json({ message: 'Reservation not found' });
+    } else {
+      res.json({ message: 'Reservation deleted successfully' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+    next(err);
+  }
+});
+
+router.get("/:nid",async (req, res, next) => {
+  try {
+    const { nid } = req.params;
+    const sql = `SELECT R.PNR, (SELECT STATION_NAME FROM STATIONS WHERE STATION_ID=R.FROM_ST) FROM_STATION,(SELECT STATION_NAME FROM STATIONS WHERE STATION_ID=R.TO_ST) TO_STATION,
+    R.ISSUE_DATE,R.DATE_OF_JOURNEY,R.TOTAL_FARE FROM RESERVATION R WHERE R.NID = :nid AND R.DATE_OF_JOURNEY>=TO_DATE(SYSDATE)`;
+    const binds = { nid: nid };
+    const result = await db.execute(sql, binds, db.options);
+    console.log("RESERVATION :->", result);
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
+    next(err);
+  }
+}
+);
 
 router.post("/", async (req, res, next) => {
   console.log("POST / route hit");

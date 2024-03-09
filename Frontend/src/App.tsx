@@ -12,6 +12,7 @@ import ReservationPage from "./Components/ReservationPage";
 import Payment from "./Components/Payment";
 import TrainInfo from "./Components/TrainInfo";
 import Statistics from "./Components/Statistics";
+import CancelReservation from "./Components/CancelReservation";
 
 const App = () => {
   const checkAuthenticated = async () => {
@@ -79,6 +80,7 @@ const App = () => {
         <Route path="/reservation" element={isAuthenticated?<ReservationPage />:<Login setAuth={setAuth} setLogin={setLogin} setLogged={setLogged}/>} />
         <Route path="/payment" element={<Payment/>} />
         <Route path="/TrainInfo" element={<TrainInfo />} />
+        <Route path="/cancelReservation" element={<CancelReservation />} />
       </Routes>
     </Router>
   );
